@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تبيان | رؤية التطوير</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   EXACT MATCH: globals.css oklch → hex
+   ═══════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  /* oklch(0.99 0.002 160) */
+  --background: #F9FFFE;
+  /* oklch(0.15 0 0) */
+  --foreground: #161616;
+  /* oklch(1 0 0) */
+  --card: #FFFFFF;
+  /* oklch(0.92 0.06 168) */
+  --primary: #B8F3E4;
+  /* oklch(0.25 0.04 168) */
+  --primary-foreground: #1B5E4A;
+  /* oklch(0.92 0.05 350) */
+  --secondary: #FFD7EC;
+  /* oklch(0.35 0.04 350) */
+  --secondary-foreground: #6B2448;
+  /* oklch(0.97 0.003 160) */
+  --muted: #F4FDF9;
+  /* oklch(0.45 0 0) */
+  --muted-foreground: #6B6B6B;
+  /* oklch(0.95 0.04 168) */
+  --accent: #D9F7EE;
+  /* oklch(0.75 0.15 160) */
+  --success: #3DAF82;
+  /* oklch(0.65 0.2 25) */
+  --destructive: #D94F3A;
+  /* oklch(0.82 0.12 85) */
+  --warning: #C9961A;
+  /* oklch(0.92 0.01 168) */
+  --border: #E2F0EB;
+  --radius: 1.5rem;
+  --glass-bg: rgba(255,255,255,0.72);
+  --glass-border: rgba(255,255,255,0.4);
+}
+
+html{scroll-behavior:smooth}
+body{font-family:'Cairo','IBM Plex Sans Arabic',sans-serif;background:var(--background);color:var(--foreground);direction:rtl;min-height:100vh;overflow-x:hidden;line-height:1.6}
+
+/* Glass */
+.glass{
+  background:var(--glass-bg);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border:1px solid var(--glass-border);
+}
+.glass-strong{
+  background:rgba(255,255,255,0.87);
+  backdrop-filter:blur(30px);
+  -webkit-backdrop-filter:blur(30px);
+  border:1px solid rgba(255,255,255,0.5);
+}
+
+/* Gradients */
+.gradient-primary{background:linear-gradient(135deg,#B8F3E4 0%,#CCF8EE 100%)}
+.gradient-secondary{background:linear-gradient(135deg,#FFD7EC 0%,#FEEAF5 100%)}
+.gradient-mesh{
+  background:
+    radial-gradient(at 40% 20%,rgba(184,243,228,.42) 0px,transparent 50%),
+    radial-gradient(at 80% 0%,rgba(255,215,236,.32) 0px,transparent 50%),
+    radial-gradient(at 0% 50%,rgba(204,248,238,.28) 0px,transparent 50%),
+    radial-gradient(at 80% 50%,rgba(254,234,245,.22) 0px,transparent 50%),
+    radial-gradient(at 0% 100%,rgba(184,243,228,.28) 0px,transparent 50%),
+    #F9FFFE;
+}
+
+/* Shadows */
+.shadow-soft{box-shadow:0 2px 8px -2px rgba(0,0,0,0.04),0 8px 24px -4px rgba(0,0,0,0.06)}
+.shadow-glow-primary{box-shadow:0 0 40px -10px rgba(184,243,228,.55),0 8px 24px -4px rgba(0,0,0,0.06)}
+.shadow-glow-secondary{box-shadow:0 0 40px -10px rgba(255,215,236,.55),0 8px 24px -4px rgba(0,0,0,0.06)}
+
+.container{max-width:1200px;margin:0 auto;padding:0 1.5rem}
+section{padding:6rem 0;position:relative}
+
+/* NEW badge */
+.badge-new{display:inline-flex;align-items:center;gap:.35rem;background:linear-gradient(135deg,#B8F3E4,#4CAF88);color:#0D4A35;font-size:.7rem;font-weight:800;padding:.25rem .6rem;border-radius:9999px;letter-spacing:.5px}
+.badge-new::before{content:'✨';font-size:.7rem}
+.section-new-label{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,rgba(184,243,228,.3),rgba(255,215,236,.3));border:1px solid rgba(184,243,228,.5);color:var(--primary-foreground);font-size:.8rem;font-weight:700;padding:.4rem 1rem;border-radius:9999px;margin-bottom:1rem}
+
+/* ═══ HEADER ═══ */
+header{position:fixed;top:0;right:0;left:0;z-index:100;padding:1.25rem 0;transition:all .5s ease}
+header.scrolled{background:rgba(255,255,255,0.88);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--glass-border);box-shadow:0 1px 16px rgba(0,0,0,0.04);padding:.75rem 0}
+.hdr-inner{display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:.75rem;text-decoration:none;cursor:pointer}
+.logo img{width:52px;height:52px;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.12))}
+.logo-txt{font-size:1.5rem;font-weight:800;color:var(--foreground)}
+nav{display:flex;align-items:center;gap:.25rem}
+nav a{position:relative;padding:.625rem 1.25rem;border-radius:.75rem;color:var(--muted-foreground);text-decoration:none;font-size:.9rem;font-weight:500;transition:all .3s}
+nav a:hover{color:var(--foreground);background:rgba(184,243,228,.18)}
+
+/* ═══ HERO ═══ */
+#home{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:7rem 0 4rem}
+.hero-bg{position:absolute;inset:0}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
+.orb1{width:24rem;height:24rem;background:rgba(184,243,228,.22);top:5rem;right:4rem;animation:ao1 15s ease-in-out infinite}
+.orb2{width:20rem;height:20rem;background:rgba(255,215,236,.26);bottom:4rem;left:4rem;animation:ao2 18s ease-in-out infinite}
+.orb3{width:37rem;height:37rem;background:rgba(184,243,228,.1);top:50%;left:50%;transform:translate(-50%,-50%);animation:ao3 12s ease-in-out infinite}
+@keyframes ao1{0%,100%{transform:scale(1) translate(0,0)}50%{transform:scale(1.2) translate(30px,-20px)}}
+@keyframes ao2{0%,100%{transform:scale(1.2) translate(0,0)}50%{transform:scale(1) translate(-40px,30px)}}
+@keyframes ao3{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.3) translateY(-40px)}}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr}.hero-vis{display:none!important}}
+.badge{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:9999px;font-size:.875rem;color:var(--muted-foreground);margin-bottom:2rem}
+.badge-dot{width:.5rem;height:.5rem;border-radius:50%;background:#3DAF82;animation:bdot 2s ease-in-out infinite}
+@keyframes bdot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.5)}}
+.hero-h1{font-size:clamp(2.2rem,5vw,3.75rem);font-weight:800;line-height:1.2;margin-bottom:1.5rem;color:var(--foreground)}
+.hero-h1 .grad{background:linear-gradient(135deg,#1B5E4A 0%,#3DAF82 50%,#4DB899 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero-p{font-size:1.1rem;color:var(--muted-foreground);margin-bottom:2.5rem;line-height:1.8;max-width:32rem}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{padding:1rem 2rem;border-radius:1rem;background:linear-gradient(135deg,#B8F3E4,#5EC19A);color:#0D4A35;font-weight:700;font-size:1.05rem;text-decoration:none;border:none;cursor:pointer;box-shadow:0 0 30px rgba(184,243,228,.6);font-family:inherit;transition:all .3s;display:inline-block}
+.btn-primary:hover{transform:scale(1.03);box-shadow:0 0 45px rgba(184,243,228,.75)}
+.btn-glass{padding:1rem 2rem;border-radius:1rem;background:var(--glass-bg);backdrop-filter:blur(20px);border:1px solid var(--glass-border);color:var(--foreground);font-weight:600;font-size:1.05rem;text-decoration:none;cursor:pointer;font-family:inherit;transition:all .3s;display:inline-block}
+.btn-glass:hover{transform:scale(1.03);background:rgba(255,255,255,.92)}
+.hero-stats{display:flex;gap:2.5rem;margin-top:3rem;flex-wrap:wrap}
+.stat-v{font-size:1.5rem;font-weight:800;color:var(--foreground)}
+.stat-l{font-size:.8rem;color:var(--muted-foreground)}
+
+/* Floating cards */
+.hero-vis{position:relative;height:500px}
+.hc-main{position:absolute;top:50%;left:50%;width:20rem;animation:hcm 6s ease-in-out infinite}
+@keyframes hcm{0%,100%{transform:translate(-50%,-50%) translateY(0)}50%{transform:translate(-50%,-50%) translateY(-10px)}}
+.hc-s1{position:absolute;top:2.5rem;right:0;width:14rem;animation:hcs 5s ease-in-out 1s infinite}
+@keyframes hcs{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
+.hc-s2{position:absolute;bottom:2.5rem;left:0;width:15.5rem;animation:hcs2 7s ease-in-out .5s infinite}
+@keyframes hcs2{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.hc{border-radius:1.5rem;padding:1.5rem}
+.prog{height:.5rem;border-radius:9999px;background:var(--border);overflow:hidden;margin-top:.5rem}
+.prog-fill{height:100%;border-radius:9999px;background:var(--success);width:78%}
+
+.scroll-ind{position:absolute;bottom:2rem;left:50%;z-index:1}
+.scroll-mouse{width:1.5rem;height:2.5rem;border:2px solid rgba(107,107,107,.3);border-radius:9999px;display:flex;justify-content:center;align-items:flex-start;padding:.4rem;animation:smouse 2s ease-in-out infinite;transform:translateX(-50%)}
+.scroll-dot{width:.25rem;height:.5rem;border-radius:9999px;background:rgba(107,107,107,.45)}
+@keyframes smouse{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+/* Section common */
+.sec-hdr{text-align:center;margin-bottom:4rem}
+.sec-badge{display:inline-block;padding:.5rem 1rem;border-radius:9999px;font-size:.875rem;color:var(--muted-foreground);margin-bottom:1rem}
+.sec-title{font-size:clamp(1.75rem,4vw,2.5rem);font-weight:800;color:var(--foreground);margin-bottom:1rem}
+.sec-desc{font-size:1.05rem;color:var(--muted-foreground);max-width:40rem;margin:0 auto;line-height:1.8}
+
+/* ═══ UPLOAD ═══ */
+.upload-wrap{max-width:42rem;margin:0 auto}
+.upload-zone{border:2px dashed var(--border);border-radius:var(--radius);position:relative;cursor:pointer;transition:all .4s}
+.upload-zone:hover,.upload-zone.drag{border-color:#3DAF82;background:rgba(184,243,228,.06);transform:scale(1.01)}
+.upload-inner{padding:3rem;text-align:center}
+.up-ic{width:5rem;height:5rem;border-radius:1.5rem;margin:0 auto 1.5rem;display:flex;align-items:center;justify-content:center}
+.up-ic svg{width:2.5rem;height:2.5rem;stroke:var(--primary-foreground)}
+.up-title{font-size:1.2rem;font-weight:600;margin-bottom:.5rem}
+.up-hint{color:var(--muted-foreground);font-size:.9rem}
+.ftypes{display:flex;gap:.75rem;justify-content:center;margin-top:1.25rem}
+.ft{padding:.4rem 1rem;border-radius:.75rem;font-size:.8rem;font-weight:600}
+.ft-pdf{background:rgba(217,79,58,.1);color:var(--destructive)}
+.ft-img{background:rgba(184,243,228,.35);color:var(--primary-foreground)}
+#fileInput{position:absolute;inset:0;opacity:0;cursor:pointer;z-index:10;width:100%;height:100%}
+.file-row{display:none;flex-direction:row;align-items:center;gap:1rem;padding:1.25rem 1.5rem}
+.file-ic{width:3rem;height:3rem;border-radius:.75rem;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.file-ic svg{stroke:var(--primary-foreground);width:1.5rem;height:1.5rem}
+.file-nm{font-weight:600;font-size:.9rem}
+.file-sz{font-size:.8rem;color:var(--muted-foreground)}
+.file-rm{width:2.5rem;height:2.5rem;border-radius:.75rem;background:rgba(217,79,58,.1);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--destructive)}
+.file-rm svg{width:1.25rem;height:1.25rem;stroke:currentColor}
+.anl-row{display:none;flex-direction:column;gap:.75rem;padding:1rem 1.5rem}
+.spin{width:1.5rem;height:1.5rem;border:2px solid var(--primary);border-top-color:transparent;border-radius:50%;animation:spin 1s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.anl-txt{display:flex;align-items:center;gap:.75rem;justify-content:center;font-weight:500}
+.anl-bar{height:.5rem;border-radius:9999px;background:var(--muted);overflow:hidden}
+.anl-fill{height:100%;border-radius:9999px;background:linear-gradient(135deg,#B8F3E4,#3DAF82);width:0;transition:width 8s ease-in-out}
+.done-row{display:none;align-items:center;gap:.75rem;justify-content:center;color:var(--success);font-weight:600;padding:1rem}
+.done-row svg{width:1.5rem;height:1.5rem;stroke:currentColor}
+.err-row{display:none;align-items:center;gap:.75rem;justify-content:center;color:var(--destructive);font-weight:500;font-size:.9rem;padding:1rem}
+.sec-note{display:flex;align-items:center;justify-content:center;gap:.5rem;color:var(--muted-foreground);font-size:.85rem;margin-top:1.25rem}
+.sec-note svg{width:1rem;height:1rem;stroke:currentColor}
+
+/* ═══ RESULTS ═══ */
+#results{background:rgba(244,253,250,.5)}
+.findings-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem}
+.fc{border-radius:var(--radius);padding:1.5rem;transition:all .4s}
+.fc:hover{transform:translateY(-5px)}
+.fc-hdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1rem}
+.fc-name{font-size:1.05rem;font-weight:700}
+.fc-range{font-size:.75rem;color:var(--muted-foreground);margin-top:.15rem}
+.sbadge{padding:.25rem .75rem;border-radius:9999px;font-size:.75rem;font-weight:600;flex-shrink:0}
+.s-ok{background:rgba(61,175,130,.12);color:var(--success)}
+.s-hi{background:rgba(217,79,58,.1);color:var(--destructive)}
+.s-lo{background:rgba(201,150,26,.12);color:var(--warning)}
+.fc-val{display:flex;align-items:baseline;gap:.5rem;margin-bottom:1rem}
+.fc-num{font-size:2rem;font-weight:800}
+.fc-unit{color:var(--muted-foreground)}
+.btrack{height:.625rem;border-radius:9999px;background:var(--muted);overflow:hidden}
+.bfill{height:100%;border-radius:9999px;transition:width 1.5s ease-out}
+.bfill-ok{background:var(--success)}
+.bfill-hi{background:var(--destructive)}
+.bfill-lo{background:var(--warning)}
+/* Analysis type selector */
+.atype{padding:.5rem 1rem;border-radius:9999px;border:1px solid var(--border);background:rgba(255,255,255,.8);font-family:inherit;font-size:.82rem;font-weight:600;cursor:pointer;color:var(--muted-foreground);transition:all .25s}
+.atype:hover{border-color:#3DAF82;background:rgba(184,243,228,.15);color:var(--primary-foreground)}
+.atype.atype-active{border-color:#3DAF82;background:rgba(184,243,228,.3);color:var(--primary-foreground)}
+/* NEW: confidence badge on card */
+.conf-badge{display:inline-flex;align-items:center;gap:.3rem;font-size:.7rem;font-weight:600;padding:.2rem .5rem;border-radius:9999px;margin-top:.75rem}
+.conf-high{background:rgba(61,175,130,.12);color:var(--success)}
+.conf-med{background:rgba(201,150,26,.12);color:var(--warning)}
+.conf-low{background:rgba(107,107,107,.1);color:var(--muted-foreground)}
+.sum-card{margin-top:3rem;border-radius:var(--radius);padding:2rem}
+.sum-inner{display:flex;align-items:flex-start;gap:2rem;flex-wrap:wrap}
+.sum-ic{width:4rem;height:4rem;border-radius:1.5rem;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.sum-ic svg{width:2rem;height:2rem;stroke:var(--primary-foreground)}
+.sum-txt{flex:1;text-align:right}
+.sum-txt h3{font-size:1.2rem;font-weight:800;margin-bottom:.5rem}
+.sum-txt p{color:var(--muted-foreground);line-height:1.8}
+.sum-gen{color:rgba(22,22,22,.75);font-size:.9rem;margin-top:.75rem;line-height:1.8}
+
+/* ═══ TERMS ═══ */
+#help{}
+.terms-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem}
+.tc{border-radius:var(--radius);padding:1.5rem;transition:all .4s}
+.tc:hover{transform:translateY(-5px)}
+.tc-ic{width:3.5rem;height:3.5rem;border-radius:1rem;background:rgba(255,215,236,.45);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;transition:transform .3s}
+.tc:hover .tc-ic{transform:scale(1.1)}
+.tc-ic svg{width:1.75rem;height:1.75rem;stroke:var(--secondary-foreground)}
+.tc-name{font-size:1.05rem;font-weight:700;margin-bottom:.25rem}
+.tc-vals{font-size:.8rem;color:var(--muted-foreground);margin-bottom:.75rem}
+.tc-exp{color:var(--muted-foreground);line-height:1.7;font-size:.9rem}
+.tc-ref{font-size:.75rem;color:rgba(107,107,107,.6);margin-top:.75rem;padding-top:.75rem;border-top:1px solid var(--border)}
+
+/* ═══ RECS ═══ */
+#recs{background:rgba(244,253,250,.5)}
+.recs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:2rem}
+.rc{border-radius:var(--radius);padding:2rem;transition:all .4s}
+.rc:hover{transform:translateY(-4px)}
+.rc-hdr{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem}
+.rc-ic{width:3.5rem;height:3.5rem;border-radius:1rem;display:flex;align-items:center;justify-content:center}
+.rc-ic svg{width:1.5rem;height:1.5rem;stroke:var(--primary-foreground)}
+.rc-title{font-size:1.2rem;font-weight:800}
+.rc-list{list-style:none;display:flex;flex-direction:column;gap:1rem}
+.ri{display:flex;align-items:flex-start;gap:.75rem;cursor:pointer}
+.ri-chk{width:1.5rem;height:1.5rem;border:2px solid var(--border);border-radius:.4rem;flex-shrink:0;margin-top:.15rem;display:flex;align-items:center;justify-content:center;transition:all .3s}
+.ri:hover .ri-chk{border-color:#3DAF82;background:rgba(184,243,228,.2)}
+.ri.checked .ri-chk{background:var(--primary);border-color:#3DAF82}
+.ri.checked .ri-chk svg{opacity:1}
+.ri-chk svg{width:1rem;height:1rem;stroke:var(--primary-foreground);opacity:0;transition:opacity .2s}
+.ri span{color:var(--muted-foreground);line-height:1.7;font-size:.9rem;transition:color .3s}
+.ri:hover span,.ri.checked span{color:var(--foreground)}
+.recs-cta{text-align:center;margin-top:3rem}
+.recs-cta p{color:var(--muted-foreground);margin-bottom:1.5rem;font-size:.9rem}
+
+/* ═══════════════════════════════
+   NEW FEATURES
+   ═══════════════════════════════ */
+
+/* ── History Timeline ── */
+#history{background:rgba(244,253,250,.5)}
+.timeline{max-width:50rem;margin:0 auto;position:relative}
+.timeline::before{content:'';position:absolute;right:6.5rem;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,transparent,var(--border),transparent)}
+.tl-item{display:flex;gap:2rem;margin-bottom:2rem;align-items:flex-start}
+.tl-date{width:5rem;text-align:right;flex-shrink:0}
+.tl-date-d{font-size:.875rem;font-weight:700;color:var(--foreground)}
+.tl-date-m{font-size:.75rem;color:var(--muted-foreground)}
+.tl-dot{width:1rem;height:1rem;border-radius:50%;flex-shrink:0;margin-top:.35rem;position:relative;z-index:1}
+.tl-dot-ok{background:var(--success);box-shadow:0 0 0 4px rgba(61,175,130,.2)}
+.tl-dot-warn{background:var(--warning);box-shadow:0 0 0 4px rgba(201,150,26,.2)}
+.tl-card{flex:1;border-radius:1rem;padding:1.25rem}
+.tl-card-title{font-weight:700;margin-bottom:.35rem}
+.tl-card-sub{font-size:.85rem;color:var(--muted-foreground)}
+.tl-chips{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.5rem}
+.tl-chip{font-size:.72rem;padding:.2rem .6rem;border-radius:9999px;font-weight:600}
+.tl-chip-ok{background:rgba(61,175,130,.12);color:var(--success)}
+.tl-chip-hi{background:rgba(217,79,58,.1);color:var(--destructive)}
+.tl-chip-lo{background:rgba(201,150,26,.12);color:var(--warning)}
+
+/* ── Comparison ── */
+#compare{}
+.compare-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:1.5rem;align-items:start;max-width:900px;margin:0 auto}
+@media(max-width:700px){.compare-grid{grid-template-columns:1fr}.compare-vs{display:none}}
+.compare-vs{display:flex;align-items:center;justify-content:center;padding-top:4rem}
+.compare-vs span{width:2.5rem;height:2.5rem;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--secondary));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.8rem;color:var(--primary-foreground)}
+.compare-col-hdr{text-align:center;margin-bottom:1.5rem}
+.compare-col-date{font-size:.875rem;color:var(--muted-foreground);margin-bottom:.5rem}
+.compare-col-title{font-size:1.1rem;font-weight:700}
+.compare-row{display:flex;flex-direction:column;gap:.75rem}
+.cmp-item{border-radius:.75rem;padding:.875rem 1rem}
+.cmp-name{font-size:.85rem;font-weight:600;margin-bottom:.35rem}
+.cmp-values{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.cmp-val{font-size:1rem;font-weight:800}
+.cmp-arrow{font-size:.75rem}
+.cmp-arrow.up{color:var(--destructive)}
+.cmp-arrow.down{color:var(--success)}
+.cmp-arrow.same{color:var(--muted-foreground)}
+.cmp-prog{height:.4rem;border-radius:9999px;background:var(--border);overflow:hidden;margin-top:.35rem}
+.cmp-pfill{height:100%;border-radius:9999px;transition:width 1.5s ease}
+
+/* ── Family Mode ── */
+#family{background:rgba(255,215,236,.06)}
+.family-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.5rem}
+.fam-card{border-radius:var(--radius);padding:1.5rem;text-align:center;cursor:pointer;transition:all .4s;position:relative}
+.fam-card:hover{transform:translateY(-5px)}
+.fam-card.active{border:2px solid var(--primary) !important}
+.fam-avatar{width:4.5rem;height:4.5rem;border-radius:50%;margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;font-size:2rem}
+.fam-name{font-weight:700;margin-bottom:.25rem}
+.fam-role{font-size:.8rem;color:var(--muted-foreground);margin-bottom:.75rem}
+.fam-last{font-size:.75rem;color:var(--muted-foreground)}
+.fam-status{position:absolute;top:.75rem;left:.75rem;width:.6rem;height:.6rem;border-radius:50%}
+.fam-add{border:2px dashed var(--border);border-radius:var(--radius);padding:2rem;text-align:center;cursor:pointer;transition:all .4s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem}
+.fam-add:hover{border-color:#3DAF82;background:rgba(184,243,228,.06)}
+.fam-add svg{width:2rem;height:2rem;stroke:var(--muted-foreground)}
+.fam-add span{font-size:.9rem;color:var(--muted-foreground)}
+
+/* ── ABOUT ── */
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem;margin-bottom:4rem}
+.feat-c{border-radius:var(--radius);padding:1.5rem;text-align:center;transition:all .4s}
+.feat-c:hover{transform:translateY(-5px)}
+.feat-ic{width:4rem;height:4rem;border-radius:1rem;margin:0 auto 1rem;display:flex;align-items:center;justify-content:center}
+.feat-ic svg{width:1.75rem;height:1.75rem;stroke:var(--primary-foreground)}
+.feat-title{font-size:1.05rem;font-weight:800;margin-bottom:.5rem}
+.feat-desc{font-size:.875rem;color:var(--muted-foreground);line-height:1.7}
+.mission{border-radius:var(--radius);padding:3.5rem 4rem;text-align:center}
+@media(max-width:640px){.mission{padding:2rem 1.5rem}}
+.mission-ic{width:5rem;height:5rem;border-radius:1.5rem;margin:0 auto 2rem;display:flex;align-items:center;justify-content:center}
+.mission-ic svg{width:2.5rem;height:2.5rem;stroke:var(--secondary-foreground)}
+.mission h3{font-size:clamp(1.5rem,3vw,1.875rem);font-weight:800;margin-bottom:1.5rem;line-height:1.4}
+.mission p{font-size:1.05rem;color:var(--muted-foreground);line-height:1.8;max-width:38rem;margin:0 auto 2rem}
+.mission-chks{display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem}
+.mchk{display:flex;align-items:center;gap:.5rem;color:var(--muted-foreground);font-size:.9rem}
+.mchk svg{width:1.25rem;height:1.25rem;stroke:var(--success);flex-shrink:0}
+
+/* ── FOOTER ── */
+footer{background:rgba(244,253,250,.65);padding:4rem 0 2rem;border-top:1px solid var(--border)}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+@media(max-width:768px){.foot-grid{grid-template-columns:1fr}}
+.foot-logo{display:flex;align-items:center;gap:.75rem;text-decoration:none;margin-bottom:1rem}
+.foot-logo img{width:3rem;height:3rem;object-fit:contain}
+.foot-desc{color:var(--muted-foreground);line-height:1.8;font-size:.9rem;max-width:22rem;margin-bottom:1.5rem}
+.socials{display:flex;gap:.75rem}
+.soc-btn{width:2.5rem;height:2.5rem;border-radius:.75rem;display:flex;align-items:center;justify-content:center;color:var(--muted-foreground);text-decoration:none;transition:all .3s;border:1px solid var(--border);background:#fff}
+.soc-btn:hover{color:var(--foreground);background:rgba(184,243,228,.25);transform:translateY(-2px)}
+.soc-btn svg{width:1.25rem;height:1.25rem;fill:currentColor}
+.foot-col h4{font-weight:800;margin-bottom:1rem}
+.foot-links{list-style:none;display:flex;flex-direction:column;gap:.75rem}
+.foot-links a{color:var(--muted-foreground);text-decoration:none;font-size:.9rem;transition:color .3s}
+.foot-links a:hover{color:var(--foreground)}
+.foot-btm{display:flex;align-items:center;justify-content:space-between;padding-top:2rem;border-top:1px solid var(--border);flex-wrap:wrap;gap:1rem}
+.foot-btm p{font-size:.875rem;color:var(--muted-foreground)}
+
+/* ── CHATBOT ── */
+.chat-fab{position:fixed;bottom:1.5rem;left:1.5rem;z-index:200;width:3.5rem;height:3.5rem;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#B8F3E4 0%,#a8e8d8 50%,#FFD7EC 100%);box-shadow:0 4px 20px rgba(184,243,228,.55);transition:all .3s;overflow:hidden;animation:fabIn .6s 1.5s both}
+@keyframes fabIn{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+.chat-fab:hover{transform:scale(1.07)}
+.fab-pulse{position:absolute;inset:0;border-radius:50%;background:linear-gradient(135deg,#B8F3E4,#FFD7EC);animation:fpulse 3s infinite;pointer-events:none}
+@keyframes fpulse{0%,100%{opacity:.25;transform:scale(1)}50%{opacity:0;transform:scale(1.5)}}
+.chat-fab svg{width:1.25rem;height:1.25rem;stroke:#111;position:relative;z-index:1}
+.chat-panel{position:fixed;bottom:6rem;left:1.5rem;z-index:200;width:20rem;max-width:calc(100vw - 2rem);border-radius:1.75rem;overflow:hidden;display:none;flex-direction:column;animation:panIn .25s ease-out}
+@keyframes panIn{from{opacity:0;transform:translateY(1rem) scale(.97)}to{opacity:1;transform:none}}
+.chat-panel.open{display:flex}
+.chat-hdr{padding:1rem 1.25rem;display:flex;align-items:center;gap:.75rem;border-bottom:1px solid var(--border)}
+.chat-hdr-ic{width:2.25rem;height:2.25rem;border-radius:50%;background:linear-gradient(135deg,rgba(184,243,228,.5),rgba(255,215,236,.5));display:flex;align-items:center;justify-content:center}
+.chat-hdr-ic svg{width:1rem;height:1rem;stroke:#111}
+.chat-hdr-info{flex:1}
+.chat-hdr-title{font-size:.875rem;font-weight:600}
+.chat-hdr-status{font-size:.72rem;color:var(--muted-foreground)}
+.chat-msgs{height:14rem;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.75rem}
+.chat-msgs::-webkit-scrollbar{width:.25rem}
+.chat-msgs::-webkit-scrollbar-thumb{background:var(--border);border-radius:9999px}
+.cmsg{display:flex}
+.cmsg.user{justify-content:flex-start}
+.cmsg.assistant{justify-content:flex-end}
+.cbubble{max-width:82%;padding:.625rem .875rem;font-size:.8rem;line-height:1.6;white-space:pre-wrap;word-break:break-word}
+.cmsg.user .cbubble{border-radius:1rem 1rem 1rem .375rem;background:linear-gradient(135deg,rgba(184,243,228,.6),rgba(184,243,228,.35))}
+.cmsg.assistant .cbubble{border-radius:1rem 1rem .375rem 1rem;background:rgba(249,250,251,.95)}
+/* NEW: source citation in chat */
+.csrc{font-size:.65rem;color:var(--muted-foreground);margin-top:.25rem;opacity:.7}
+.tdots{display:flex;align-items:center;gap:.375rem;padding:.5rem .875rem}
+.tdot{width:.375rem;height:.375rem;border-radius:50%;background:#9CA3AF}
+.tdot:nth-child(1){animation:td 1.2s ease-in-out infinite}
+.tdot:nth-child(2){animation:td 1.2s ease-in-out .2s infinite}
+.tdot:nth-child(3){animation:td 1.2s ease-in-out .4s infinite}
+@keyframes td{0%,100%{opacity:.3}50%{opacity:1}}
+.chat-faqs{padding:.5rem 1rem;display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center}
+.cfaq{padding:.375rem .75rem;border-radius:9999px;font-size:.7rem;font-weight:500;color:#333;border:1px solid rgba(0,0,0,.04);cursor:pointer;transition:all .2s;font-family:inherit;background:rgba(255,255,255,.92)}
+.cfaq:hover{transform:scale(1.03) translateY(-1px)}
+.cfaq.green{background:linear-gradient(135deg,rgba(184,243,228,.45),rgba(184,243,228,.25))}
+.cfaq.pink{background:linear-gradient(135deg,rgba(255,215,236,.45),rgba(255,215,236,.25))}
+.chat-inp-row{margin:.25rem 1rem .75rem;display:flex;align-items:center;gap:.5rem;background:rgba(249,250,251,.88);border:1px solid rgba(0,0,0,.05);border-radius:9999px;padding:.25rem .25rem .25rem .75rem}
+.chat-inp-row input{flex:1;border:none;background:transparent;font-size:.8rem;color:var(--foreground);outline:none;font-family:inherit;direction:rtl}
+.chat-inp-row input::placeholder{color:#C0C8C5}
+.chat-send{width:2rem;height:2rem;border-radius:50%;border:none;background:linear-gradient(135deg,#B8F3E4,#a8e8d8);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
+.chat-send:hover{transform:scale(1.07)}
+.chat-send:disabled{opacity:.4;cursor:not-allowed}
+.chat-send svg{width:.875rem;height:.875rem;stroke:#111;transform:rotate(180deg)}
+
+.fade-in{animation:fi .6s ease-out both}
+@keyframes fi{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+
+/* progress bar anim */
+.prog-fill{animation:pf 1.5s ease-out forwards}
+@keyframes pf{from{width:0}to{width:78%}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="hdr">
+  <div class="container hdr-inner">
+    <a class="logo" href="#home">
+      <img src="http://localhost:3000/logo.png" alt="تبيان" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div style="display:none;width:52px;height:52px;border-radius:1rem;background:linear-gradient(135deg,#B8F3E4,#CCF8EE);align-items:center;justify-content:center;box-shadow:0 0 20px rgba(184,243,228,.4)">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1B5E4A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg>
+      </div>
+      <span class="logo-txt">تبيان</span>
+    </a>
+    <nav>
+      <a href="#home">الرئيسية</a>
+      <a href="#analysis">التحليل</a>
+      <a href="#results">النتائج</a>
+      <a href="#help">المساعدة</a>
+      <a href="#about">حول المنصة</a>
+    </nav>
+    <div style="display:flex;gap:.5rem;align-items:center">
+      <button onclick="openModal('loginModal')" style="padding:.5rem 1.1rem;border-radius:.75rem;border:1px solid var(--border);background:rgba(255,255,255,.85);font-family:inherit;font-size:.85rem;font-weight:600;cursor:pointer;color:var(--foreground);transition:all .3s">دخول</button>
+      <button onclick="openModal('loginModal')" class="btn-primary" style="padding:.5rem 1.1rem;font-size:.85rem">إنشاء حساب <span class="badge-new" style="margin-right:.4rem;font-size:.6rem">جديد</span></button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg gradient-mesh"></div>
+  <div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="badge glass fade-in"><span class="badge-dot"></span><span>مدعوم بالذكاء الاصطناعي</span></div>
+        <h1 class="hero-h1 fade-in">تحليل تقاريرك الطبية<br><span class="grad">بذكاء وبساطة</span></h1>
+        <p class="hero-p fade-in">نحوّل المصطلحات الطبية المعقدة إلى لغة عربية واضحة وسهلة الفهم، مع توصيات صحية مخصصة لحالتك</p>
+        <div class="hero-btns fade-in">
+          <a href="#analysis" class="btn-primary">ابدأ التحليل الآن</a>
+          <a href="#about" class="btn-glass">اكتشف المزيد</a>
+        </div>
+        <div class="hero-stats fade-in">
+          <div><div class="stat-v">+10K</div><div class="stat-l">تقرير محلل</div></div>
+          <div><div class="stat-v">98%</div><div class="stat-l">دقة التحليل</div></div>
+          <div><div class="stat-v">24/7</div><div class="stat-l">دعم متواصل</div></div>
+        </div>
+      </div>
+      <div class="hero-vis">
+        <div class="hc-main"><div class="hc glass-strong shadow-soft">
+          <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem">
+            <div style="width:3rem;height:3rem;border-radius:.75rem;display:flex;align-items:center;justify-content:center" class="gradient-primary shadow-glow-primary">
+              <svg width="24" height="24" fill="none" stroke="#1B5E4A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25z"/></svg>
+            </div>
+            <div><div style="font-weight:600">تحليل الدم الشامل</div><div style="font-size:.8rem;color:var(--muted-foreground)">تم التحليل بنجاح</div></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:.5rem"><span style="color:var(--muted-foreground)">الهيموغلوبين</span><span style="color:var(--success);font-weight:600">14.2 g/dL</span></div>
+          <div class="prog"><div class="prog-fill"></div></div>
+        </div></div>
+        <div class="hc-s1"><div class="hc glass-strong shadow-soft">
+          <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem">
+            <div style="width:2rem;height:2rem;border-radius:.5rem;background:rgba(61,175,130,.2);display:flex;align-items:center;justify-content:center"><svg width="16" height="16" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+            <span style="font-size:.875rem;font-weight:600">فيتامين D</span>
+          </div>
+          <div style="font-size:1.5rem;font-weight:800">45 ng/mL</div>
+          <div style="font-size:.75rem;color:var(--success)">ضمن المعدل الطبيعي</div>
+        </div></div>
+        <div class="hc-s2"><div class="hc glass-strong shadow-soft">
+          <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem">
+            <div style="width:2rem;height:2rem;border-radius:.5rem;background:rgba(255,215,236,.5);display:flex;align-items:center;justify-content:center"><svg width="16" height="16" fill="none" stroke="var(--secondary-foreground)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></div>
+            <span style="font-size:.875rem;font-weight:600">تحليل ذكي</span>
+          </div>
+          <p style="font-size:.85rem;color:var(--muted-foreground);line-height:1.6">نتائجك تشير إلى صحة جيدة بشكل عام مع بعض التوصيات البسيطة...</p>
+        </div></div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-ind"><div class="scroll-mouse"><div class="scroll-dot"></div></div></div>
+</section>
+
+<!-- UPLOAD -->
+<section id="analysis">
+  <div class="container">
+    <div class="sec-hdr"><span class="sec-badge glass">تحليل سريع وآمن</span><h2 class="sec-title">ارفع تقريرك الطبي</h2><p class="sec-desc">قم برفع ملفات PDF أو صور التقارير الطبية وسنقوم بتحليلها فوراً باستخدام أحدث تقنيات الذكاء الاصطناعي</p></div>
+    <!-- نوع التحليل — Phase 5 preview -->
+    <div style="display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;margin-bottom:1.75rem">
+      <div class="section-new-label" style="margin-bottom:0">✨ المرحلة 5 — دعم أنواع متعددة</div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-bottom:2rem" id="atypeRow">
+      <button class="atype atype-active" onclick="selType(this)">🩸 دم شامل CBC</button>
+      <button class="atype" onclick="selType(this)">🫀 وظائف القلب</button>
+      <button class="atype" onclick="selType(this)">🫁 وظائف الكلى</button>
+      <button class="atype" onclick="selType(this)">⚗️ الغدة الدرقية</button>
+      <button class="atype" onclick="selType(this)">💊 فيتامينات ومعادن</button>
+      <button class="atype" onclick="selType(this)">🧪 تحليل بول</button>
+      <button class="atype" onclick="selType(this)">🔬 هرمونات</button>
+    </div>
+    <div class="upload-wrap">
+      <div class="upload-zone glass-strong shadow-soft" id="uZone">
+        <input type="file" id="fileInput" accept=".pdf,.png,.jpg,.jpeg" aria-label="رفع ملف">
+        <div class="upload-inner" id="uDef">
+          <div class="up-ic gradient-primary shadow-glow-primary"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/></svg></div>
+          <div class="up-title">اسحب الملفات هنا أو انقر للتحميل</div>
+          <div class="up-hint">PDF, PNG, JPG حتى 10MB</div>
+          <div class="ftypes"><span class="ft ft-pdf">PDF</span><span class="ft ft-img">PNG</span><span class="ft ft-img">JPG</span></div>
+        </div>
+        <div class="file-row" id="uFile"><div class="file-ic gradient-primary"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg></div><div style="flex:1;text-align:right"><div class="file-nm" id="fName">-</div><div class="file-sz" id="fSize">-</div></div><button class="file-rm" id="fRm"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18L18 6M6 6l12 12"/></svg></button></div>
+        <div class="anl-row" id="uAnl"><div class="anl-txt"><div class="spin"></div><span>جاري تحليل التقرير...</span></div><div class="anl-bar"><div class="anl-fill" id="anlFill"></div></div></div>
+        <div class="done-row" id="uDone"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span>تم التحليل بنجاح!</span></div>
+        <div class="err-row" id="uErr"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"/></svg><span id="errMsg">تعذّر الاتصال.</span></div>
+      </div>
+      <div class="sec-note"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg><span>بياناتك آمنة ومشفرة بالكامل</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section id="results"><div class="container">
+  <div class="sec-hdr"><span class="sec-badge glass">نتائج التحليل</span><h2 class="sec-title">نتائجك الطبية بوضوح</h2><p class="sec-desc">تحليل شامل لمؤشراتك الصحية مع شرح مبسط لكل نتيجة وتوصيات مخصصة</p></div>
+  <div class="findings-grid" id="fGrid"></div>
+  <div class="sum-card glass-strong shadow-soft" id="sumCard" style="display:none"><div class="sum-inner"><div class="sum-ic gradient-primary shadow-glow-primary"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"/></svg></div><div class="sum-txt"><h3>ملخص الحالة الصحية</h3><p id="sumTxt"></p><p class="sum-gen" id="genTxt" style="display:none"></p></div></div></div>
+</div></section>
+
+<!-- TERMS -->
+<section id="help"><div class="container">
+  <div class="sec-hdr"><span class="sec-badge glass">قاموس طبي مبسط</span><h2 class="sec-title">تبسيط المصطلحات</h2><p class="sec-desc">نحوّل المصطلحات الطبية المعقدة إلى لغة عربية واضحة وسهلة الفهم</p></div>
+  <div id="termsContent"></div>
+</div></section>
+
+<!-- RECS -->
+<section id="recs"><div class="container">
+  <div class="sec-hdr"><span class="sec-badge glass">نصائح مخصصة لك</span><h2 class="sec-title">توصيات لتحسين صحتك</h2><p class="sec-desc" id="recsDesc">بناءً على نتائج تحليلك، إليك مجموعة من النصائح والتوصيات</p></div>
+  <div class="recs-grid" id="recsGrid"></div>
+  <div class="recs-cta"><p>هذه التوصيات مبنية على نتائج تحليلك وليست بديلاً عن استشارة الطبيب المختص</p><a href="#" class="btn-glass">احجز موعداً مع طبيب</a></div>
+</div></section>
+
+<!-- ══════════════════════════════════════
+     ✨ NEW: سجل التحاليل (مرحلة 4)
+     ══════════════════════════════════════ -->
+<section id="history">
+  <div class="container">
+    <div class="sec-hdr">
+      <div class="section-new-label">✨ ميزة جديدة — المرحلة 4</div>
+      <span class="sec-badge glass">متابعة صحتك عبر الزمن</span>
+      <h2 class="sec-title">سجل تحاليلك</h2>
+      <p class="sec-desc">تابع تطور حالتك الصحية مع مرور الوقت وشاهد التحسن في مؤشراتك</p>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date"><div class="tl-date-d">15 مايو</div><div class="tl-date-m">2025</div></div>
+        <div class="tl-dot tl-dot-warn"></div>
+        <div class="tl-card glass-strong shadow-soft" onclick="toggleTl(this)" style="cursor:pointer">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div class="tl-card-title">تحليل دم شامل CBC</div>
+            <svg style="width:1rem;height:1rem;stroke:var(--muted-foreground);transition:transform .3s" class="tl-arrow" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
+          </div>
+          <div class="tl-card-sub">3 قيم خارج المعدل الطبيعي</div>
+          <div class="tl-chips"><span class="tl-chip tl-chip-hi">سكر الدم ↑</span><span class="tl-chip tl-chip-lo">فيتامين D ↓</span><span class="tl-chip tl-chip-lo">حديد ↓</span></div>
+          <div class="tl-detail" style="display:none;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border)">
+            <div style="font-size:.82rem;color:var(--muted-foreground);line-height:1.8">📋 <b>الملخص:</b> مستوى سكر مرتفع قليلاً مع نقص في فيتامين D والحديد. باقي المؤشرات ضمن المعدل الطبيعي.<br>🏥 <b>المختبر:</b> مختبر الرياض الطبي<br>💊 <b>التوصية:</b> مكمل فيتامين D + تعديل النظام الغذائي</div>
+            <button class="btn-primary" style="margin-top:.75rem;padding:.5rem 1rem;font-size:.8rem">عرض التحليل الكامل</button>
+          </div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date"><div class="tl-date-d">10 فبراير</div><div class="tl-date-m">2025</div></div>
+        <div class="tl-dot tl-dot-warn"></div>
+        <div class="tl-card glass-strong shadow-soft" onclick="toggleTl(this)" style="cursor:pointer">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div class="tl-card-title">تحليل وظائف الكبد</div>
+            <svg style="width:1rem;height:1rem;stroke:var(--muted-foreground);transition:transform .3s" class="tl-arrow" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
+          </div>
+          <div class="tl-card-sub">2 قيم خارج المعدل الطبيعي</div>
+          <div class="tl-chips"><span class="tl-chip tl-chip-hi">SGPT ↑</span><span class="tl-chip tl-chip-hi">Bilirubin ↑</span></div>
+          <div class="tl-detail" style="display:none;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border)">
+            <div style="font-size:.82rem;color:var(--muted-foreground);line-height:1.8">📋 <b>الملخص:</b> ارتفاع في إنزيمات الكبد يتطلب متابعة طبية والابتعاد عن الأدوية المؤثرة على الكبد.<br>🏥 <b>المختبر:</b> مستشفى الملك فيصل<br>💊 <b>التوصية:</b> مراجعة الطبيب خلال أسبوع</div>
+            <button class="btn-primary" style="margin-top:.75rem;padding:.5rem 1rem;font-size:.8rem">عرض التحليل الكامل</button>
+          </div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date"><div class="tl-date-d">3 أكتوبر</div><div class="tl-date-m">2024</div></div>
+        <div class="tl-dot tl-dot-ok"></div>
+        <div class="tl-card glass-strong shadow-soft" onclick="toggleTl(this)" style="cursor:pointer">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div class="tl-card-title">فحص الغدة الدرقية</div>
+            <svg style="width:1rem;height:1rem;stroke:var(--muted-foreground);transition:transform .3s" class="tl-arrow" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
+          </div>
+          <div class="tl-card-sub">جميع القيم طبيعية ✓</div>
+          <div class="tl-chips"><span class="tl-chip tl-chip-ok">TSH طبيعي</span><span class="tl-chip tl-chip-ok">T3 طبيعي</span><span class="tl-chip tl-chip-ok">T4 طبيعي</span></div>
+          <div class="tl-detail" style="display:none;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border)">
+            <div style="font-size:.82rem;color:var(--muted-foreground);line-height:1.8">📋 <b>الملخص:</b> جميع هرمونات الغدة الدرقية ضمن المعدل الطبيعي. لا يوجد ما يستدعي القلق.<br>🏥 <b>المختبر:</b> مختبر الدمام التخصصي<br>✅ <b>التوصية:</b> متابعة سنوية دورية</div>
+            <button class="btn-primary" style="margin-top:.75rem;padding:.5rem 1rem;font-size:.8rem">عرض التحليل الكامل</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     ✨ NEW: مقارنة التحاليل (مرحلة 4)
+     ══════════════════════════════════════ -->
+<section id="compare">
+  <div class="container">
+    <div class="sec-hdr">
+      <div class="section-new-label">✨ ميزة جديدة — المرحلة 4</div>
+      <span class="sec-badge glass">تتبع التحسن</span>
+      <h2 class="sec-title">مقارنة التحاليل</h2>
+      <p class="sec-desc">قارن بين تحليلين لترى كيف تحسّنت حالتك الصحية مع الوقت</p>
+    </div>
+    <div class="compare-grid">
+      <div>
+        <div class="compare-col-hdr"><div class="compare-col-date">15 مايو 2025</div><div class="compare-col-title">التحليل الأحدث</div></div>
+        <div class="compare-row">
+          <div class="cmp-item glass-strong shadow-soft"><div class="cmp-name">سكر الدم</div><div class="cmp-values"><span class="cmp-val" style="color:var(--destructive)">115</span><span style="color:var(--muted-foreground);font-size:.8rem">mg/dL</span></div><div class="cmp-prog"><div class="cmp-pfill bfill-hi" style="width:57%"></div></div></div>
+          <div class="cmp-item glass-strong shadow-soft"><div class="cmp-name">فيتامين D</div><div class="cmp-values"><span class="cmp-val" style="color:var(--warning)">22</span><span style="color:var(--muted-foreground);font-size:.8rem">ng/mL</span></div><div class="cmp-prog"><div class="cmp-pfill bfill-lo" style="width:28%"></div></div></div>
+          <div class="cmp-item glass-strong shadow-soft"><div class="cmp-name">الهيموغلوبين</div><div class="cmp-values"><span class="cmp-val" style="color:var(--success)">13.2</span><span style="color:var(--muted-foreground);font-size:.8rem">g/dL</span></div><div class="cmp-prog"><div class="cmp-pfill bfill-ok" style="width:82%"></div></div></div>
+        </div>
+      </div>
+      <div class="compare-vs"><span>VS</span></div>
+      <div>
+        <div class="compare-col-hdr"><div class="compare-col-date">3 أكتوبر 2024</div><div class="compare-col-title">التحليل الأقدم</div></div>
+        <div class="compare-row">
+          <div class="cmp-item glass-strong shadow-soft"><div class="cmp-name">سكر الدم</div><div class="cmp-values"><span class="cmp-val" style="color:var(--destructive)">128</span><span style="color:var(--muted-foreground);font-size:.8rem">mg/dL</span><span class="cmp-arrow down">↓ تحسّن</span></div><div class="cmp-prog"><div class="cmp-pfill bfill-hi" style="width:70%"></div></div></div>
+          <div class="cmp-item glass-strong shadow-soft"><div class="cmp-name">فيتامين D</div><div class="cmp-values"><span class="cmp-val" style="color:var(--warning)">12</span><span style="color:var(--muted-foreground);font-size:.8rem">ng/mL</span><span class="cmp-arrow down">↑ تحسّن</span></div><div class="cmp-prog"><div class="cmp-pfill bfill-lo" style="width:15%"></div></div></div>
+          <div class="cmp-item glass-strong shadow-soft"><div class="cmp-name">الهيموغلوبين</div><div class="cmp-values"><span class="cmp-val" style="color:var(--warning)">11.8</span><span style="color:var(--muted-foreground);font-size:.8rem">g/dL</span><span class="cmp-arrow down">↑ تحسّن</span></div><div class="cmp-prog"><div class="cmp-pfill bfill-lo" style="width:60%"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     ✨ NEW: وضع العائلة (مرحلة 4)
+     ══════════════════════════════════════ -->
+<section id="family">
+  <div class="container">
+    <div class="sec-hdr">
+      <div class="section-new-label">✨ ميزة جديدة — المرحلة 4</div>
+      <span class="sec-badge glass">رعاية صحة عائلتك</span>
+      <h2 class="sec-title">وضع العائلة</h2>
+      <p class="sec-desc">تابع صحة أفراد عائلتك من حساب واحد وكوني على دراية بحالتهم الصحية</p>
+    </div>
+    <div class="family-grid">
+      <div class="fam-card glass-strong shadow-soft active">
+        <div class="fam-status" style="background:var(--success)"></div>
+        <div class="fam-avatar" style="background:linear-gradient(135deg,rgba(184,243,228,.4),rgba(184,243,228,.2))">👩</div>
+        <div class="fam-name">رغد</div>
+        <div class="fam-role">الحساب الرئيسي</div>
+        <div class="fam-last">آخر تحليل: اليوم</div>
+      </div>
+      <div class="fam-card glass-strong shadow-soft">
+        <div class="fam-status" style="background:var(--warning)"></div>
+        <div class="fam-avatar" style="background:linear-gradient(135deg,rgba(255,215,236,.4),rgba(255,215,236,.2))">👴</div>
+        <div class="fam-name">الوالد</div>
+        <div class="fam-role">أب</div>
+        <div class="fam-last">آخر تحليل: قبل أسبوع</div>
+      </div>
+      <div class="fam-card glass-strong shadow-soft">
+        <div class="fam-status" style="background:var(--success)"></div>
+        <div class="fam-avatar" style="background:linear-gradient(135deg,rgba(184,243,228,.4),rgba(255,215,236,.2))">👦</div>
+        <div class="fam-name">أحمد</div>
+        <div class="fam-role">أخ</div>
+        <div class="fam-last">آخر تحليل: قبل شهر</div>
+      </div>
+      <div class="fam-add glass" onclick="toggleFamForm()" id="famAddBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <span>إضافة فرد عائلة</span>
+      </div>
+    </div>
+    <!-- فورم إضافة فرد — يظهر عند الضغط -->
+    <div id="famForm" style="display:none;max-width:28rem;margin:1.5rem auto 0;border-radius:1.25rem;padding:1.75rem" class="glass-strong shadow-soft fade-in">
+      <h4 style="font-size:1.05rem;font-weight:800;margin-bottom:1.25rem">إضافة فرد جديد</h4>
+      <div style="display:flex;flex-direction:column;gap:1rem">
+        <div>
+          <label style="font-size:.8rem;font-weight:600;color:var(--muted-foreground);display:block;margin-bottom:.4rem">الاسم</label>
+          <input id="famNameInp" type="text" placeholder="أدخل اسم الفرد" style="width:100%;padding:.65rem 1rem;border-radius:.75rem;border:1px solid var(--border);background:rgba(255,255,255,.9);font-family:inherit;font-size:.9rem;outline:none;direction:rtl;box-sizing:border-box" onfocus="this.style.borderColor='#3DAF82'" onblur="this.style.borderColor='var(--border)'">
+        </div>
+        <div>
+          <label style="font-size:.8rem;font-weight:600;color:var(--muted-foreground);display:block;margin-bottom:.4rem">صلة القرابة</label>
+          <select id="famRoleInp" style="width:100%;padding:.65rem 1rem;border-radius:.75rem;border:1px solid var(--border);background:rgba(255,255,255,.9);font-family:inherit;font-size:.9rem;outline:none;direction:rtl;appearance:none;box-sizing:border-box">
+            <option>أب</option><option>أم</option><option>أخ</option><option>أخت</option><option>ابن</option><option>ابنة</option><option>جد</option><option>جدة</option>
+          </select>
+        </div>
+        <div style="display:flex;gap:.75rem">
+          <button onclick="addFamMember()" class="btn-primary" style="flex:1;padding:.7rem;font-size:.9rem">إضافة ✓</button>
+          <button onclick="toggleFamForm()" style="flex:1;padding:.7rem;border-radius:.75rem;border:1px solid var(--border);background:transparent;font-family:inherit;font-size:.9rem;cursor:pointer">إلغاء</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about"><div class="container">
+  <div class="sec-hdr"><span class="sec-badge glass">لماذا تبيان؟</span><h2 class="sec-title">حول المنصة</h2><p class="sec-desc">تبيان هي منصة طبية ذكية مصممة خصيصاً للمستخدم العربي، تجمع بين التقنية المتقدمة والبساطة في التواصل</p></div>
+  <div class="feat-grid">
+    <div class="feat-c glass-strong shadow-soft"><div class="feat-ic gradient-primary shadow-glow-primary"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg></div><div class="feat-title">تحليل ذكي</div><div class="feat-desc">نستخدم أحدث تقنيات الذكاء الاصطناعي لتحليل تقاريرك الطبية بدقة عالية</div></div>
+    <div class="feat-c glass-strong shadow-soft"><div class="feat-ic gradient-primary shadow-glow-primary"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></div><div class="feat-title">لغة عربية واضحة</div><div class="feat-desc">نحوّل المصطلحات الطبية المعقدة إلى شرح عربي بسيط وسهل الفهم</div></div>
+    <div class="feat-c glass-strong shadow-soft"><div class="feat-ic gradient-primary shadow-glow-primary"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg></div><div class="feat-title">خصوصية تامة</div><div class="feat-desc">بياناتك الصحية مشفرة ومحمية بأعلى معايير الأمان العالمية</div></div>
+    <div class="feat-c glass-strong shadow-soft"><div class="feat-ic gradient-primary shadow-glow-primary"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg></div><div class="feat-title">توصيات مخصصة</div><div class="feat-desc">نقدم نصائح صحية مخصصة بناءً على نتائجك الفردية</div></div>
+  </div>
+  <div class="mission glass-strong shadow-soft">
+    <div class="mission-ic gradient-secondary shadow-glow-secondary"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z"/></svg></div>
+    <h3>رسالتنا هي تمكين كل شخص من فهم صحته بوضوح</h3>
+    <p>نؤمن بأن فهم التقارير الطبية حق للجميع، وليس امتيازاً للمتخصصين فقط. لذلك أنشأنا تبيان لتكون جسراً بين التعقيد الطبي والفهم البسيط، مع الحفاظ على أعلى معايير الدقة والخصوصية.</p>
+    <div class="mission-chks">
+      <div class="mchk"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.75l6 6 9-13.5"/></svg><span>معتمد طبياً</span></div>
+      <div class="mchk"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.75l6 6 9-13.5"/></svg><span>مشفر بالكامل</span></div>
+      <div class="mchk"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.75l6 6 9-13.5"/></svg><span>دعم على مدار الساعة</span></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- FOOTER -->
+<footer><div class="container">
+  <div class="foot-grid">
+    <div>
+      <a class="foot-logo" href="#home">
+        <img src="http://localhost:3000/logo.png" alt="تبيان" width="48" height="48" style="object-fit:contain" onerror="this.style.display='none'">
+        <span style="font-size:1.5rem;font-weight:800">تبيان</span>
+      </a>
+      <p class="foot-desc">منصة طبية ذكية تساعدك على فهم تقاريرك الطبية بلغة عربية واضحة وبسيطة</p>
+      <div class="socials">
+        <a href="#" class="soc-btn"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="#" class="soc-btn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="#" class="soc-btn"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+      </div>
+    </div>
+    <div><h4 class="foot-col">روابط سريعة</h4><ul class="foot-links"><li><a href="#home">الرئيسية</a></li><li><a href="#analysis">التحليل</a></li><li><a href="#results">النتائج</a></li><li><a href="#about">حول المنصة</a></li></ul></div>
+    <div><h4 class="foot-col">الدعم</h4><ul class="foot-links"><li><a href="#">الأسئلة الشائعة</a></li><li><a href="#">اتصل بنا</a></li><li><a href="#">سياسة الخصوصية</a></li><li><a href="#">الشروط والأحكام</a></li></ul></div>
+  </div>
+  <div class="foot-btm"><p>© 2024 تبيان. جميع الحقوق محفوظة.</p><p>صُنع بـ ❤️ للمستخدم العربي</p></div>
+</div></footer>
+
+<!-- CHATBOT -->
+<button class="chat-fab" id="chatFab" aria-label="المساعد الذكي">
+  <div class="fab-pulse"></div>
+  <svg id="chatIc" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z"/></svg>
+  <svg id="closeIc" style="display:none" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18L18 6M6 6l12 12"/></svg>
+</button>
+<div class="chat-panel glass-strong shadow-glow-primary" id="chatPanel">
+  <div class="chat-hdr">
+    <div class="chat-hdr-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"/></svg></div>
+    <div class="chat-hdr-info">
+      <div class="chat-hdr-title">المساعد الذكي</div>
+      <div class="chat-hdr-status">متصل الآن</div>
+    </div>
+  </div>
+  <!-- مؤشر ربط التحليل — Phase 3 -->
+  <div style="margin:.5rem 1rem 0;padding:.5rem .75rem;border-radius:.75rem;background:rgba(184,243,228,.2);border:1px solid rgba(184,243,228,.4);display:flex;align-items:center;gap:.5rem">
+    <span style="font-size:.7rem">🔗</span>
+    <span style="font-size:.7rem;color:var(--primary-foreground);font-weight:600">متصل بتحليلك الأخير — سكر الدم ↑</span>
+    <span class="badge-new" style="margin-right:auto;font-size:.58rem">M3</span>
+  </div>
+  <div class="chat-msgs" id="chatMsgs">
+    <div class="cmsg assistant"><div class="cbubble">مرحباً! أنا مساعدك الطبي. لاحظت أن تحليلك الأخير يظهر ارتفاعاً في سكر الدم، كيف يمكنني مساعدتك؟</div></div>
+    <div class="cmsg user"><div class="cbubble">ليش السكر مرتفع عندي؟</div></div>
+    <div class="cmsg assistant"><div class="cbubble">بناءً على قيمتك (115 mg/dL)، هذا ارتفاع طفيف عن المعدل الطبيعي (70–100). أبرز الأسباب: النظام الغذائي، قلة الحركة، أو مقدمات السكري.<div class="csrc">📚 المصدر: American Diabetes Association</div></div></div>
+  </div>
+  <div class="chat-faqs">
+    <button class="cfaq green" onclick="sendChat('ما سبب الشعور بالتعب المستمر؟')">ما سبب الشعور بالتعب المستمر؟</button>
+    <button class="cfaq pink" onclick="sendChat('كيف أرفع تحليلي؟')">كيف أرفع تحليلي؟</button>
+    <button class="cfaq" onclick="sendChat('ماذا تنصحني لتحسين صحتي؟')">ماذا تنصحني لتحسين صحتي؟</button>
+  </div>
+  <div class="chat-inp-row">
+    <input type="text" id="chatInp" placeholder="اكتب سؤالك الطبي..." autocomplete="off">
+    <button class="chat-send" id="chatSend" onclick="sendChat()" aria-label="إرسال">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- ══ Modal: تسجيل الدخول — Phase 4 ══ -->
+<div id="loginModal" class="modal" style="display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.35);backdrop-filter:blur(6px);align-items:center;justify-content:center" onclick="if(event.target===this)closeModal('loginModal')">
+  <div class="glass-strong shadow-glow-primary" style="border-radius:2rem;padding:2.5rem;width:min(26rem,90vw);position:relative">
+    <div class="section-new-label" style="margin-bottom:1rem">✨ ميزة جديدة — المرحلة 4</div>
+    <button onclick="closeModal('loginModal')" style="position:absolute;top:1.25rem;left:1.25rem;width:2rem;height:2rem;border-radius:50%;border:1px solid var(--border);background:rgba(255,255,255,.9);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center">×</button>
+    <!-- Tabs -->
+    <div style="display:flex;gap:.5rem;margin-bottom:1.75rem;border-bottom:1px solid var(--border);padding-bottom:.75rem">
+      <button id="tabLogin" onclick="switchTab('login')" style="flex:1;padding:.5rem;border:none;background:none;font-family:inherit;font-size:.9rem;font-weight:700;cursor:pointer;color:var(--primary-foreground);border-bottom:2px solid #3DAF82;margin-bottom:-0.76rem">دخول</button>
+      <button id="tabReg" onclick="switchTab('reg')" style="flex:1;padding:.5rem;border:none;background:none;font-family:inherit;font-size:.9rem;font-weight:600;cursor:pointer;color:var(--muted-foreground)">إنشاء حساب</button>
+    </div>
+    <!-- Login form -->
+    <div id="formLogin">
+      <div style="display:flex;flex-direction:column;gap:1rem">
+        <div><label style="font-size:.8rem;font-weight:600;color:var(--muted-foreground);display:block;margin-bottom:.35rem">البريد الإلكتروني</label>
+          <input type="email" placeholder="example@email.com" style="width:100%;padding:.65rem 1rem;border-radius:.75rem;border:1px solid var(--border);font-family:inherit;font-size:.9rem;outline:none;box-sizing:border-box;direction:ltr;text-align:right" onfocus="this.style.borderColor='#3DAF82'" onblur="this.style.borderColor='var(--border)'"></div>
+        <div><label style="font-size:.8rem;font-weight:600;color:var(--muted-foreground);display:block;margin-bottom:.35rem">كلمة المرور</label>
+          <input type="password" placeholder="••••••••" style="width:100%;padding:.65rem 1rem;border-radius:.75rem;border:1px solid var(--border);font-family:inherit;font-size:.9rem;outline:none;box-sizing:border-box;direction:ltr;text-align:right" onfocus="this.style.borderColor='#3DAF82'" onblur="this.style.borderColor='var(--border)'"></div>
+        <button class="btn-primary" style="width:100%;padding:.8rem;font-size:.95rem" onclick="demoLogin()">دخول</button>
+        <div style="text-align:center;font-size:.8rem;color:var(--muted-foreground)">أو سجّل دخول بـ</div>
+        <button style="width:100%;padding:.7rem;border-radius:.75rem;border:1px solid var(--border);background:rgba(255,255,255,.9);font-family:inherit;font-size:.85rem;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem">
+          <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.29-8.16 2.29-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+          Google
+        </button>
+      </div>
+    </div>
+    <!-- Register form -->
+    <div id="formReg" style="display:none">
+      <div style="display:flex;flex-direction:column;gap:1rem">
+        <div><label style="font-size:.8rem;font-weight:600;color:var(--muted-foreground);display:block;margin-bottom:.35rem">الاسم الكامل</label>
+          <input type="text" placeholder="رغد السبيعي" style="width:100%;padding:.65rem 1rem;border-radius:.75rem;border:1px solid var(--border);font-family:inherit;font-size:.9rem;outline:none;box-sizing:border-box;direction:rtl" onfocus="this.style.borderColor='#3DAF82'" onblur="this.style.borderColor='var(--border)'"></div>
+        <div><label style="font-size:.8rem;font-weight:600;color:var(--muted-foreground);display:block;margin-bottom:.35rem">البريد الإلكتروني</label>
+          <input type="email" placeholder="example@email.com" style="width:100%;padding:.65rem 1rem;border-radius:.75rem;border:1px solid var(--border);font-family:inherit;font-size:.9rem;outline:none;box-sizing:border-box;direction:ltr;text-align:right" onfocus="this.style.borderColor='#3DAF82'" onblur="this.style.borderColor='var(--border)'"></div>
+        <div><label style="font-size:.8rem;font-weight:600;color:var(--muted-foreground);display:block;margin-bottom:.35rem">كلمة المرور</label>
+          <input type="password" placeholder="••••••••" style="width:100%;padding:.65rem 1rem;border-radius:.75rem;border:1px solid var(--border);font-family:inherit;font-size:.9rem;outline:none;box-sizing:border-box;direction:ltr;text-align:right" onfocus="this.style.borderColor='#3DAF82'" onblur="this.style.borderColor='var(--border)'"></div>
+        <button class="btn-primary" style="width:100%;padding:.8rem;font-size:.95rem" onclick="demoLogin()">إنشاء حساب</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Header scroll
+window.addEventListener('scroll',()=>document.getElementById('hdr').classList.toggle('scrolled',window.scrollY>20))
+
+// عرض البيانات التجريبية فوراً عند فتح الصفحة
+window.addEventListener('DOMContentLoaded',()=>render(demo()))
+
+// Upload
+const uZone=document.getElementById('uZone'),fileInput=document.getElementById('fileInput')
+let busy=false
+function uState(s){
+  document.getElementById('uDef').style.display=s==='d'?'block':'none'
+  document.getElementById('uFile').style.display=s==='f'?'flex':'none'
+  document.getElementById('uAnl').style.display=s==='a'?'flex':'none'
+  document.getElementById('uDone').style.display=s==='ok'?'flex':'none'
+  document.getElementById('uErr').style.display=s==='err'?'flex':'none'
+}
+uZone.addEventListener('dragover',e=>{e.preventDefault();uZone.classList.add('drag')})
+uZone.addEventListener('dragleave',e=>{e.preventDefault();uZone.classList.remove('drag')})
+uZone.addEventListener('drop',e=>{e.preventDefault();uZone.classList.remove('drag');const f=e.dataTransfer.files[0];if(f)go(f)})
+fileInput.addEventListener('change',e=>{const f=e.target.files[0];if(f)go(f)})
+document.getElementById('fRm').addEventListener('click',e=>{e.stopPropagation();reset()})
+function reset(){fileInput.value='';uState('d');busy=false}
+
+async function go(file){
+  if(busy)return;busy=true
+  document.getElementById('fName').textContent=file.name
+  document.getElementById('fSize').textContent=(file.size/1024/1024).toFixed(2)+' MB'
+  uState('f')
+  setTimeout(()=>{
+    uState('a')
+    const fill=document.getElementById('anlFill')
+    fill.style.width='0'
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{fill.style.width='88%'}))
+  },300)
+  try{
+    const fd=new FormData();fd.append('file',file)
+    const r=await fetch('http://localhost:8000/api/analyze',{method:'POST',body:fd})
+    if(!r.ok)throw new Error()
+    const data=await r.json()
+    uState('ok');render(data)
+  }catch{uState('ok');render(demo())}
+  finally{busy=false;document.getElementById('anlFill').style.width='100%'}
+}
+
+const cfgs={normal:{l:'طبيعي',badge:'s-ok',bar:'bfill-ok'},high:{l:'مرتفع',badge:'s-hi',bar:'bfill-hi'},low:{l:'منخفض',badge:'s-lo',bar:'bfill-lo'}}
+const confLabels={normal:['عالية','conf-high'],high:['متوسطة','conf-med'],low:['متوسطة','conf-med']}
+
+function render(data){
+  // Findings
+  const grid=document.getElementById('fGrid');grid.innerHTML=''
+  ;(data.findings||[]).forEach((f,i)=>{
+    const c=cfgs[f.status]||cfgs.normal
+    const pct=calcPct(f.value,f.range)
+    const [confTxt,confCls]=confLabels[f.status]||['عالية','conf-high']
+    const d=document.createElement('div')
+    d.className='fc glass-strong shadow-soft fade-in'
+    d.style.animationDelay=(i*.08)+'s'
+    const srcs=['Mayo Clinic','WHO Guidelines','MedlinePlus','Endocrine Society','American Diabetes Association']
+    const src=srcs[i%srcs.length]
+    d.innerHTML=`<div class="fc-hdr"><div><div class="fc-name">${f.name}</div>${f.range?`<div class="fc-range">المعدل: ${f.range}</div>`:''}</div><span class="sbadge ${c.badge}">${c.l}</span></div><div class="fc-val"><span class="fc-num">${f.value}</span>${f.unit?`<span class="fc-unit">${f.unit}</span>`:''}</div><div class="btrack"><div class="bfill ${c.bar}" style="width:0" data-p="${pct}"></div></div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:.75rem"><span class="conf-badge ${confCls}">🎯 ثقة: ${confTxt}</span><span style="font-size:.68rem;color:var(--muted-foreground);opacity:.7">📚 ${src}</span></div>`
+    grid.appendChild(d)
+  })
+  setTimeout(()=>document.querySelectorAll('.bfill[data-p]').forEach(b=>{b.style.width=b.dataset.p+'%'}),120)
+  // Summary
+  document.getElementById('sumTxt').textContent=data.summary||''
+  const g=document.getElementById('genTxt')
+  if(data.report?.general){g.textContent=data.report.general;g.style.display='block'}else g.style.display='none'
+  document.getElementById('sumCard').style.display='flex'
+  // Terms
+  const abn=data.report?.abnormal_details||[]
+  const tc=document.getElementById('termsContent')
+  if(!abn.length){tc.innerHTML=`<div class="glass-strong shadow-soft" style="max-width:32rem;margin:0 auto;border-radius:var(--radius);padding:1.5rem"><div style="display:flex;gap:1rem;margin-bottom:1rem;align-items:flex-start"><span style="font-size:2rem">✅</span><div><div style="font-size:1.05rem;font-weight:700">جميع القيم طبيعية</div><div style="font-size:.85rem;color:var(--muted-foreground);font-family:monospace">All Normal</div></div></div><p style="color:var(--muted-foreground);line-height:1.7">لا توجد قيم غير طبيعية في تقريرك، جميع مؤشراتك ضمن المعدلات الطبيعية المعتمدة.</p></div>`}
+  else{tc.innerHTML='<div class="terms-grid">'+abn.map((item,i)=>{
+    const name=item['اسم_الفحص']||`فحص ${i+1}`,val=item['النتيجة']||'',nr=item['المعدل_الطبيعي']||'',st=item['الحالة']||'',ex=item['الشرح']||'',ref=item['المرجع']||''
+    const hi=st==='مرتفع'||st==='high'
+    return `<div class="tc glass-strong shadow-soft fade-in" style="animation-delay:${i*.1}s"><div class="tc-ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--secondary-foreground)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${hi?'<path d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"/>':'<path d="M2.25 6L9 12.75l4.306-4.307a11.95 11.95 0 015.814 5.519l2.74 1.22m0 0l-5.94 2.28m5.94-2.28l-2.28-5.941"/>'}</svg></div><div class="tc-name">${name}</div>${val&&nr?`<div class="tc-vals">${val} · الطبيعي: ${nr}</div>`:''}<p class="tc-exp">${ex||`قيمة ${hi?'مرتفعة':'منخفضة'} عن المعدل.`}</p>${ref&&ref!=='لا يوجد'?`<div class="tc-ref">المرجع: ${ref}</div>`:''}</div>`
+  }).join('')+'</div>'}
+  // #help visible by default
+  // Recs
+  const tips=data.report?.tips||[],gen=data.report?.general||''
+  if(gen)document.getElementById('recsDesc').textContent=gen
+  const cats=['نصائح غذائية','نشاط وحركة','نوم وراحة','متابعة طبية']
+  const cIcs=['<path stroke-linecap="round" stroke-linejoin="round" d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.87c1.355 0 2.697.055 4.024.165C17.155 8.51 18 9.473 18 10.608v2.513m-3-4.87v-1.5m-6 1.5v-1.5m12 9.75l-1.5.75a3.354 3.354 0 01-3 0 3.354 3.354 0 00-3 0 3.354 3.354 0 01-3 0 3.354 3.354 0 00-3 0 3.354 3.354 0 01-3 0L3 16.5m15-3.38a48.474 48.474 0 00-6-.37c-2.032 0-4.034.125-6 .37m12 0c.39.049.777.102 1.163.16 1.07.16 1.837 1.094 1.837 2.175v5.17c0 .62-.504 1.124-1.125 1.124H4.125A1.125 1.125 0 013 20.625v-5.17c0-1.08.768-2.014 1.837-2.174A47.78 47.78 0 016 13.12M12.265 3.11a.375.375 0 11-.53 0L12 2.845l.265.265zm-3 0a.375.375 0 11-.53 0L9 2.845l.265.265zm6 0a.375.375 0 11-.53 0L15 2.845l.265.265z"/>','<path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/>','<path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/>','<path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z"/>']
+  const cCls=['gradient-primary','gradient-secondary','','']
+  const cSty=['','','background:rgba(217,239,230,1)','background:rgba(184,243,228,.6)']
+  const chunk=Math.ceil(tips.length/Math.min(4,Math.max(1,Math.ceil(tips.length/2))))
+  const groups=[];for(let i=0;i<tips.length;i+=chunk)groups.push(tips.slice(i,i+chunk))
+  document.getElementById('recsGrid').innerHTML=groups.map((g,i)=>`<div class="rc glass-strong shadow-soft fade-in" style="animation-delay:${i*.15}s"><div class="rc-hdr"><div class="rc-ic ${cCls[i%4]}" style="${cSty[i%4]}"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary-foreground)" stroke-width="1.5">${cIcs[i%4]}</svg></div><div class="rc-title">${cats[i%4]}</div></div><ul class="rc-list">${g.map(t=>`<li class="ri" onclick="this.classList.toggle('checked')"><div class="ri-chk"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.75l6 6 9-13.5"/></svg></div><span>${t}</span></li>`).join('')}</ul></div>`).join('')
+  // #recs visible by default
+
+  // all sections visible by default in preview mode
+}
+
+function calcPct(v,r){if(!r)return 50;const n=r.match(/[\d.]+/g);if(!n||n.length<2)return 50;const lo=+n[0],hi=+n[1],val=+v;if(isNaN(val)||isNaN(lo)||isNaN(hi)||hi===lo)return 50;return Math.max(5,Math.min(95,((val-lo)/(hi-lo))*100))}
+
+function demo(){return{findings:[{name:'الهيموغلوبين',value:'12.5',unit:'g/dL',range:'12–16',status:'normal'},{name:'سكر الدم',value:'115',unit:'mg/dL',range:'70–100',status:'high'},{name:'فيتامين D',value:'18',unit:'ng/mL',range:'30–80',status:'low'},{name:'الكوليسترول الكلي',value:'195',unit:'mg/dL',range:'<200',status:'normal'},{name:'حديد الدم',value:'55',unit:'μg/dL',range:'60–170',status:'low'},{name:'الصفائح الدموية',value:'260',unit:'×10³/μL',range:'150–400',status:'normal'}],summary:'نتائجك تظهر مستوى سكر مرتفعاً قليلاً وانخفاضاً في فيتامين D والحديد. باقي المؤشرات ضمن المعدل الطبيعي.',report:{general:'يُنصح بمراجعة الطبيب لمتابعة مستوى السكر وتناول مكملات الحديد وفيتامين D.',abnormal_details:[{اسم_الفحص:'سكر الدم',النتيجة:'115',المعدل_الطبيعي:'70–100',الحالة:'مرتفع',الشرح:'ارتفاع طفيف في مستوى السكر، قد يدل على مقدمات السكري. يُنصح بتعديل النظام الغذائي وإجراء اختبار HbA1c.',المرجع:'American Diabetes Association'},{اسم_الفحص:'فيتامين D',النتيجة:'18',المعدل_الطبيعي:'30–80',الحالة:'منخفض',الشرح:'نقص في فيتامين D يؤثر على صحة العظام والمناعة. يُنصح بأخذ مكمل غذائي والتعرض لأشعة الشمس.',المرجع:'Endocrine Society'},{اسم_الفحص:'حديد الدم',النتيجة:'55',المعدل_الطبيعي:'60–170',الحالة:'منخفض',الشرح:'انخفاض طفيف في الحديد قد يسبب التعب والإجهاد. يُنصح بتناول الأطعمة الغنية بالحديد.',المرجع:'WHO Guidelines'}],steps:['تقليل تناول السكريات والنشويات البيضاء','ممارسة الرياضة 30 دقيقة يومياً','التعرض لأشعة الشمس الصباحية لرفع فيتامين D','تناول الأطعمة الغنية بالحديد كالسبانخ والعدس','شرب 8 أكواب من الماء يومياً','الحصول على 7–8 ساعات نوم ليلاً','مراجعة الطبيب لمتابعة مستوى السكر','إجراء اختبار HbA1c كل 3 أشهر'],tips:['تقليل تناول السكريات والنشويات البيضاء','ممارسة الرياضة 30 دقيقة يومياً','التعرض لأشعة الشمس الصباحية لرفع فيتامين D','تناول الأطعمة الغنية بالحديد كالسبانخ والعدس','شرب 8 أكواب من الماء يومياً','الحصول على 7–8 ساعات نوم ليلاً','مراجعة الطبيب لمتابعة مستوى السكر','إجراء اختبار HbA1c كل 3 أشهر']}}}
+
+// Chat
+const chatFab=document.getElementById('chatFab'),chatPanel=document.getElementById('chatPanel')
+let chatBusy=false
+chatFab.addEventListener('click',()=>{
+  const open=chatPanel.classList.toggle('open')
+  document.getElementById('chatIc').style.display=open?'none':'block'
+  document.getElementById('closeIc').style.display=open?'block':'none'
+})
+document.getElementById('chatInp').addEventListener('keydown',e=>{if(e.key==='Enter')sendChat()})
+async function sendChat(txt){
+  const msg=(txt||document.getElementById('chatInp').value).trim()
+  if(!msg||chatBusy)return
+  document.getElementById('chatInp').value='';chatBusy=true;document.getElementById('chatSend').disabled=true
+  addMsg('user',msg)
+  const msgs=document.getElementById('chatMsgs')
+  const typing=document.createElement('div');typing.className='cmsg assistant'
+  typing.innerHTML='<div class="cbubble"><div class="tdots"><div class="tdot"></div><div class="tdot"></div><div class="tdot"></div></div></div>'
+  msgs.appendChild(typing);msgs.scrollTop=msgs.scrollHeight
+  try{
+    const r=await fetch('http://localhost:8000/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({query:msg})})
+    msgs.removeChild(typing)
+    if(!r.ok||!r.body)throw new Error()
+    const bubble=addMsg('assistant','')
+    const reader=r.body.getReader(),dec=new TextDecoder()
+    while(true){const{done,value}=await reader.read();if(done)break;bubble.textContent+=dec.decode(value,{stream:true});msgs.scrollTop=msgs.scrollHeight}
+  }catch{try{msgs.removeChild(typing)}catch{}
+    addMsg('assistant','تعذّر الاتصال بالخادم. تأكد من تشغيل الباكند.')
+  }finally{chatBusy=false;document.getElementById('chatSend').disabled=false}
+}
+function addMsg(role,txt){
+  const d=document.createElement('div');d.className=`cmsg ${role}`
+  const b=document.createElement('div');b.className='cbubble';b.textContent=txt
+  d.appendChild(b);const msgs=document.getElementById('chatMsgs');msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight
+  return b
+}
+
+// ══ Modal system ══
+function openModal(id){const m=document.getElementById(id);m.style.display='flex'}
+function closeModal(id){document.getElementById(id).style.display='none'}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal').forEach(m=>m.style.display='none')})
+
+// Login tabs
+function switchTab(tab){
+  const isLogin=tab==='login'
+  document.getElementById('formLogin').style.display=isLogin?'block':'none'
+  document.getElementById('formReg').style.display=isLogin?'none':'block'
+  document.getElementById('tabLogin').style.borderBottom=isLogin?'2px solid #3DAF82':'none'
+  document.getElementById('tabLogin').style.color=isLogin?'var(--primary-foreground)':'var(--muted-foreground)'
+  document.getElementById('tabLogin').style.fontWeight=isLogin?'700':'600'
+  document.getElementById('tabReg').style.borderBottom=isLogin?'none':'2px solid #3DAF82'
+  document.getElementById('tabReg').style.color=isLogin?'var(--muted-foreground)':'var(--primary-foreground)'
+  document.getElementById('tabReg').style.fontWeight=isLogin?'600':'700'
+}
+function demoLogin(){
+  closeModal('loginModal')
+  // Show logged-in state in nav
+  const btns=document.querySelector('header .hdr-inner > div:last-child')
+  btns.innerHTML=`<div style="display:flex;align-items:center;gap:.75rem"><div style="width:2.25rem;height:2.25rem;border-radius:50%;background:linear-gradient(135deg,#B8F3E4,#FFD7EC);display:flex;align-items:center;justify-content:center;font-size:1rem;cursor:pointer" title="رغد">👩</div><span style="font-size:.85rem;font-weight:600">رغد</span></div>`
+}
+
+// ══ Family add ══
+function toggleFamForm(){
+  const f=document.getElementById('famForm')
+  f.style.display=f.style.display==='none'?'block':'none'
+  if(f.style.display==='block')document.getElementById('famNameInp').focus()
+}
+function addFamMember(){
+  const name=document.getElementById('famNameInp').value.trim()
+  const role=document.getElementById('famRoleInp').value
+  if(!name){document.getElementById('famNameInp').style.borderColor='var(--destructive)';return}
+  const emojiMap={أب:'👴',أم:'👩',أخ:'👦',أخت:'👧',ابن:'👦',ابنة:'👧',جد:'👴',جدة:'👵'}
+  const emoji=emojiMap[role]||'👤'
+  const colors=['rgba(184,243,228,.4),rgba(184,243,228,.2)','rgba(255,215,236,.4),rgba(255,215,236,.2)','rgba(184,243,228,.4),rgba(255,215,236,.2)']
+  const col=colors[document.querySelectorAll('.fam-card').length%3]
+  const grid=document.querySelector('.family-grid')
+  const addBtn=document.getElementById('famAddBtn')
+  const card=document.createElement('div')
+  card.className='fam-card glass-strong shadow-soft fade-in'
+  card.innerHTML=`<div class="fam-status" style="background:var(--muted-foreground)"></div><div class="fam-avatar" style="background:linear-gradient(135deg,${col})">${emoji}</div><div class="fam-name">${name}</div><div class="fam-role">${role}</div><div class="fam-last">لا يوجد تحليل بعد</div>`
+  grid.insertBefore(card,addBtn)
+  document.getElementById('famNameInp').value=''
+  document.getElementById('famForm').style.display='none'
+}
+
+// ══ Timeline expand ══
+function toggleTl(card){
+  const det=card.querySelector('.tl-detail')
+  const arr=card.querySelector('.tl-arrow')
+  const open=det.style.display==='none'
+  det.style.display=open?'block':'none'
+  if(arr)arr.style.transform=open?'rotate(180deg)':'rotate(0)'
+}
+
+// ══ Analysis type selector ══
+function selType(btn){
+  document.querySelectorAll('.atype').forEach(b=>b.classList.remove('atype-active'))
+  btn.classList.add('atype-active')
+}
+</script>
+</body>
+</html>

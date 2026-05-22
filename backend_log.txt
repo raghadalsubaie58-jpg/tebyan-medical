@@ -1,0 +1,127 @@
+D:\Project\backend\main.py:14: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+  import google.generativeai as genai
+INFO:     Started server process [22808]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:56928 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56938 - "GET /api/health HTTP/1.1" 200 OK
+Using CPU. Note: This module is much faster with a GPU.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|##########| 103/103 [00:00<00:00, 1364.31it/s]
+D:\Project\backend\main.py:76: LangChainDeprecationWarning: The class `Chroma` was deprecated in LangChain 0.2.9 and will be removed in 1.0. An updated version of the class exists in the `langchain-chroma package and should be used instead. To use it run `pip install -U `langchain-chroma` and import as `from `langchain_chroma import Chroma``.
+  db = Chroma(persist_directory=db_path, embedding_function=embeddings)
+[DEBUG] findings count: 26
+[DEBUG] findings: [{'name': 'ßÑíÇÊ ÇáÏã ÇáÈíÖÇÁ', 'value': '5.28', 'range': '>3.90-<11.00', 'unit': '10*3/uL', 'status': 'normal'}, {'name': 'ÇáÚÏáÇÊ', 'value': '46', 'range': '>30-<70', 'unit': '%', 'status': 'normal'}, {'name': 'ÇáÎáÇíÇ ÇáÍãÖíÉ (ÅíÒíäæÝíá)', 'value': '5', 'range': '>1-<12', 'unit': '%', 'status': 'normal'}, {'name': 'ÇáÎáÇíÇ ÇáÞÇÚÏíÉ (ÈÇÒæÝíá)', 'value': '0', 'range': '>0-<2', 'unit': '%', 'status': 'normal'}, {'name': 'ÇáÎáÇíÇ ÇááíãÝÇæíÉ', 'value': '41', 'range': '>23-<60', 'unit': '%', 'status': 'normal'}, {'name': 'ÇáÎáÇíÇ æÍíÏÉ Çáäæì (ãæäæÓÇíÊ)', 'value': '9', 'range': '>4-<12', 'unit': '%', 'status': 'normal'}, {'name': 'ÇáÚÏáÇÊ (ÇáÍÌã)', 'value': '2.42', 'range': '>1.35-<7.50', 'unit': '10*3/uL', 'status': 'normal'}, {'name': 'ÇáÎáÇíÇ ÇáÍãÖíÉ (ÇáÍÌã)', 'value': '0.24', 'range': '>0.25-<1.00', 'unit': '10*3/uL', 'status': 'low'}, {'name': 'ÇáÎáÇíÇ ÇáÞÇÚÏíÉ (ÇáÍÌã)', 'value': '0.01', 'range': '>0.01-<0.10', 'unit': '10*3/uL', 'status': 'normal'}, {'name': 'ÇáÎáÇíÇ ÇááíãÝÇæíÉ (ÇáÍÌã)', 'value': '2.17', 'range': '>1.50-<4.30', 'unit': '10*3/uL', 'status': 'normal'}, {'name': 'ÇáÎáÇíÇ æÍíÏÉ Çáäæì (ÇáÍÌã)', 'value': '0.45', 'range': '>0.25-<1.00', 'unit': '10*3/uL', 'status': 'normal'}, {'name': 'NRBC % BY AUTOMATED COUNT', 'value': '0.00', 'range': '<=0.00', 'unit': '%', 'status': 'normal'}, {'name': 'ABSOLUTE NRBCS', 'value': '0.00', 'range': '', 'unit': '10*9/L', 'status': 'normal'}, {'name': 'ßÑíÇÊ ÇáÏã ÇáÍãÑÇÁ', 'value': '4.68', 'range': '>3.90-<4.60', 'unit': '10*6/µL', 'status': 'high'}, {'name': 'ÇáåíãæÌáæÈíä', 'value': '13.5', 'range': '>11.0-<16.0', 'unit': 'g/dL', 'status': 'normal'}, {'name': 'ÇáåíãÇÊæßÑíÊ', 'value': '43', 'range': '>32-<47', 'unit': '%', 'status': 'normal'}, {'name': 'ãÊæÓØ ÍÌã ÇáßÑíÇÊ ÇáÍãÑÇÁ', 'value': '90.7', 'range': '>75.0-<95.0', 'unit': 'fL', 'status': 'normal'}, {'name': 'ãÊæÓØ ßÊáÉ ÇáåíãæÌáæÈíä', 'value': '28.8', 'range': '>24.0-<30.0', 'unit': 'pg', 'status': 'normal'}, {'name': 'ÊÑßíÒ ßÊáÉ ÇáåíãæÌáæÈíä', 'value': '32', 'range': '>31-<37', 'unit': 'g/dL', 'status': 'normal'}, {'name': 'ÚÑÖ ÊæÒíÚ ßÑíÇÊ ÇáÏã ÇáÍãÑÇÁ', 'value': '13.3', 'range': '>11.0-<15.0', 'unit': '%', 'status': 'normal'}, {'name': 'ÇáÕÝÇÆÍ ÇáÏãæíÉ', 'value': '282', 'range': '150-450', 'unit': '10*3/uL', 'status': 'high'}, {'name': 'ãÊæÓØ ÍÌã ÇáÕÝÇÆÍ ÇáÏãæíÉ', 'value': '10.3', 'range': '>6.3-<11.2', 'unit': 'fL', 'status': 'normal'}, {'name': 'ÇáåÑãæä ÇáãäÈå ááÛÏÉ ÇáÏÑÞíÉ', 'value': '1.1740', 'range': '0.3500-4.9400', 'unit': 'mIU/L', 'status': 'high'}, {'name': 'ÝíÊÇãíä Ï', 'value': '31.00', 'range': 'DETECTION LIMIT <= 0', 'unit': 'nmol/l', 'status': 'normal'}, {'name': 'ÝíÑíÊíä', 'value': '13.00', 'range': '4.43-204.00', 'unit': 'ug/l', 'status': 'high'}, {'name': 'ÝíÊÇãíä È12', 'value': '285.00', 'range': '138.00-652.00', 'unit': 'pmol/l', 'status': 'high'}]
+[DEBUG] abnormal count: 6
+[ERROR] report JSON failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 31.611703536s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 31
+}
+]
+INFO:     127.0.0.1:56962 - "POST /api/analyze HTTP/1.1" 200 OK
+[DEBUG] findings count: 15
+[DEBUG] findings: [{'name': 'count', 'value': '4.94', 'range': '3.8 - 4.8', 'unit': 'x10^6/uL', 'status': 'high'}, {'name': 'Hemoglobin', 'value': '13.9', 'range': '12 - 16', 'unit': 'g/dl', 'status': 'normal'}, {'name': 'MCV', 'value': '86.2', 'range': '76 - 97', 'unit': 'fl', 'status': 'normal'}, {'name': 'MCH', 'value': '28.1', 'range': '27 - 32', 'unit': 'Pg', 'status': 'normal'}, {'name': 'MCHC', 'value': '32.6', 'range': '31.8 - 35.4', 'unit': 'g/dl', 'status': 'normal'}, {'name': 'Platelets', 'value': '310', 'range': '150 - 450', 'unit': '10^3/uL', 'status': 'normal'}, {'name': 'Lymphocytes%', 'value': '33.9', 'range': '15 - 45', 'unit': '', 'status': 'normal'}, {'name': 'Monocytes%', 'value': '7.7', 'range': '0 - 8', 'unit': '', 'status': 'normal'}, {'name': 'Eosinophils%', 'value': '7.3', 'range': '0 - 4', 'unit': '', 'status': 'high'}, {'name': 'Basophils%', 'value': '0.5', 'range': '0 - 2', 'unit': '', 'status': 'normal'}, {'name': 'Neutrophils#', 'value': '4.9', 'range': '2 - 7', 'unit': '10^3/uL', 'status': 'normal'}, {'name': 'Lymphocytes#', 'value': '3.3', 'range': '0.8 - 4', 'unit': '10^3/uL', 'status': 'normal'}, {'name': 'Monocytes#', 'value': '0.7', 'range': '0.12 - 1.2', 'unit': '10^3/uL', 'status': 'normal'}, {'name': 'Eosinophils#', 'value': '0.7', 'range': '0.04 - 0.5', 'unit': '10^3/uL', 'status': 'high'}, {'name': 'Basophils#', 'value': '0.0', 'range': '0 - 0.1', 'unit': '10^3/uL', 'status': 'normal'}]
+[DEBUG] abnormal count: 3
+[ERROR] report JSON failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 8.616633164s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 8
+}
+]
+INFO:     127.0.0.1:57136 - "POST /api/analyze HTTP/1.1" 200 OK
+[DEBUG] findings count: 15
+[DEBUG] findings: [{'name': 'count', 'value': '4.94', 'range': '3.8 - 4.8', 'unit': 'x10^6/uL', 'status': 'high'}, {'name': 'Hemoglobin', 'value': '13.9', 'range': '12 - 16', 'unit': 'g/dl', 'status': 'normal'}, {'name': 'MCV', 'value': '86.2', 'range': '76 - 97', 'unit': 'fl', 'status': 'normal'}, {'name': 'MCH', 'value': '28.1', 'range': '27 - 32', 'unit': 'Pg', 'status': 'normal'}, {'name': 'MCHC', 'value': '32.6', 'range': '31.8 - 35.4', 'unit': 'g/dl', 'status': 'normal'}, {'name': 'Platelets', 'value': '310', 'range': '150 - 450', 'unit': '10^3/uL', 'status': 'normal'}, {'name': 'Lymphocytes%', 'value': '33.9', 'range': '15 - 45', 'unit': '', 'status': 'normal'}, {'name': 'Monocytes%', 'value': '7.7', 'range': '0 - 8', 'unit': '', 'status': 'normal'}, {'name': 'Eosinophils%', 'value': '7.3', 'range': '0 - 4', 'unit': '', 'status': 'high'}, {'name': 'Basophils%', 'value': '0.5', 'range': '0 - 2', 'unit': '', 'status': 'normal'}, {'name': 'Neutrophils#', 'value': '4.9', 'range': '2 - 7', 'unit': '10^3/uL', 'status': 'normal'}, {'name': 'Lymphocytes#', 'value': '3.3', 'range': '0.8 - 4', 'unit': '10^3/uL', 'status': 'normal'}, {'name': 'Monocytes#', 'value': '0.7', 'range': '0.12 - 1.2', 'unit': '10^3/uL', 'status': 'normal'}, {'name': 'Eosinophils#', 'value': '0.7', 'range': '0.04 - 0.5', 'unit': '10^3/uL', 'status': 'high'}, {'name': 'Basophils#', 'value': '0.0', 'range': '0 - 0.1', 'unit': '10^3/uL', 'status': 'normal'}]
+[DEBUG] abnormal count: 3
+[ERROR] report JSON failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 964.861876ms. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+}
+]
+INFO:     127.0.0.1:57170 - "POST /api/analyze HTTP/1.1" 200 OK
+[DEBUG] findings count: 15
+[DEBUG] findings: [{'name': 'count', 'value': '4.94', 'range': '3.8 - 4.8', 'unit': 'x10^6/uL', 'status': 'high'}, {'name': 'Hemoglobin', 'value': '13.9', 'range': '12 - 16', 'unit': 'g/dl', 'status': 'normal'}, {'name': 'MCV', 'value': '86.2', 'range': '76 - 97', 'unit': 'fl', 'status': 'normal'}, {'name': 'MCH', 'value': '28.1', 'range': '27 - 32', 'unit': 'Pg', 'status': 'normal'}, {'name': 'MCHC', 'value': '32.6', 'range': '31.8 - 35.4', 'unit': 'g/dl', 'status': 'normal'}, {'name': 'Platelets', 'value': '310', 'range': '150 - 450', 'unit': '10^3/uL', 'status': 'normal'}, {'name': 'Lymphocytes%', 'value': '33.9', 'range': '15 - 45', 'unit': '', 'status': 'normal'}, {'name': 'Monocytes%', 'value': '7.7', 'range': '0 - 8', 'unit': '', 'status': 'normal'}, {'name': 'Eosinophils%', 'value': '7.3', 'range': '0 - 4', 'unit': '', 'status': 'high'}, {'name': 'Basophils%', 'value': '0.5', 'range': '0 - 2', 'unit': '', 'status': 'normal'}, {'name': 'Neutrophils#', 'value': '4.9', 'range': '2 - 7', 'unit': '10^3/uL', 'status': 'normal'}, {'name': 'Lymphocytes#', 'value': '3.3', 'range': '0.8 - 4', 'unit': '10^3/uL', 'status': 'normal'}, {'name': 'Monocytes#', 'value': '0.7', 'range': '0.12 - 1.2', 'unit': '10^3/uL', 'status': 'normal'}, {'name': 'Eosinophils#', 'value': '0.7', 'range': '0.04 - 0.5', 'unit': '10^3/uL', 'status': 'high'}, {'name': 'Basophils#', 'value': '0.0', 'range': '0 - 0.1', 'unit': '10^3/uL', 'status': 'normal'}]
+[DEBUG] abnormal count: 3
+[ERROR] report JSON failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 25.341984155s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 25
+}
+]
+INFO:     127.0.0.1:57241 - "POST /api/analyze HTTP/1.1" 200 OK
