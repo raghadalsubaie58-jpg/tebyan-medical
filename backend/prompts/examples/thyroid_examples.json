@@ -1,0 +1,50 @@
+{
+  "_description": "Thyroid few-shot examples",
+  "_version": "2.0",
+  "examples": [
+    {
+      "id": "hypothyroidism_primary",
+      "scenario": "Primary hypothyroidism — TSH high, FT4 low",
+      "input_findings": [
+        {"name": "TSH", "value": "9.8", "range": "0.4-4.0", "unit": "mIU/L", "status": "high"},
+        {"name": "Free T4", "value": "0.6", "range": "0.8-1.8", "unit": "ng/dL", "status": "low"},
+        {"name": "Anti-TPO", "value": "380", "range": "0-34", "unit": "IU/mL", "status": "high"}
+      ],
+      "ideal_output": {
+        "تقييم_عام": "نتائجك تكشف عن قصور في نشاط الغدة الدرقية — فالـ TSH المرتفع من الغدة النخامية يحاول تنبيه الغدة الدرقية لإنتاج المزيد، لكن الغدة تستجيب بإنتاج T4 أقل من الطبيعي. ارتفاع الأجسام المضادة يشير إلى أن سبب القصور على الأرجح مناعي ذاتي (هاشيموتو).",
+        "interpretation_chain": "TSH↑ + FT4↓ = primary hypothyroidism | Anti-TPO↑↑ = Hashimoto's thyroiditis (autoimmune)",
+        "key_message_ar": "قصور الغدة الدرقية بسبب هاشيموتو — يُعالج بسهولة بحبة يومية من الليفوثيروكسين",
+        "أعراض_متوقعة": ["تعب وإرهاق", "زيادة الوزن", "برودة الأطراف", "بطء القلب", "إمساك", "جفاف البشرة والشعر"],
+        "توصيات": [
+          {
+            "category": "المتابعة الطبية",
+            "tips": ["راجع طبيبك الآن لبدء علاج الليفوثيروكسين", "أعد فحص TSH و FT4 بعد 6-8 أسابيع من بدء العلاج", "الالتزام بالدواء يومياً قبل الأكل يضمن نتائج ممتازة", "لا تتوقف عن الدواء دون استشارة طبيبك"]
+          },
+          {
+            "category": "نصائح غذائية",
+            "tips": ["تجنب الإفراط في السيلينيوم والكالسيوم كمكملات — تؤثر على الامتصاص", "اليود في الملح المُدعّم كافٍ — لا تفرط بمكملات اليود", "يُنصح باتباع نظام غذائي متوازن وممارسة الرياضة بانتظام"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "subclinical_hypothyroid",
+      "scenario": "Subclinical hypothyroidism — TSH slightly high, FT4 normal",
+      "input_findings": [
+        {"name": "TSH", "value": "5.8", "range": "0.4-4.0", "unit": "mIU/L", "status": "high"},
+        {"name": "Free T4", "value": "1.2", "range": "0.8-1.8", "unit": "ng/dL", "status": "normal"}
+      ],
+      "ideal_output": {
+        "تقييم_عام": "TSH مرتفع قليلاً فوق المعدل الطبيعي، لكن هرمون الغدة الدرقية FT4 طبيعي — وهو ما يسمى 'القصور تحت السريري'. الغدة الدرقية لا تزال تعمل جيداً ولكنها تتطلب جهداً أكبر من الطبيعي.",
+        "interpretation_chain": "TSH↑ mildly + FT4 normal = subclinical hypothyroidism → monitor every 6 months, treat if symptomatic or TSH > 10",
+        "key_message_ar": "قصور درقي تحت سريري — يحتاج متابعة لا علاجاً فورياً في الغالب",
+        "توصيات": [
+          {
+            "category": "المتابعة الطبية",
+            "tips": ["ناقش نتائجك مع طبيبك — قد يقرر المتابعة أو العلاج حسب أعراضك", "أعد فحص TSH بعد 3-6 أشهر", "أبلغ طبيبك عن أي أعراض: تعب غير معتاد، برودة، زيادة وزن"]
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "panel_code": "lipid",
+  "name_ar": "الدهون والكوليسترول",
+  "name_en": "Lipid Panel",
+  "specialty": "cardiology",
+  "icd10_related": ["E78", "E78.0", "E78.1", "E78.2", "E78.5", "I25"],
+  "tests": {
+    "Cholesterol": {
+      "name_ar": "الكوليسترول الكلي",
+      "abbreviations": ["TC", "Total Cholesterol", "كوليسترول", "كولسترول"],
+      "unit": "mg/dL",
+      "ranges": {
+        "adult": {"low": 0.0, "high": 200.0},
+        "borderline": {"low": 200.0, "high": 239.0},
+        "high_risk": {"low": 240.0, "high": 999.0}
+      },
+      "severity_thresholds": {
+        "desirable": 200.0,
+        "borderline_high": 239.0,
+        "high": 240.0,
+        "very_high": 300.0,
+        "critical_high": 400.0
+      },
+      "clinical_meaning_ar": "إجمالي الكوليسترول في الدم — يشمل LDL و HDL والأنواع الأخرى",
+      "high_causes_ar": ["النظام الغذائي الغني بالدهون المشبعة والمتحولة", "الوراثة (فرط كوليسترول الدم العائلي)", "قصور الغدة الدرقية", "مرض السكري غير المُسيطر عليه", "أمراض الكلى المزمنة", "بعض الأدوية (كورتيكوستيرويد، مدرات البول)"],
+      "low_causes_ar": ["سوء التغذية الشديد", "فرط نشاط الغدة الدرقية", "أمراض الكبد الشديدة", "فقر الدم الشديد"],
+      "symptoms_high_ar": ["عادةً بلا أعراض حتى حدوث مضاعفات", "ألم في الصدر (ذبحة صدرية)", "ألم الساقين عند المشي", "زانثوما (رواسب دهنية على الجلد في الحالات الشديدة)"],
+      "followup_tests": ["LDL", "HDL", "Triglycerides", "TSH", "Fasting Glucose", "HbA1c"],
+      "patient_explanation_ar": "الكوليسترول الكلي مثل مجموع رصيدك — لكن المهم توزيعه: هل هو كوليسترول جيد أم سيء"
+    },
+    "LDL": {
+      "name_ar": "الكوليسترول الضار",
+      "abbreviations": ["LDL", "LDL-C", "كوليسترول LDL", "الكوليسترول الضار"],
+      "unit": "mg/dL",
+      "ranges": {
+        "adult_optimal": {"low": 0.0, "high": 100.0},
+        "adult_near_optimal": {"low": 100.0, "high": 129.0},
+        "adult_borderline": {"low": 130.0, "high": 159.0},
+        "adult": {"low": 0.0, "high": 100.0}
+      },
+      "severity_thresholds": {
+        "optimal": 100.0,
+        "near_optimal": 129.0,
+        "borderline_high": 159.0,
+        "high": 189.0,
+        "very_high": 190.0,
+        "target_high_risk_patient": 70.0
+      },
+      "clinical_meaning_ar": "الكوليسترول السيء — يترسب على جدران الشرايين مسبباً تصلب الشرايين وأمراض القلب",
+      "high_causes_ar": ["النظام الغذائي الغني بالدهون المشبعة", "الوراثة", "قصور الغدة الدرقية", "السمنة والخمول الجسدي", "مرض السكري", "التدخين"],
+      "low_causes_ar": ["استخدام أدوية الستاتين", "النظام الغذائي النباتي", "فرط نشاط الغدة الدرقية"],
+      "symptoms_high_ar": ["لا أعراض مباشرة", "على المدى البعيد: نوبة قلبية، سكتة دماغية، ضعف في الأطراف"],
+      "followup_tests": ["Total Cholesterol", "HDL", "Triglycerides", "hs-CRP", "Coronary Calcium Score"],
+      "patient_explanation_ar": "LDL هو الكوليسترول السيء — يُكدّس الترسبات في الشرايين مثل الصدأ في الأنابيب"
+    },
+    "HDL": {
+      "name_ar": "الكوليسترول الجيد",
+      "abbreviations": ["HDL", "HDL-C", "كوليسترول HDL", "الكوليسترول الجيد"],
+      "unit": "mg/dL",
+      "ranges": {
+        "adult_male":   {"low": 40.0, "high": 999.0},
+        "adult_female": {"low": 50.0, "high": 999.0},
+        "adult":        {"low": 40.0, "high": 999.0},
+        "optimal":      {"low": 60.0, "high": 999.0}
+      },
+      "severity_thresholds": {
+        "low_risk_male": 40.0,
+        "low_risk_female": 50.0,
+        "protective_high": 60.0,
+        "critical_low": 30.0
+      },
+      "clinical_meaning_ar": "الكوليسترول الجيد — يُزيل الكوليسترول الزائد من الشرايين ويعيده للكبد للتخلص منه",
+      "low_causes_ar": ["التدخين", "السمنة وقلة الحركة", "مرض السكري غير المُسيطر عليه", "الدهون الثلاثية المرتفعة جداً", "النظام الغذائي الغني بالكربوهيدرات المُكررة", "بعض الأدوية (بيتا بلوكر، ستيرويد)"],
+      "high_causes_ar": ["ممارسة الرياضة المنتظمة", "الإقلاع عن التدخين", "الدهون الأحادية غير المشبعة (زيت الزيتون)", "الكحول باعتدال (غير موصى به طبياً)"],
+      "symptoms_low_ar": ["لا أعراض مباشرة للانخفاض", "على المدى البعيد: زيادة خطر أمراض القلب"],
+      "followup_tests": ["Total Cholesterol", "LDL", "Triglycerides", "Fasting Glucose"],
+      "patient_explanation_ar": "HDL هو الكوليسترول الجيد — يعمل كمكنسة تُزيل الكوليسترول الزائد من الشرايين. كلما ارتفع، كان أفضل"
+    },
+    "Triglycerides": {
+      "name_ar": "الدهون الثلاثية",
+      "abbreviations": ["TG", "TRIG", "Triglycerides", "دهون ثلاثية", "ثلاثيات الغليسريد"],
+      "unit": "mg/dL",
+      "ranges": {
+        "adult_normal":     {"low": 0.0,   "high": 150.0},
+        "adult_borderline": {"low": 150.0, "high": 199.0},
+        "adult_high":       {"low": 200.0, "high": 499.0},
+        "adult":            {"low": 0.0,   "high": 150.0}
+      },
+      "severity_thresholds": {
+        "normal": 150.0,
+        "borderline": 199.0,
+        "high": 499.0,
+        "very_high": 500.0,
+        "pancreatitis_risk": 1000.0,
+        "critical": 2000.0
+      },
+      "clinical_meaning_ar": "الدهون الرئيسية المُخزَّنة في الجسم — ترتفع مع السكريات والكحول والخمول",
+      "high_causes_ar": ["النظام الغذائي الغني بالسكريات والكربوهيدرات المُكررة", "السمنة والخمول", "مرض السكري غير المُسيطر عليه", "الكحول", "قصور الغدة الدرقية", "الفشل الكلوي", "بعض الأدوية (ستيرويد، بيتا بلوكر)"],
+      "low_causes_ar": ["النظام الغذائي المنخفض الدهون والكربوهيدرات", "فرط نشاط الغدة الدرقية"],
+      "symptoms_high_ar": ["لا أعراض عادةً", "في الحالات الشديدة جداً: ألم البطن (التهاب البنكرياس)", "طفح جلدي دهني (زانثوما صفراء)", "ضبابية الدم (lipemia retinalis)"],
+      "followup_tests": ["Total Cholesterol", "LDL", "HDL", "Fasting Glucose", "HbA1c", "TSH"],
+      "patient_explanation_ar": "الدهون الثلاثية هي طاقة مُخزَّنة — ترتفع عندما تأكل سكريات أكثر مما يحتاجه جسمك"
+    }
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "panel_code": "diabetes",
+  "name_ar": "سكري ومقاومة الإنسولين",
+  "name_en": "Diabetes & Glucose Metabolism Panel",
+  "specialty": "endocrinology",
+  "icd10_related": ["E11", "E10", "E13", "E14", "R73", "Z13.1"],
+  "tests": {
+    "Glucose": {
+      "name_ar": "سكر الدم الصيامي",
+      "abbreviations": ["FBS", "FBG", "Glucose", "Blood Sugar", "سكر الصيام", "سكر الدم"],
+      "unit": "mg/dL",
+      "ranges": {
+        "adult_normal":     {"low": 70.0, "high": 99.0},
+        "adult_prediabetes":{"low": 100.0, "high": 125.0},
+        "adult":            {"low": 70.0,  "high": 99.0},
+        "children":         {"low": 70.0,  "high": 100.0}
+      },
+      "severity_thresholds": {
+        "hypoglycemia_critical": 54.0,
+        "hypoglycemia": 70.0,
+        "normal_upper": 99.0,
+        "prediabetes_lower": 100.0,
+        "prediabetes_upper": 125.0,
+        "diabetes_diagnosis": 126.0,
+        "hyperglycemia_severe": 300.0,
+        "dka_risk": 400.0,
+        "critical_high": 600.0
+      },
+      "clinical_meaning_ar": "مستوى الجلوكوز في الدم بعد 8 ساعات صيام — المقياس الأساسي لتشخيص السكري",
+      "interpretation_matrix": {
+        "< 54 mg/dL":        "نقص سكر حاد — طارئ طبي فوري",
+        "54-69 mg/dL":       "نقص سكر — تناول جلوكوز فوراً",
+        "70-99 mg/dL":       "طبيعي",
+        "100-125 mg/dL":     "ما قبل السكري (Prediabetes) — تغيير نمط الحياة ضروري",
+        ">= 126 mg/dL":      "مشكوك بالسكري — يحتاج تأكيداً بفحص ثانٍ أو HbA1c",
+        ">= 300 mg/dL":      "ارتفاع شديد — خطر الحماض الكيتوني"
+      },
+      "high_causes_ar": ["مرض السكري النوع 1 أو 2", "ما قبل السكري", "الإجهاد الجسدي أو النفسي الشديد", "الكورتيزون والستيرويدات", "فرط نشاط الغدة الدرقية", "أمراض البنكرياس", "عدم الالتزام بالصيام قبل الفحص"],
+      "low_causes_ar": ["جرعة زائدة من الإنسولين أو أدوية السكري", "الصيام المطوّل", "ورم الأنسولين (Insulinoma)", "فشل الكبد الشديد", "قصور الغدة الكظرية"],
+      "symptoms_high_ar": ["عطش شديد وكثرة التبول", "تعب وضعف عام", "ضبابية الرؤية", "التئام بطيء للجروح", "تنميل في القدمين"],
+      "symptoms_low_ar": ["تعرق بارد ورجفة", "دوخة وضعف مفاجئ", "خفقان وتسارع القلب", "جوع شديد مفاجئ", "تشوش ذهني وتهيج"],
+      "followup_tests": ["HbA1c", "Fasting Insulin", "C-Peptide", "HOMA-IR", "Urine Microalbumin", "Lipid Panel"],
+      "patient_explanation_ar": "سكر الصيام مثل فحص درجة حرارة محرك سيارتك وهي باردة — يُظهر كيف يتعامل جسمك مع الجلوكوز في وضع الراحة"
+    },
+    "HbA1c": {
+      "name_ar": "الهيموجلوبين السكري التراكمي",
+      "abbreviations": ["HbA1c", "A1C", "Glycated Hemoglobin", "سكر تراكمي", "الجليكوزيلاتد"],
+      "unit": "%",
+      "ranges": {
+        "adult_normal":     {"low": 4.0, "high": 5.6},
+        "adult_prediabetes":{"low": 5.7, "high": 6.4},
+        "adult":            {"low": 4.0, "high": 5.6},
+        "diabetic_target":  {"low": 0.0, "high": 7.0}
+      },
+      "severity_thresholds": {
+        "normal": 5.6,
+        "prediabetes_lower": 5.7,
+        "prediabetes_upper": 6.4,
+        "diabetes_diagnosis": 6.5,
+        "good_control_diabetic": 7.0,
+        "poor_control": 8.0,
+        "very_poor_control": 10.0,
+        "critical": 14.0
+      },
+      "clinical_meaning_ar": "يعكس متوسط سكر الدم خلال الـ 90 يوم الماضية — لأن الهيموجلوبين يرتبط بالجلوكوز طوال عمر خلية الدم الحمراء",
+      "interpretation_matrix": {
+        "< 5.7%":    "طبيعي — لا سكري",
+        "5.7-6.4%":  "ما قبل السكري — خطر تطور السكري، تغيير نمط الحياة مطلوب",
+        ">= 6.5%":   "سكري — يحتاج تأكيداً أو علاجاً",
+        "< 7% (مريض سكري)":  "ضبط جيد للسكري",
+        "7-8% (مريض سكري)":  "ضبط مقبول — تعديل العلاج",
+        "> 8% (مريض سكري)":  "ضبط سيئ — خطر مضاعفات عالٍ",
+        "> 10%":     "ضبط خطير جداً — مراجعة فورية"
+      },
+      "high_causes_ar": ["مرض السكري غير المُسيطر عليه", "عدم الالتزام بالدواء أو الحمية", "فقر الدم الانحلالي (يُعطي قراءة كاذبة منخفضة)", "مرض الكلى المزمن (يرفع القراءة)"],
+      "low_causes_ar": ["فقر الدم الانحلالي (تُسرَّع خلايا الدم الحمراء — قراءة كاذبة منخفضة)", "نقص الحديد (قراءة كاذبة)", "تهيج خلايا الدم الحمراء"],
+      "followup_tests": ["Fasting Glucose", "Post-meal Glucose", "Fasting Insulin", "C-Peptide", "Kidney Function", "Lipid Panel", "Urine Microalbumin"],
+      "patient_explanation_ar": "HbA1c مثل كاميرا مُراقبة تسجّل سكرك لمدة 3 أشهر — بعكس سكر الصيام اليومي الذي يتأثر بيوم واحد"
+    },
+    "Insulin": {
+      "name_ar": "الإنسولين الصيامي",
+      "abbreviations": ["Insulin", "Fasting Insulin", "إنسولين", "انسولين"],
+      "unit": "µIU/mL",
+      "ranges": {
+        "adult": {"low": 2.0, "high": 25.0},
+        "adult_optimal": {"low": 2.0, "high": 10.0}
+      },
+      "severity_thresholds": {
+        "optimal_upper": 10.0,
+        "normal_upper": 25.0,
+        "insulin_resistance_risk": 15.0,
+        "high": 30.0,
+        "critical_low": 1.0
+      },
+      "clinical_meaning_ar": "هرمون يُفرزه البنكرياس لإدخال الجلوكوز للخلايا — ارتفاعه الصيامي يشير لمقاومة الإنسولين",
+      "high_causes_ar": ["مقاومة الإنسولين (السكري النوع 2 المبكر)", "السمنة خاصةً الدهون البطنية", "متلازمة تكيس المبايض PCOS", "الخمول الجسدي", "ورم الأنسولين (Insulinoma) — نادر"],
+      "low_causes_ar": ["السكري النوع 1 (لا يُفرز البنكرياس كافياً)", "البنكرياس المتلف", "جرعة زائدة من أدوية السكري"],
+      "symptoms_high_ar": ["زيادة وزن مستمرة رغم الحمية", "تعب بعد الوجبات", "رغبة شديدة في الحلويات", "صعوبة خسارة الوزن", "أعراض PCOS عند النساء"],
+      "followup_tests": ["HOMA-IR", "HbA1c", "Fasting Glucose", "C-Peptide", "Testosterone (للنساء)", "Lipid Panel"],
+      "patient_explanation_ar": "الإنسولين مثل مفتاح يفتح خلاياك للجلوكوز — عندما ترتفع مستوياته صيامياً، يعني الأقفال بدأت تقاوم المفتاح"
+    },
+    "HOMA_IR": {
+      "name_ar": "مؤشر مقاومة الإنسولين",
+      "abbreviations": ["HOMA-IR", "Insulin Resistance", "HOMA IR", "مقاومة الإنسولين"],
+      "unit": "حاصل",
+      "ranges": {
+        "adult_normal": {"low": 0.0, "high": 2.0},
+        "adult":        {"low": 0.0, "high": 2.0}
+      },
+      "severity_thresholds": {
+        "normal": 2.0,
+        "borderline": 2.5,
+        "insulin_resistance": 3.0,
+        "severe": 5.0
+      },
+      "clinical_meaning_ar": "يُحسب من (الإنسولين × سكر الصيام) ÷ 405 — يقيس درجة مقاومة الإنسولين",
+      "interpretation_matrix": {
+        "HOMA-IR < 2.0":   "حساسية إنسولين طبيعية",
+        "HOMA-IR 2.0-2.9": "مقاومة إنسولين حدية — انتبه للنمط الغذائي والحركة",
+        "HOMA-IR >= 3.0":  "مقاومة إنسولين — خطر سكري النوع 2 ومتلازمة الأيض",
+        "HOMA-IR >= 5.0":  "مقاومة إنسولين شديدة — تدخل طبي ضروري"
+      },
+      "high_causes_ar": ["السمنة خاصةً الدهون البطنية", "الخمول الجسدي", "متلازمة الأيض", "PCOS", "النوم المضطرب وتوقف التنفس أثناء النوم", "النظام الغذائي الغني بالسكريات"],
+      "followup_tests": ["Fasting Glucose", "Insulin", "HbA1c", "Lipid Panel", "ALT (NAFLD)", "Testosterone (PCOS)"],
+      "patient_explanation_ar": "HOMA-IR رقم مُحسوب يُظهر مدى قدرة جسمك على الاستجابة للإنسولين — كلما ارتفع، كلما كان جسمك يقاوم التعليمات أكثر"
+    }
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "panel_code": "thyroid",
+  "name_ar": "وظائف الغدة الدرقية",
+  "name_en": "Thyroid Function Tests",
+  "specialty": "endocrinology",
+  "icd10_related": ["E00", "E01", "E02", "E03", "E04", "E05", "E06"],
+  "interpretation_axis": "Always start from TSH — it is the most sensitive indicator",
+  "tests": {
+    "TSH": {
+      "name_ar": "الهرمون المحفز للغدة الدرقية",
+      "abbreviations": ["TSH", "Thyroid Stimulating Hormone", "ثيروتروبين"],
+      "unit": "mIU/L",
+      "ranges": {
+        "adult":        {"low": 0.4,  "high": 4.0},
+        "pregnant_T1":  {"low": 0.1,  "high": 2.5},
+        "pregnant_T2":  {"low": 0.2,  "high": 3.0},
+        "pregnant_T3":  {"low": 0.3,  "high": 3.0},
+        "elderly":      {"low": 0.4,  "high": 5.0},
+        "children_1_6": {"low": 0.8,  "high": 6.0},
+        "neonates":     {"low": 1.0,  "high": 20.0}
+      },
+      "severity_thresholds": {
+        "critical_low": 0.01,
+        "suppressed": 0.1,
+        "subclinical_high": 4.0,
+        "overt_high": 10.0
+      },
+      "clinical_meaning_ar": "هرمون النخامية الذي يتحكم في نشاط الغدة الدرقية — المؤشر الأول والأحساس",
+      "high_causes_ar": ["قصور الغدة الدرقية الأولي (هاشيموتو الأكثر شيوعاً)", "قصور ما بعد الولادة", "التهاب الغدة الدرقية تحت الحاد", "نقص اليود الشديد"],
+      "low_causes_ar": ["فرط نشاط الغدة الدرقية (مرض جريفز الأكثر شيوعاً)", "عقيدات درقية فاعلة", "التهاب الغدة الدرقية الصامت", "جرعة زائدة من الليفوثيروكسين"],
+      "interpretation_matrix": {
+        "TSH_high_FT4_low":    "قصور درقي أولي — يحتاج ليفوثيروكسين",
+        "TSH_low_FT4_high":    "فرط نشاط درقي واضح — يحتاج تقييماً متخصصاً عاجلاً",
+        "TSH_high_FT4_normal": "قصور تحت سريري — متابعة كل 3-6 أشهر",
+        "TSH_low_FT4_normal":  "فرط نشاط تحت سريري — متابعة، علاج إذا ≥ 65 عاماً أو أعراض"
+      },
+      "followup_tests": ["Free T4", "Free T3", "Anti-TPO", "Anti-Thyroglobulin", "Thyroid ultrasound"],
+      "patient_explanation_ar": "TSH هو الهرمون الذي يصدره دماغك لأمر الغدة الدرقية — مرتفع يعني الغدة كسولة، منخفض يعني نشيطة جداً"
+    },
+    "Free_T4": {
+      "name_ar": "الثيروكسين الحر",
+      "abbreviations": ["FT4", "Free T4", "Free Thyroxine", "T4 الحر"],
+      "unit": "ng/dL",
+      "ranges": {
+        "adult": {"low": 0.8, "high": 1.8}
+      },
+      "severity_thresholds": {
+        "critical_low": 0.4,
+        "critical_high": 3.5
+      },
+      "clinical_meaning_ar": "الهرمون الدرقي الرئيسي — ينظم الأيض والطاقة والحرارة والمزاج",
+      "high_causes_ar": ["فرط نشاط الغدة الدرقية", "جرعة زائدة من الليفوثيروكسين"],
+      "low_causes_ar": ["قصور الغدة الدرقية", "قصور النخامية (نادر)"],
+      "patient_explanation_ar": "T4 هو الهرمون الذي تنتجه الغدة الدرقية لتنظيم سرعة عمليات جسمك كلها"
+    },
+    "Free_T3": {
+      "name_ar": "ثلاثي يودوثيرونين الحر",
+      "abbreviations": ["FT3", "Free T3", "Triiodothyronine"],
+      "unit": "pg/mL",
+      "ranges": {
+        "adult": {"low": 2.3, "high": 4.2}
+      },
+      "clinical_meaning_ar": "الشكل النشط للهرمون الدرقي — يُحوَّل من T4 في الأنسجة",
+      "importance_note": "FT3 يُقاس عند الاشتباه بفرط نشاط الغدة أو متابعة العلاج — ليس ضرورياً في كل حالة",
+      "patient_explanation_ar": "T3 هو الشكل النشط لهرمون الغدة الدرقية — أكثر تأثيراً من T4 مباشرةً"
+    },
+    "Anti_TPO": {
+      "name_ar": "أجسام مضادة للبيروكسيداز الدرقي",
+      "abbreviations": ["Anti-TPO", "TPOAb", "TPO antibodies", "أجسام ضد الدرقية"],
+      "unit": "IU/mL",
+      "ranges": {
+        "adult": {"low": 0, "high": 34}
+      },
+      "severity_thresholds": {
+        "mildly_positive": 35,
+        "moderately_positive": 100,
+        "highly_positive": 500
+      },
+      "clinical_meaning_ar": "أجسام مناعية تستهدف الغدة الدرقية — ارتفاعها يشير لأمراض مناعة ذاتية",
+      "high_causes_ar": ["هاشيموتو (التهاب الغدة الدرقية المناعي الذاتي)", "مرض جريفز", "التهاب الغدة ما بعد الولادة"],
+      "clinical_notes": "Anti-TPO مرتفع مع TSH طبيعي → خطر تطوير قصور درقي في المستقبل (متابعة سنوية)",
+      "patient_explanation_ar": "جهازك المناعي أحياناً يخطئ ويهاجم غدتك الدرقية — هذه الأجسام المضادة هي دليل على ذلك"
+    },
+    "Anti_TG": {
+      "name_ar": "أجسام مضادة للثيروجلوبولين",
+      "abbreviations": ["Anti-TG", "TgAb", "Thyroglobulin antibodies"],
+      "unit": "IU/mL",
+      "ranges": {
+        "adult": {"low": 0, "high": 115}
+      },
+      "clinical_meaning_ar": "يُقاس مع Anti-TPO لتشخيص أمراض الغدة الدرقية المناعية — وبعد علاج سرطان الغدة"
+    }
+  }
+}

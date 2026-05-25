@@ -1,0 +1,145 @@
+{
+  "panel_code": "liver",
+  "name_ar": "وظائف الكبد",
+  "name_en": "Liver Function Tests",
+  "specialty": "hepatology",
+  "icd10_related": ["K70", "K71", "K72", "K73", "K74", "K75", "K76", "B15", "B16", "B17", "B18"],
+  "interpretation_axis": "Evaluate in 3 dimensions: hepatocellular (ALT/AST) + cholestatic (ALP/GGT/Bili) + synthetic (Albumin/PT)",
+  "tests": {
+    "ALT": {
+      "name_ar": "ناقلة أمين الألانين",
+      "abbreviations": ["ALT", "SGPT", "ALT/SGPT", "Alanine Aminotransferase"],
+      "unit": "U/L",
+      "ranges": {
+        "adult_male":   {"low": 7,  "high": 40},
+        "adult_female": {"low": 7,  "high": 35}
+      },
+      "severity_thresholds": {
+        "mild_elevation_x3":    120,
+        "moderate_elevation_x10": 400,
+        "severe_elevation":     1000,
+        "acute_liver_failure":  3000
+      },
+      "clinical_meaning_ar": "الإنزيم الأكثر تخصصاً لخلايا الكبد — ارتفاعه يدل على تلفها مباشرةً",
+      "high_causes_ar": [
+        "الكبد الدهني غير الكحولي (NAFLD) — الأكثر شيوعاً",
+        "التهاب الكبد الفيروسي (B وC وA)",
+        "التهاب الكبد الكحولي",
+        "الأدوية (باراسيتامول، ستاتينات، مضادات حيوية)",
+        "انسداد القنوات الصفراوية",
+        "قصور القلب (كبد احتقاني)"
+      ],
+      "severity_interpretation": {
+        "1_3x": "ارتفاع خفيف — متابعة وتغيير نمط الحياة",
+        "3_10x": "ارتفاع متوسط — تقييم طبي عاجل لتحديد السبب",
+        "above_10x": "⚠️ ارتفاع شديد — تلف كبدي حاد يستدعي طوارئ"
+      },
+      "followup_tests": ["AST", "GGT", "ALP", "Bilirubin", "Albumin", "PT/INR", "Viral hepatitis panel (HBsAg, Anti-HCV)", "Liver ultrasound"],
+      "patient_explanation_ar": "ALT إنزيم يُفرز من داخل خلايا الكبد عند تلفها — كلما ارتفع أكثر كلما كان التلف أشد"
+    },
+    "AST": {
+      "name_ar": "ناقلة أمين الأسبارتات",
+      "abbreviations": ["AST", "SGOT", "Aspartate Aminotransferase"],
+      "unit": "U/L",
+      "ranges": {
+        "adult_male":   {"low": 10, "high": 40},
+        "adult_female": {"low": 10, "high": 35}
+      },
+      "clinical_meaning_ar": "أقل تخصصاً للكبد من ALT — يرتفع أيضاً مع أمراض القلب والعضلات",
+      "ast_alt_ratio": {
+        "ratio_2_to_1": "AST:ALT > 2:1 → يشير للتلف الكحولي بشكل خاص",
+        "alt_dominant": "ALT > AST → يشير لالتهاب فيروسي أو دهني",
+        "both_equal":   "ارتفاع متساوٍ → التهاب غير محدد"
+      },
+      "patient_explanation_ar": "AST موجود في الكبد والقلب والعضلات — ارتفاعه وحده لا يعني بالضرورة مشكلة كبدية"
+    },
+    "ALP": {
+      "name_ar": "الفوسفاتاز القلوية",
+      "abbreviations": ["ALP", "Alkaline Phosphatase", "فوسفاتاز"],
+      "unit": "U/L",
+      "ranges": {
+        "adult":    {"low": 44, "high": 147},
+        "children": {"low": 50, "high": 350},
+        "pregnant": {"low": 40, "high": 300}
+      },
+      "clinical_meaning_ar": "يرتفع مع انسداد القنوات الصفراوية وأمراض العظام — يُقيَّم مع GGT",
+      "high_causes_ar": [
+        "انسداد القنوات الصفراوية (حصى، ورم)",
+        "تليف الكبد الصفراوي الأولي (PBC)",
+        "أمراض العظام (داء بيجيت، كسور، ورم عظمي)",
+        "نمو طبيعي عند الأطفال والمراهقين",
+        "الثلث الثالث من الحمل (طبيعي)"
+      ],
+      "interpretation_with_GGT": "ALP مرتفع + GGT مرتفع → سبب كبدي/صفراوي | ALP مرتفع + GGT طبيعي → سبب عظمي",
+      "patient_explanation_ar": "هذا الإنزيم يوجد في الكبد وقنوات الصفراء والعظام — ارتفاعه يحتاج تفسيراً مع GGT"
+    },
+    "GGT": {
+      "name_ar": "غاما غلوتاميل ترانسفيراز",
+      "abbreviations": ["GGT", "Gamma-GT", "Gamma-Glutamyl Transferase"],
+      "unit": "U/L",
+      "ranges": {
+        "adult_male":   {"low": 8,  "high": 61},
+        "adult_female": {"low": 5,  "high": 36}
+      },
+      "clinical_meaning_ar": "أحساس مؤشر لأمراض الكبد الكحولية والانسداد الصفراوي — يساعد في تفسير ALP",
+      "high_causes_ar": ["الكحول (الأكثر تأثيراً)", "الكبد الدهني", "انسداد صفراوي", "أدوية معينة (فينيتوين، فاروفارين)"],
+      "diagnostic_value": "إذا ارتفع ALP مع ارتفاع GGT → مصدر الكبد. إذا ارتفع GGT وحده → غالباً الكحول أو الأدوية"
+    },
+    "Bilirubin_Total": {
+      "name_ar": "البيليروبين الكلي",
+      "abbreviations": ["T.Bili", "Total Bilirubin", "بيليروبين كلي", "TBIL"],
+      "unit": "mg/dL",
+      "ranges": {
+        "adult": {"low": 0.2, "high": 1.2}
+      },
+      "severity_thresholds": {
+        "visible_jaundice": 2.5,
+        "moderate_jaundice": 5.0,
+        "severe_jaundice": 15.0
+      },
+      "clinical_meaning_ar": "صبغة ناتجة عن تكسّر الهيموجلوبين — يعالجه الكبد ويُفرزه في الصفراء",
+      "high_causes_ar": [
+        "التهاب الكبد الفيروسي",
+        "انسداد القنوات الصفراوية (حصى مرارة)",
+        "فقر الدم الانحلالي (تكسّر الدم)",
+        "متلازمة جيلبرت (حميدة — ترتفع مع الإجهاد والجوع)",
+        "تليف الكبد المتقدم"
+      ],
+      "patient_explanation_ar": "البيليروبين صبغة صفراء — عندما يرتفع يظهر اليرقان (اصفرار الجلد والعيون)"
+    },
+    "Bilirubin_Direct": {
+      "name_ar": "البيليروبين المباشر",
+      "abbreviations": ["D.Bili", "Direct Bilirubin", "Conjugated Bilirubin"],
+      "unit": "mg/dL",
+      "ranges": {
+        "adult": {"low": 0.0, "high": 0.3}
+      },
+      "clinical_meaning_ar": "البيليروبين المُعالَج من الكبد — ارتفاعه تحديداً يشير لمشكلة في الكبد أو الصفراء",
+      "interpretation": "Direct Bili > 50% من Total Bili → انسداد صفراوي أو أمراض الكبد الداخلية"
+    },
+    "Albumin": {
+      "name_ar": "الألبومين",
+      "abbreviations": ["ALB", "Albumin", "ألبومين"],
+      "unit": "g/dL",
+      "ranges": {
+        "adult": {"low": 3.5, "high": 5.0}
+      },
+      "severity_thresholds": {
+        "mild_low": 3.0,
+        "moderate_low": 2.5,
+        "severe_low": 2.0
+      },
+      "clinical_meaning_ar": "البروتين الأكثر إنتاجاً من الكبد — يعكس القدرة التركيبية للكبد وحالة التغذية",
+      "high_causes_ar": ["الجفاف (نسبياً)"],
+      "low_causes_ar": [
+        "قصور الكبد المزمن أو التليف",
+        "سوء التغذية الشديد",
+        "متلازمة الكلاء (فقدان الألبومين في البول)",
+        "الالتهاب الحاد والمزمن",
+        "سوء الامتصاص"
+      ],
+      "clinical_importance": "الألبومين المنخفض هو من أقوى مؤشرات ضعف وظيفة الكبد التركيبية",
+      "patient_explanation_ar": "الألبومين بروتين يصنعه كبدك ويضخه للدم — انخفاضه دليل على أن الكبد يعمل بكفاءة أقل"
+    }
+  }
+}

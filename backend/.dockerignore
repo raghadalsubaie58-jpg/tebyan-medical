@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.env.*
+chroma_db/
+model_cache/
+*.log
+*.txt.bak
+venv/
+.venv/
+tests/

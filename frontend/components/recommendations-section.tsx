@@ -25,20 +25,12 @@ const categoryIcons = [
 
 const cardColors = ["gradient-primary", "gradient-secondary", "bg-accent", "bg-primary/80"]
 
+
 export function RecommendationsSection({ result }: RecommendationsSectionProps) {
   if (!result) return null
 
-  const tips    = result.report?.tips    ?? []
-  const general = result.report?.general ?? ""
-
-  // Split tips into groups of ~2 to fill the 2-column grid (max 4 cards)
-  const chunkSize = Math.ceil(tips.length / Math.min(4, Math.max(1, Math.ceil(tips.length / 2))))
-  const groups: string[][] = []
-  for (let i = 0; i < tips.length; i += chunkSize) {
-    groups.push(tips.slice(i, i + chunkSize))
-  }
-
-  const categoryLabels = ["نصائح غذائية", "نشاط وحركة", "نوم وراحة", "متابعة طبية"]
+  const groups = result.report?.tips_categorized ?? []
+  if (groups.length === 0) return null
 
   return (
     <motion.section
@@ -72,7 +64,7 @@ export function RecommendationsSection({ result }: RecommendationsSectionProps) 
             توصيات لتحسين صحتك
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-            {general || "بناءً على نتائج تحليلك، إليك مجموعة من النصائح والتوصيات لتحسين صحتك العامة"}
+            بناءً على نتائج تحليلك، إليك مجموعة من النصائح والتوصيات لتحسين صحتك العامة
           </p>
         </motion.div>
 
@@ -93,13 +85,13 @@ export function RecommendationsSection({ result }: RecommendationsSectionProps) 
                   {categoryIcons[index % categoryIcons.length]}
                 </div>
                 <h3 className="text-xl font-bold text-foreground">
-                  {categoryLabels[index % categoryLabels.length]}
+                  {group.category}
                 </h3>
               </div>
 
               {/* Checklist */}
               <ul className="space-y-4">
-                {group.map((tip, i) => (
+                {group.tips.map((tip, i) => (
                   <motion.li
                     key={i}
                     initial={{ opacity: 0, x: -20 }}

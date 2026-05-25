@@ -35,3 +35,34 @@ frontend/.vercel/
 # OS
 .DS_Store
 Thumbs.db
+
+# Logs
+logs/
+*.log
+backend/logs/
+backend_log.txt
+
+# Test / temp files
+backend/test_*.png
+backend/test_*.jpg
+backend/eval_results.json
+backend/test_set.json
+
+# pip install artifacts (=version files created by mistake)
+=*
+backend/=*
+
+# Office docs
+*.docx
+*.doc
+~$*
+
+# tsbuildinfo
+frontend/tsconfig.tsbuildinfo
+
+# Large data dirs not needed in prod
+assets/
+books/
+data/
+mine/
+temp/

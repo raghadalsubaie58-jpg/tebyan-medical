@@ -5,194 +5,33 @@ import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
 import { useAuth } from "@/lib/auth-context"
-import { createClient } from "@/lib/supabase"
+import { UserMenu, MobileSignOut } from "@/components/auth/user-menu"
+import { AuthModal } from "@/components/auth/auth-modal"
 
 const navItems = [
-  { label: "الرئيسية", href: "#home" },
-  { label: "التحليل",  href: "#analysis" },
-  { label: "النتائج",  href: "#results" },
-  { label: "المساعدة", href: "#help" },
-  { label: "حول المنصة", href: "#about" },
+  { label: "الرئيسية",     href: "#home" },
+  { label: "التحليل",      href: "#analysis" },
+  { label: "النتائج",      href: "#results" },
+  { label: "سجل التحاليل", href: "#history" },
+  { label: "حول المنصة",   href: "#about" },
 ]
 
-function LoginModal({ onClose }: { onClose: () => void }) {
-  const [tab, setTab]           = useState<"login" | "register">("login")
-  const [name, setName]         = useState("")
-  const [email, setEmail]       = useState("")
-  const [password, setPassword] = useState("")
-  const [loading, setLoading]   = useState(false)
-  const [error, setError]       = useState("")
-  const [success, setSuccess]   = useState("")
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
-    setError("")
-    setSuccess("")
-
-    const supabase = createClient()
-
-    if (tab === "login") {
-      const { error } = await supabase.auth.signInWithPassword({ email, password })
-      setLoading(false)
-      if (error) setError("البريد أو كلمة المرور غير صحيحة")
-      else onClose()
-    } else {
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: { full_name: name || email.split("@")[0] },
-        },
-      })
-      setLoading(false)
-      if (error) setError(error.message)
-      else setSuccess("تم إنشاء الحساب! تحقّقي من بريدك الإلكتروني لتفعيل الحساب.")
-    }
-  }
-
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
-      style={{ background: "rgba(0,0,0,0.4)", backdropFilter: "blur(8px)" }}
-      onClick={onClose}
-    >
-      <motion.div
-        initial={{ scale: 0.92, opacity: 0, y: 20 }}
-        animate={{ scale: 1, opacity: 1, y: 0 }}
-        exit={{ scale: 0.92, opacity: 0 }}
-        transition={{ type: "spring", stiffness: 300, damping: 25 }}
-        onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-sm rounded-3xl overflow-hidden"
-        style={{
-          background: "rgba(255,255,255,0.95)",
-          backdropFilter: "blur(24px)",
-          boxShadow: "0 20px 60px rgba(0,0,0,0.15)",
-        }}
-      >
-        <div className="px-7 pt-7 pb-4">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-bold text-[#111111]">
-              {tab === "login" ? "تسجيل الدخول" : "إنشاء حساب"}
-            </h2>
-            <button
-              onClick={onClose}
-              className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 transition-colors"
-            >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-
-          <div className="flex rounded-2xl p-1 mb-6" style={{ background: "rgba(0,0,0,0.04)" }}>
-            {(["login", "register"] as const).map((t) => (
-              <button
-                key={t}
-                onClick={() => { setTab(t); setError(""); setSuccess("") }}
-                className={`flex-1 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
-                  tab === t ? "bg-white text-[#111111] shadow-sm" : "text-gray-500"
-                }`}
-              >
-                {t === "login" ? "دخول" : "تسجيل"}
-              </button>
-            ))}
-          </div>
-
-          {success ? (
-            <div className="py-6 text-center space-y-3">
-              <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto" style={{ background: "linear-gradient(135deg, #B8F3E4 0%, #a8e8d8 100%)" }}>
-                <svg className="w-7 h-7 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <p className="text-sm text-[#111111] font-medium">{success}</p>
-              <button onClick={onClose} className="text-xs text-gray-400 underline">إغلاق</button>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {tab === "register" && (
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="الاسم (اختياري)"
-                  className="w-full px-4 py-3 rounded-2xl text-sm text-[#111111] placeholder:text-gray-400 focus:outline-none"
-                  style={{ background: "rgba(0,0,0,0.04)", border: "1px solid rgba(0,0,0,0.06)" }}
-                />
-              )}
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="البريد الإلكتروني"
-                required
-                className="w-full px-4 py-3 rounded-2xl text-sm text-[#111111] placeholder:text-gray-400 focus:outline-none"
-                style={{ background: "rgba(0,0,0,0.04)", border: "1px solid rgba(0,0,0,0.06)" }}
-              />
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="كلمة المرور"
-                required
-                minLength={6}
-                className="w-full px-4 py-3 rounded-2xl text-sm text-[#111111] placeholder:text-gray-400 focus:outline-none"
-                style={{ background: "rgba(0,0,0,0.04)", border: "1px solid rgba(0,0,0,0.06)" }}
-              />
-              {error && <p className="text-red-500 text-xs text-center">{error}</p>}
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                type="submit"
-                disabled={loading}
-                className="w-full py-3 rounded-2xl text-sm font-semibold text-[#111111] transition-all disabled:opacity-60"
-                style={{ background: "linear-gradient(135deg, #B8F3E4 0%, #a8e8d8 100%)" }}
-              >
-                {loading ? "جاري..." : tab === "login" ? "دخول" : "إنشاء حساب"}
-              </motion.button>
-            </form>
-          )}
-        </div>
-
-        <div className="px-7 py-4 text-center" style={{ background: "rgba(0,0,0,0.02)" }}>
-          <p className="text-xs text-gray-400">
-            بالدخول توافق على{" "}
-            <span className="text-[#111111] underline cursor-pointer">سياسة الخصوصية</span>
-          </p>
-        </div>
-      </motion.div>
-    </motion.div>
-  )
-}
-
 interface HeaderProps {
-  extraActions?: React.ReactNode
+  darkMode?:   boolean
+  toggleDark?: () => void
 }
 
-export function Header({ extraActions }: HeaderProps) {
-  const { user } = useAuth()
-  const [scrolled, setScrolled]             = useState(false)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [showLogin, setShowLogin]           = useState(false)
-  const [showUserMenu, setShowUserMenu]     = useState(false)
-
-  const displayName = user?.user_metadata?.full_name ?? user?.email?.split("@")[0] ?? "م"
+export function Header({ darkMode, toggleDark }: HeaderProps) {
+  const { user, loading } = useAuth()
+  const [scrolled,        setScrolled]        = useState(false)
+  const [mobileMenuOpen,  setMobileMenuOpen]  = useState(false)
+  const [showAuthModal,   setShowAuthModal]   = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+    const onScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener("scroll", onScroll)
+    return () => window.removeEventListener("scroll", onScroll)
   }, [])
-
-  const handleSignOut = async () => {
-    const supabase = createClient()
-    await supabase.auth.signOut()
-    setShowUserMenu(false)
-  }
 
   return (
     <>
@@ -205,6 +44,7 @@ export function Header({ extraActions }: HeaderProps) {
         }`}
       >
         <div className="container mx-auto px-6 flex items-center justify-between">
+          {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Image src="/logo.png" alt="تبيان" width={52} height={52} className="object-contain drop-shadow-md" />
@@ -212,6 +52,7 @@ export function Header({ extraActions }: HeaderProps) {
             <span className="text-2xl font-bold text-foreground">تبيان</span>
           </Link>
 
+          {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-1">
             {navItems.map((item, index) => (
               <motion.div
@@ -231,50 +72,30 @@ export function Header({ extraActions }: HeaderProps) {
             ))}
           </nav>
 
+          {/* Desktop auth controls */}
           <div className="hidden md:flex items-center gap-2">
-            {extraActions}
-            {user ? (
-              <div className="relative">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => setShowUserMenu(!showUserMenu)}
-                  className="flex items-center gap-2 px-3 py-2 rounded-2xl transition-colors"
-                  style={{ background: "rgba(184,243,228,0.3)" }}
-                >
-                  <div
-                    className="w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold text-[#111111]"
-                    style={{ background: "linear-gradient(135deg, #B8F3E4 0%, #FFD7EC 100%)" }}
-                  >
-                    {displayName[0]?.toUpperCase() ?? "م"}
-                  </div>
-                  <span className="text-sm font-medium text-foreground">{displayName}</span>
-                </motion.button>
+            {/* Dark mode toggle */}
+            {toggleDark && (
+              <button
+                onClick={toggleDark}
+                className="w-9 h-9 rounded-xl glass flex items-center justify-center hover:bg-muted/50 transition-colors"
+                aria-label="تبديل الوضع"
+              >
+                {darkMode
+                  ? <svg className="w-4 h-4 text-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" /></svg>
+                  : <svg className="w-4 h-4 text-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" /></svg>
+                }
+              </button>
+            )}
 
-                <AnimatePresence>
-                  {showUserMenu && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 8, scale: 0.96 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 8, scale: 0.96 }}
-                      transition={{ duration: 0.15 }}
-                      className="absolute left-0 top-12 w-48 rounded-2xl overflow-hidden shadow-lg z-50"
-                      style={{ background: "rgba(255,255,255,0.96)", backdropFilter: "blur(20px)", border: "1px solid rgba(0,0,0,0.06)" }}
-                    >
-                      <div className="px-4 py-3 border-b border-gray-50">
-                        <p className="text-xs font-medium text-[#111111]">{displayName}</p>
-                        <p className="text-xs text-gray-400 truncate">{user.email}</p>
-                      </div>
-                      <button
-                        onClick={handleSignOut}
-                        className="w-full text-right px-4 py-3 text-sm text-red-500 hover:bg-red-50 transition-colors"
-                      >
-                        تسجيل الخروج
-                      </button>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+            {/* Auth: loading → skeleton | user → menu | guest → login button */}
+            {loading ? (
+              <div className="flex items-center gap-2 px-3 py-2 rounded-2xl bg-muted/40 animate-pulse">
+                <div className="w-7 h-7 rounded-full bg-muted" />
+                <div className="w-16 h-3 rounded bg-muted" />
               </div>
+            ) : user ? (
+              <UserMenu />
             ) : (
               <motion.button
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -282,15 +103,15 @@ export function Header({ extraActions }: HeaderProps) {
                 transition={{ delay: 0.5 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => setShowLogin(true)}
-                className="px-5 py-2.5 rounded-2xl text-sm font-medium text-[#111111] transition-all"
-                style={{ background: "linear-gradient(135deg, #B8F3E4 0%, #a8e8d8 100%)" }}
+                onClick={() => setShowAuthModal(true)}
+                className="px-5 py-2.5 rounded-2xl text-sm font-medium text-primary-foreground gradient-primary shadow-glow-primary hover:opacity-90 transition-opacity"
               >
                 تسجيل الدخول
               </motion.button>
             )}
           </div>
 
+          {/* Mobile menu button */}
           <motion.button
             whileTap={{ scale: 0.9 }}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -298,13 +119,14 @@ export function Header({ extraActions }: HeaderProps) {
             aria-label="القائمة"
           >
             <div className="flex flex-col gap-1.5">
-              <motion.span animate={{ rotate: mobileMenuOpen ? 45 : 0, y: mobileMenuOpen ? 6 : 0 }} className="w-5 h-0.5 bg-foreground rounded-full origin-center" />
-              <motion.span animate={{ opacity: mobileMenuOpen ? 0 : 1 }} className="w-5 h-0.5 bg-foreground rounded-full" />
+              <motion.span animate={{ rotate: mobileMenuOpen ? 45 : 0, y: mobileMenuOpen ? 6 : 0 }}   className="w-5 h-0.5 bg-foreground rounded-full origin-center" />
+              <motion.span animate={{ opacity: mobileMenuOpen ? 0 : 1 }}                               className="w-5 h-0.5 bg-foreground rounded-full" />
               <motion.span animate={{ rotate: mobileMenuOpen ? -45 : 0, y: mobileMenuOpen ? -6 : 0 }} className="w-5 h-0.5 bg-foreground rounded-full origin-center" />
             </div>
           </motion.button>
         </div>
 
+        {/* Mobile menu */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
@@ -313,25 +135,37 @@ export function Header({ extraActions }: HeaderProps) {
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
               className="md:hidden glass-strong mt-2 mx-4 rounded-2xl overflow-hidden"
+              style={{ border: "1px solid var(--border)" }}
             >
               <nav className="flex flex-col p-4">
                 {navItems.map((item, index) => (
                   <motion.div key={item.href} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: index * 0.05 }}>
-                    <Link href={item.href} onClick={() => setMobileMenuOpen(false)} className="block px-4 py-3 text-muted-foreground hover:text-foreground hover:bg-primary/10 rounded-xl transition-all duration-300">
+                    <Link
+                      href={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block px-4 py-3 text-muted-foreground hover:text-foreground hover:bg-primary/10 rounded-xl transition-all duration-300"
+                    >
                       {item.label}
                     </Link>
                   </motion.div>
                 ))}
-                <div className="mt-2 pt-2 border-t border-border">
-                  {user ? (
-                    <button onClick={handleSignOut} className="w-full text-right px-4 py-3 text-sm text-red-500 rounded-xl hover:bg-red-50 transition-colors">
-                      تسجيل الخروج
+
+                <div className="mt-2 pt-2 border-t border-border flex flex-col gap-1">
+                  {toggleDark && (
+                    <button
+                      onClick={toggleDark}
+                      className="w-full text-right px-4 py-3 text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-xl transition-colors"
+                    >
+                      {darkMode ? "الوضع النهاري ☀️" : "الوضع الليلي 🌙"}
                     </button>
+                  )}
+
+                  {user ? (
+                    <MobileSignOut />
                   ) : (
                     <button
-                      onClick={() => { setShowLogin(true); setMobileMenuOpen(false) }}
-                      className="w-full text-right px-4 py-3 text-sm font-medium text-[#111111] rounded-xl transition-colors"
-                      style={{ background: "linear-gradient(135deg, #B8F3E4 0%, #a8e8d8 100%)" }}
+                      onClick={() => { setShowAuthModal(true); setMobileMenuOpen(false) }}
+                      className="w-full text-right px-4 py-3 text-sm font-medium text-primary-foreground rounded-xl gradient-primary transition-opacity hover:opacity-90"
                     >
                       تسجيل الدخول
                     </button>
@@ -343,9 +177,12 @@ export function Header({ extraActions }: HeaderProps) {
         </AnimatePresence>
       </motion.header>
 
-      <AnimatePresence>
-        {showLogin && <LoginModal onClose={() => setShowLogin(false)} />}
-      </AnimatePresence>
+      {/* Auth modal — quick login from anywhere on the main page */}
+      <AuthModal
+        open={showAuthModal}
+        onOpenChange={setShowAuthModal}
+        onSuccess={() => setShowAuthModal(false)}
+      />
     </>
   )
 }

@@ -1,0 +1,110 @@
+{
+  "panel_code": "kidney",
+  "name_ar": "وظائف الكلى",
+  "name_en": "Kidney Function Tests",
+  "specialty": "nephrology",
+  "icd10_related": ["N17", "N18", "N19", "N28", "E11.65"],
+  "tests": {
+    "Creatinine": {
+      "name_ar": "كرياتينين",
+      "abbreviations": ["Cr", "Creat", "كرياتينين"],
+      "unit": "mg/dL",
+      "ranges": {
+        "adult_male":   {"low": 0.7, "high": 1.3},
+        "adult_female": {"low": 0.5, "high": 1.1},
+        "adult":        {"low": 0.5, "high": 1.3},
+        "children":     {"low": 0.3, "high": 0.7},
+        "elderly_male": {"low": 0.7, "high": 1.4},
+        "elderly_female":{"low": 0.5, "high": 1.2}
+      },
+      "severity_thresholds": {
+        "critical_high": 10.0,
+        "severe_high": 5.0,
+        "moderate_high": 2.0,
+        "ckd_stage3": 2.0,
+        "ckd_stage4": 4.0
+      },
+      "clinical_meaning_ar": "نفاية عضلية تُفرز عبر الكلى — مؤشر مباشر لكفاءة الترشيح الكلوي",
+      "high_causes_ar": ["الفشل الكلوي الحاد أو المزمن", "الجفاف الشديد", "انسداد المسالك البولية", "الرياضة المكثفة", "ارتفاع تناول البروتين", "أدوية سامة للكلى (NSAIDs, أمينوغليكوزيد)", "رابدوميوليسيس (تحلل العضلات)"],
+      "low_causes_ar": ["ضمور العضلات أو فقدان الكتلة العضلية", "سوء التغذية الشديد", "الحمل (بسبب زيادة معدل الترشيح)", "كبار السن بكتلة عضلية قليلة"],
+      "symptoms_high_ar": ["انخفاض كمية البول أو توقفها", "تورم الأطراف والوجه", "غثيان وقيء", "تعب شديد وضعف عام", "ضيق تنفس", "تشوش ذهني في الحالات الشديدة"],
+      "followup_tests": ["eGFR", "BUN", "Urine Creatinine", "Urine Protein", "Electrolytes", "Urinalysis", "Kidney Ultrasound"],
+      "patient_explanation_ar": "الكرياتينين مثل مقياس دقة مرشّح الكلى — كلما ارتفع، كلما كان المرشّح أقل كفاءة"
+    },
+    "BUN": {
+      "name_ar": "نيتروجين يوريا الدم",
+      "abbreviations": ["BUN", "Blood Urea Nitrogen", "يوريا"],
+      "unit": "mg/dL",
+      "ranges": {
+        "adult": {"low": 8.0, "high": 25.0},
+        "elderly": {"low": 8.0, "high": 30.0},
+        "children": {"low": 5.0, "high": 18.0}
+      },
+      "severity_thresholds": {
+        "critical_high": 100.0,
+        "severe_high": 60.0,
+        "moderate_high": 40.0,
+        "uremia_risk": 80.0
+      },
+      "clinical_meaning_ar": "نفاية التحلل البروتيني تُفرز عبر الكلى — يرتفع مع الفشل الكلوي وارتفاع البروتين",
+      "high_causes_ar": ["الفشل الكلوي", "الجفاف", "نزيف الجهاز الهضمي العلوي", "ارتفاع تناول البروتين", "الحمى والإجهاد الشديد", "فشل القلب الاحتقاني"],
+      "low_causes_ar": ["سوء التغذية (نقص البروتين)", "أمراض الكبد الشديدة (يعيق تصنيع اليوريا)", "الحمل", "الإفراط في شرب السوائل"],
+      "symptoms_high_ar": ["غثيان وفقدان الشهية", "تعب وضعف", "حكة جلدية في الحالات الشديدة", "تشوش ذهني (يوريمية)"],
+      "followup_tests": ["Creatinine", "BUN/Creatinine ratio", "eGFR", "Urinalysis"],
+      "patient_explanation_ar": "BUN هو بقايا هضم البروتين — الكلية السليمة تُزيله بكفاءة، فإذا ارتفع يعني الكلية تتعب"
+    },
+    "eGFR": {
+      "name_ar": "معدل الترشيح الكبيبي المقدّر",
+      "abbreviations": ["eGFR", "GFR", "معدل الترشيح"],
+      "unit": "mL/min/1.73m²",
+      "ranges": {
+        "adult": {"low": 60.0, "high": 999.0},
+        "young_adult": {"low": 90.0, "high": 999.0}
+      },
+      "severity_thresholds": {
+        "ckd_stage1": 90.0,
+        "ckd_stage2": 60.0,
+        "ckd_stage3a": 45.0,
+        "ckd_stage3b": 30.0,
+        "ckd_stage4": 15.0,
+        "ckd_stage5_dialysis": 15.0,
+        "critical_low": 10.0
+      },
+      "clinical_meaning_ar": "يقيس مدى قدرة الكلية على ترشيح الدم في الدقيقة — المقياس الذهبي لوظيفة الكلى",
+      "interpretation_matrix": {
+        "eGFR >= 90": "وظيفة كلوية طبيعية (CKD Stage 1 إذا كان مع علامات كلوية أخرى)",
+        "eGFR 60-89": "انخفاض طفيف — CKD Stage 2، تحتاج متابعة",
+        "eGFR 45-59": "انخفاض خفيف-معتدل — CKD Stage 3a، تعديل جرعات الأدوية",
+        "eGFR 30-44": "انخفاض معتدل-شديد — CKD Stage 3b، متابعة أمراض الكلى",
+        "eGFR 15-29": "انخفاض شديد — CKD Stage 4، التحضير للديلزة",
+        "eGFR < 15":  "فشل كلوي — CKD Stage 5، ديلزة أو زراعة كلى"
+      },
+      "low_causes_ar": ["مرض الكلى المزمن", "مرض السكري (اعتلال الكلية السكري)", "ارتفاع ضغط الدم المزمن", "التهاب الكلية", "انسداد المسالك البولية المزمن", "أدوية سامة للكلى"],
+      "followup_tests": ["Creatinine", "Urine Albumin/Creatinine ratio", "Electrolytes", "Phosphorus", "PTH", "Hemoglobin"],
+      "patient_explanation_ar": "eGFR يخبرك كم في المئة من كلاوي تعمل — 100% طبيعي، أقل من 15% تحتاج ديلزة"
+    },
+    "Uric_Acid": {
+      "name_ar": "حمض اليوريك",
+      "abbreviations": ["UA", "Uric Acid", "حمض البول", "يورك"],
+      "unit": "mg/dL",
+      "ranges": {
+        "adult_male":   {"low": 3.4, "high": 7.0},
+        "adult_female": {"low": 2.4, "high": 6.0},
+        "adult":        {"low": 2.4, "high": 7.0},
+        "children":     {"low": 2.0, "high": 5.5}
+      },
+      "severity_thresholds": {
+        "hyperuricemia_male": 7.0,
+        "hyperuricemia_female": 6.0,
+        "gout_risk": 8.0,
+        "critical_high": 12.0
+      },
+      "clinical_meaning_ar": "نفاية تحلل البورينات — يتراكم في المفاصل مسبباً النقرس عند ارتفاعه",
+      "high_causes_ar": ["النقرس (Gout)", "الفشل الكلوي", "الجفاف", "ارتفاع تناول الفركتوز واللحوم الحمراء", "بعض أدوية ضغط الدم (ثيازيد)", "كيموثيرابيا (تحلل الخلايا السرطانية)", "السمنة"],
+      "low_causes_ar": ["سوء التغذية", "أمراض الكبد الشديدة", "بعض الأدوية (الوبيورينول)", "نقص إنزيم Xanthine Oxidase (نادر)"],
+      "symptoms_high_ar": ["ألم مفاجئ وشديد في إبهام القدم (النقرس)", "احمرار وتورم المفاصل", "حصى الكلى (حمض اليوريك)", "ألم أسفل الظهر"],
+      "followup_tests": ["24hr Urine Uric Acid", "Creatinine", "eGFR", "Joint X-Ray"],
+      "patient_explanation_ar": "حمض اليوريك مثل رمل يتراكم في المفاصل — عندما يزيد يسبب نوبة ألم شديدة تُسمى النقرس"
+    }
+  }
+}

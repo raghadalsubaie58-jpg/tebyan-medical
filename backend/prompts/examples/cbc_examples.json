@@ -1,0 +1,76 @@
+{
+  "_description": "CBC few-shot examples — used to prime LLM with correct Arabic medical format",
+  "_version": "2.0",
+  "examples": [
+    {
+      "id": "cbc_iron_deficiency",
+      "scenario": "Iron-deficiency anemia — female, 28 years",
+      "input_findings": [
+        {"name": "Hemoglobin", "value": "9.8", "range": "12.0-15.5", "unit": "g/dL", "status": "low"},
+        {"name": "MCV", "value": "71", "range": "80-100", "unit": "fL", "status": "low"},
+        {"name": "MCH", "value": "23", "range": "27-33", "unit": "pg", "status": "low"},
+        {"name": "WBC", "value": "6.5", "range": "4.0-11.0", "unit": "10³/μL", "status": "normal"},
+        {"name": "Platelets", "value": "310", "range": "150-400", "unit": "10³/μL", "status": "normal"}
+      ],
+      "ideal_output": {
+        "تقييم_عام": "خلايا الدم البيضاء والصفائح الدموية طبيعية تماماً — وهو مؤشر جيد لسلامة جهازك المناعي. يستدعي الانتباه انخفاض الهيموجلوبين مع صغر حجم الكريات الحمراء، وهو نمط كلاسيكي لفقر الدم الناجم عن نقص الحديد — وهي حالة شائعة ومناسبة للعلاج.",
+        "interpretation_chain": "Hgb low + MCV low + MCH low → microcytic hypochromic anemia → most likely iron deficiency → recommend Ferritin + Iron panel",
+        "key_message_ar": "فقر دم بسيط إلى متوسط بسبب نقص الحديد على الأرجح — قابل للعلاج بالغذاء والمكملات",
+        "توصيات": [
+          {
+            "category": "التغذية الغنية بالحديد",
+            "tips": ["تناول اللحوم الحمراء 3 مرات أسبوعياً", "السبانخ والعدس والفول من أغنى المصادر النباتية", "اقرن وجبات الحديد بعصير البرتقال لتحسين الامتصاص 2×", "تجنب الشاي والقهوة مباشرة بعد الوجبات — تقلل الامتصاص 60%"]
+          },
+          {
+            "category": "المتابعة الطبية",
+            "tips": ["أجري فحص الفيريتين والحديد لتأكيد السبب", "راجعي طبيبك لتحديد جرعة مكمل الحديد المناسبة", "أعيدي التحليل بعد 3 أشهر من العلاج لمتابعة التحسن"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cbc_all_normal",
+      "scenario": "All CBC values normal — male, 35 years",
+      "input_findings": [
+        {"name": "Hemoglobin", "value": "15.2", "range": "13.5-17.5", "unit": "g/dL", "status": "normal"},
+        {"name": "WBC", "value": "7.1", "range": "4.0-11.0", "unit": "10³/μL", "status": "normal"},
+        {"name": "Platelets", "value": "245", "range": "150-400", "unit": "10³/μL", "status": "normal"},
+        {"name": "Hematocrit", "value": "46", "range": "41-53", "unit": "%", "status": "normal"}
+      ],
+      "ideal_output": {
+        "تقييم_عام": "ممتاز! جميع قيم صورة الدم الكاملة ضمن المعدل الطبيعي — الهيموجلوبين يحمل الأكسجين بكفاءة، وخلايا المناعة بعدد مثالي، والصفائح الدموية تضمن التجلط الصحي. هذه نتائج تعكس صحة دموية جيدة.",
+        "key_message_ar": "نتائج طبيعية — استمر على نمط حياتك الصحي",
+        "توصيات": [
+          {
+            "category": "الحفاظ على الصحة الدموية",
+            "tips": ["تناول وجبات متوازنة تشمل البروتين والحديد والفيتامينات", "مارس الرياضة المعتدلة 150 دقيقة أسبوعياً", "اشرب 2 لتر ماء يومياً للحفاظ على حجم الدم", "أجرِ صورة الدم الكاملة سنوياً للمتابعة الوقائية"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cbc_infection",
+      "scenario": "Elevated WBC suggesting infection",
+      "input_findings": [
+        {"name": "WBC", "value": "14.5", "range": "4.0-11.0", "unit": "10³/μL", "status": "high"},
+        {"name": "Neutrophils", "value": "82", "range": "50-70", "unit": "%", "status": "high"},
+        {"name": "Hemoglobin", "value": "13.8", "range": "13.5-17.5", "unit": "g/dL", "status": "normal"},
+        {"name": "Platelets", "value": "420", "range": "150-400", "unit": "10³/μL", "status": "high"}
+      ],
+      "ideal_output": {
+        "تقييم_عام": "الهيموجلوبين طبيعي وهو مؤشر إيجابي. يُلاحظ ارتفاع في خلايا الدم البيضاء مع ارتفاع النيتروفيل — وهو نمط يشير عادةً إلى وجود عدوى بكتيرية أو التهاب في مكان ما في الجسم. الصفائح مرتفعة قليلاً وهو تفاعل طبيعي مع الالتهاب.",
+        "interpretation_chain": "WBC 14.5 (high) + Neutrophils 82% (high) → bacterial infection pattern → body in acute inflammatory response",
+        "توصيات": [
+          {
+            "category": "المتابعة الطبية العاجلة",
+            "tips": ["راجع طبيبك لتحديد موضع العدوى والعلاج المناسب", "أخبر طبيبك عن أي أعراض: حمى، ألم، سعال، حرقة بول", "لا تؤخر المراجعة إذا كانت لديك حمى > 38.5 درجة"]
+          },
+          {
+            "category": "الراحة والترطيب",
+            "tips": ["استرح واشرب سوائل كافية", "تجنب مجهود شديد حتى يتضح التشخيص", "راقب درجة حرارتك يومياً"]
+          }
+        ]
+      }
+    }
+  ]
+}

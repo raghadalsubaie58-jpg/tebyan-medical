@@ -41,8 +41,12 @@ export function UploadSection({ onResult, profileName = "أنا" }: UploadSectio
       const formData = new FormData()
       formData.append("file", file)
 
-      const res = await fetch("http://localhost:8000/api/analyze", { method: "POST", body: formData })
-      if (!res.ok) throw new Error("فشل التحليل")
+      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL ?? "http://localhost:8000"
+      const res = await fetch(`${backendUrl}/api/analyze`, { method: "POST", body: formData })
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}))
+        throw new Error(errData.detail || "فشل التحليل")
+      }
 
       const data: AnalysisResult = await res.json()
       onResult(data)
@@ -51,8 +55,8 @@ export function UploadSection({ onResult, profileName = "أنا" }: UploadSectio
       setTimeout(() => {
         document.getElementById("results")?.scrollIntoView({ behavior: "smooth" })
       }, 300)
-    } catch {
-      setError("تعذّر الاتصال بالخادم. تأكد من تشغيل الباكند.")
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "تعذّر الاتصال بالخادم. تأكد من تشغيل الباكند.")
       setIsDone(false)
     } finally {
       setIsAnalyzing(false)

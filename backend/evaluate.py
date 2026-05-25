@@ -1,22 +1,23 @@
 """
 M7 — RAGAS-light: تقييم جودة الـ RAG بدون OpenAI
-يستخدم Groq بدلاً منه للحفاظ على المجانية
+يستخدم Groq بدلاً منه — pgvector + SemanticSearchService
 """
 import os
 import json
 from dotenv import load_dotenv
 load_dotenv(dotenv_path=r'D:\Project\.env')
-os.environ['HF_HOME'] = r'D:\Project\model_cache'
+os.environ.setdefault('HF_HOME', r'D:\Project\model_cache')
 os.environ['TRANSFORMERS_VERBOSITY'] = 'error'
 
 from groq import Groq
-from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_chroma import Chroma
+from services.search.semantic_search import SemanticSearchService
+from services.rag.retriever import Retriever, RetrievalConfig
+from services.rag.context_builder import build_context
 
-GROQ_API_KEY  = os.getenv("GROQ_API_KEY")
-EMBED_MODEL   = "intfloat/multilingual-e5-large"
-GROQ_MODEL    = "llama-3.1-8b-instant"
-DB_PATH       = r'D:\Project\chroma_db'
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+GROQ_MODEL   = "llama-3.1-8b-instant"
 
 TEST_QUESTIONS = [
     {"q": "ما هي القيم الطبيعية للهيموجلوبين؟",    "ref": "رجال 13.5-17.5 g/dL نساء 12-15.5 g/dL"},
@@ -24,35 +25,36 @@ TEST_QUESTIONS = [
     {"q": "ما أعراض نقص فيتامين د؟",               "ref": "آلام العظام وضعف العضلات وضعف المناعة"},
     {"q": "كيف أخفض سكر الدم طبيعياً؟",            "ref": "الرياضة والغذاء الصحي وتقليل النشويات"},
     {"q": "ما سبب ارتفاع إنزيمات الكبد ALT AST؟",  "ref": "التهاب الكبد الكبد الدهني الكحول"},
-    {"q": "ما القيم الطبيعية للكرياتينين؟",         "ref": "رجال 0.74-1.35 نساء 0.59-1.04 mg/dL"},
+    {"q": "ما القيم الطبيعية للكرياتينين؟",         "ref": "رجال 0.7-1.3 نساء 0.5-1.1 mg/dL"},
     {"q": "ما أسباب انخفاض خلايا الدم البيضاء؟",   "ref": "أمراض المناعة العلاج الكيميائي أمراض النخاع"},
     {"q": "ما معنى ارتفاع TSH؟",                    "ref": "قصور الغدة الدرقية الغدة خاملة"},
+    {"q": "ما أسباب ارتفاع الدهون الثلاثية؟",      "ref": "السكر والكربوهيدرات والسمنة والخمول"},
+    {"q": "ما معنى انخفاض eGFR؟",                   "ref": "ضعف وظيفة الكلى ومرض الكلى المزمن"},
 ]
 
 
-def get_rag_answer(client, db, question: str) -> tuple[str, str]:
-    results = db.similarity_search_with_relevance_scores(question, k=5)
-    filtered = [(d, s) for d, s in results if s >= 0.4]
-    context  = "\n\n".join([d.page_content for d, _ in filtered[:3]])
+def get_rag_answer(groq_client: Groq, retriever: Retriever, question: str) -> tuple[str, str]:
+    results, _ = retriever.retrieve(question, RetrievalConfig(k=8, top_n=4, use_multi_query=False))
+    context    = build_context(results, max_tokens=1200)
 
     messages = [
-        {"role": "system", "content": "أنت مساعد طبي. أجب باختصار بالعربية مستنداً للسياق."},
+        {"role": "system", "content": "أنت مساعد طبي دقيق. أجب باختصار بالعربية مستنداً فقط للسياق المعطى."},
         {"role": "user",   "content": f"السياق:\n{context}\n\nالسؤال: {question}"},
     ]
-    r = client.chat.completions.create(
+    r = groq_client.chat.completions.create(
         model=GROQ_MODEL, messages=messages, temperature=0.1, max_tokens=300
     )
     return r.choices[0].message.content, context
 
 
-def evaluate_single(client, answer: str, context: str, question: str, reference: str) -> dict:
+def evaluate_single(groq_client: Groq, answer: str, context: str, question: str, reference: str) -> dict:
     prompt = f"""قيّم الإجابة التالية بدقة. أجب بـ JSON فقط بهذا الشكل:
 {{"faithfulness": X, "answer_relevance": X, "context_precision": X, "notes": "..."}}
 
-حيث القيم من 0.0 إلى 1.0:
-- faithfulness: هل الإجابة مبنية على السياق المعطى؟
-- answer_relevance: هل الإجابة تجيب على السؤال؟
-- context_precision: هل السياق يحتوي على معلومات مفيدة؟
+القيم من 0.0 إلى 1.0:
+- faithfulness: هل الإجابة مبنية فعلاً على السياق المعطى؟
+- answer_relevance: هل الإجابة تجيب على السؤال بشكل مباشر؟
+- context_precision: هل السياق يحتوي معلومات مفيدة للسؤال؟
 
 السؤال: {question}
 المرجع: {reference}
@@ -60,7 +62,7 @@ def evaluate_single(client, answer: str, context: str, question: str, reference:
 الإجابة: {answer[:500]}"""
 
     try:
-        r = client.chat.completions.create(
+        r = groq_client.chat.completions.create(
             model=GROQ_MODEL,
             messages=[{"role": "user", "content": prompt}],
             temperature=0, max_tokens=200,
@@ -75,46 +77,65 @@ def evaluate_single(client, answer: str, context: str, question: str, reference:
 
 def run_evaluation():
     print("=" * 60)
-    print("M7 — RAGAS-light Evaluation")
+    print("RAGAS-light Evaluation | pgvector + Groq")
     print("=" * 60)
 
-    client = Groq(api_key=GROQ_API_KEY)
-    embed  = HuggingFaceEmbeddings(model_name=EMBED_MODEL)
-    db     = Chroma(persist_directory=DB_PATH, embedding_function=embed)
-    print(f"[DB] {db._collection.count()} chunks loaded\n")
+    groq_client = Groq(api_key=GROQ_API_KEY)
+    search_svc  = SemanticSearchService(SUPABASE_URL, SUPABASE_KEY)
+    retriever   = Retriever(search_svc)
 
-    results  = []
-    totals   = {"faithfulness": 0, "answer_relevance": 0, "context_precision": 0}
+    total_chunks = search_svc.count()
+    print(f"[DB] {total_chunks} chunks in pgvector\n")
+
+    results = []
+    totals  = {"faithfulness": 0.0, "answer_relevance": 0.0, "context_precision": 0.0}
 
     for i, item in enumerate(TEST_QUESTIONS, 1):
-        print(f"[{i}/{len(TEST_QUESTIONS)}] {item['q'][:50]}...")
-        answer, context = get_rag_answer(client, db, item["q"])
-        metrics = evaluate_single(client, answer, context, item["q"], item["ref"])
+        print(f"[{i}/{len(TEST_QUESTIONS)}] {item['q'][:55]}...")
+        answer, context = get_rag_answer(groq_client, retriever, item["q"])
+        metrics = evaluate_single(groq_client, answer, context, item["q"], item["ref"])
 
         for k in totals:
             totals[k] += metrics.get(k, 0)
 
         results.append({
             "question": item["q"],
-            "answer":   answer[:150],
+            "answer":   answer[:200],
             "metrics":  metrics,
         })
         print(f"  faithfulness={metrics.get('faithfulness', 0):.2f} "
               f"| relevance={metrics.get('answer_relevance', 0):.2f} "
-              f"| precision={metrics.get('context_precision', 0):.2f}")
+              f"| precision={metrics.get('context_precision', 0):.2f}"
+              f"  — {metrics.get('notes', '')[:60]}")
 
     n = len(TEST_QUESTIONS)
+    avg_f   = totals['faithfulness']    / n
+    avg_r   = totals['answer_relevance'] / n
+    avg_p   = totals['context_precision'] / n
+    overall = (avg_f + avg_r + avg_p) / 3
+
     print("\n" + "=" * 60)
     print("النتائج الكلية:")
-    print(f"  Faithfulness (أمانة الإجابة):  {totals['faithfulness']/n:.2%}")
-    print(f"  Answer Relevance (صلة الإجابة): {totals['answer_relevance']/n:.2%}")
-    print(f"  Context Precision (دقة السياق): {totals['context_precision']/n:.2%}")
-    print(f"  المتوسط العام:                  {sum(totals.values())/(n*3):.2%}")
+    print(f"  Faithfulness  (امانة الإجابة):  {avg_f:.1%}")
+    print(f"  Answer Relevance (صلة الإجابة): {avg_r:.1%}")
+    print(f"  Context Precision (دقة السياق): {avg_p:.1%}")
+    print(f"  المتوسط العام:                  {overall:.1%}")
     print("=" * 60)
 
+    summary = {
+        "faithfulness":     round(avg_f, 3),
+        "answer_relevance": round(avg_r, 3),
+        "context_precision":round(avg_p, 3),
+        "overall":          round(overall, 3),
+        "total_chunks":     total_chunks,
+        "questions_tested": n,
+    }
+    output = {"summary": summary, "details": results}
+
     with open("eval_results.json", "w", encoding="utf-8") as f:
-        json.dump({"summary": {k: round(v/n, 3) for k, v in totals.items()}, "details": results}, f, ensure_ascii=False, indent=2)
-    print("\nحُفظت النتائج في eval_results.json")
+        json.dump(output, f, ensure_ascii=False, indent=2)
+    print("Results saved to eval_results.json")
+    return summary
 
 
 if __name__ == "__main__":

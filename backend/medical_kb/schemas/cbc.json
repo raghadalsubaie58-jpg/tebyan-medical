@@ -1,0 +1,153 @@
+{
+  "panel_code": "cbc",
+  "name_ar": "صورة الدم الكاملة",
+  "name_en": "Complete Blood Count",
+  "specialty": "hematology",
+  "icd10_related": ["D50", "D51", "D52", "D53", "D64", "D69"],
+  "tests": {
+    "Hemoglobin": {
+      "name_ar": "هيموجلوبين",
+      "abbreviations": ["HGB", "Hgb", "Hb", "هيموجلوبين", "خضاب الدم"],
+      "unit": "g/dL",
+      "ranges": {
+        "adult_male":    {"low": 13.5, "high": 17.5},
+        "adult_female":  {"low": 12.0, "high": 15.5},
+        "children_6_12": {"low": 11.5, "high": 15.5},
+        "pregnant":      {"low": 11.0, "high": 14.0},
+        "elderly_male":  {"low": 12.5, "high": 17.0},
+        "elderly_female":{"low": 11.5, "high": 15.0}
+      },
+      "severity_thresholds": {
+        "critical_low": 7.0,
+        "severe_low": 8.0,
+        "mild_low_female": 11.0,
+        "mild_low_male": 12.5
+      },
+      "clinical_meaning_ar": "البروتين الذي يحمل الأكسجين في خلايا الدم الحمراء",
+      "high_causes_ar": ["الجفاف الشديد", "داء الكثرة الحمراء", "التدخين المزمن", "الإقامة في المرتفعات", "أمراض رئوية مزمنة"],
+      "low_causes_ar": ["نقص الحديد (الأكثر شيوعاً)", "نقص فيتامين B12", "نقص حمض الفوليك", "نزيف مزمن", "أمراض مزمنة (كلى، كبد)", "الثلاسيميا", "فقر الدم الانحلالي"],
+      "symptoms_low_ar": ["تعب وإرهاق غير معتاد", "شحوب الجلد والملتحمة", "ضيق تنفس عند المجهود", "خفقان وسرعة القلب", "دوخة وصداع", "برودة اليدين والقدمين", "هشاشة الأظافر وتساقط الشعر"],
+      "followup_tests": ["Ferritin", "Serum Iron", "TIBC", "Vitamin B12", "Folate", "Reticulocyte count", "Peripheral blood smear"],
+      "patient_explanation_ar": "الهيموجلوبين هو البروتين الحامل للأكسجين في دمك — مثل الحافلة التي تنقل الأكسجين من رئتيك لكل خلية في جسمك"
+    },
+    "WBC": {
+      "name_ar": "خلايا الدم البيضاء",
+      "abbreviations": ["WBC", "Leukocytes", "TLC", "كريات بيضاء", "كريات الدم البيضاء"],
+      "unit": "10³/μL",
+      "ranges": {
+        "adult":    {"low": 4.0, "high": 11.0},
+        "children": {"low": 5.0, "high": 15.0},
+        "neonates": {"low": 9.0, "high": 30.0}
+      },
+      "severity_thresholds": {
+        "critical_low": 2.0,
+        "severe_low": 3.0,
+        "critical_high": 30.0,
+        "leukocytosis": 11.0,
+        "leukopenia": 4.0
+      },
+      "clinical_meaning_ar": "خلايا الجهاز المناعي التي تقاوم العدوى والمرض",
+      "high_causes_ar": ["عدوى بكتيرية (الأكثر شيوعاً)", "الالتهابات الحادة", "الإجهاد الجسدي الشديد", "بعض الأدوية (كورتيكوستيرويد)", "سرطان الدم (نادراً)", "تدخين السجائر"],
+      "low_causes_ar": ["عدوى فيروسية (إنفلونزا، كوفيد)", "أمراض نقص المناعة", "أدوية الكيموثيرابي", "نقص B12 أو الفوليك", "أمراض المناعة الذاتية", "تليف نخاع العظم"],
+      "followup_tests": ["Differential count (Neutrophils, Lymphocytes, Eosinophils)", "Blood culture if infection suspected", "CBC with differential"],
+      "patient_explanation_ar": "خلايا الدم البيضاء هي جيش جهازك المناعي — تحارب الجراثيم والفيروسات وتحمي جسمك"
+    },
+    "RBC": {
+      "name_ar": "خلايا الدم الحمراء",
+      "abbreviations": ["RBC", "Erythrocytes", "كريات حمراء"],
+      "unit": "10⁶/μL",
+      "ranges": {
+        "adult_male":   {"low": 4.5, "high": 5.9},
+        "adult_female": {"low": 4.0, "high": 5.2}
+      },
+      "clinical_meaning_ar": "الخلايا الحاملة للهيموجلوبين والأكسجين",
+      "high_causes_ar": ["الجفاف", "داء الكثرة الحمراء", "التدخين"],
+      "low_causes_ar": ["فقر الدم", "النزيف", "نقص المغذيات"],
+      "patient_explanation_ar": "هي الخلايا الحمراء الصغيرة التي تحمل الأكسجين في مجرى الدم — كل واحدة تعيش حوالي 120 يوماً"
+    },
+    "Platelets": {
+      "name_ar": "الصفائح الدموية",
+      "abbreviations": ["PLT", "Thrombocytes", "صفائح", "صفيحات"],
+      "unit": "10³/μL",
+      "ranges": {
+        "adult": {"low": 150, "high": 400}
+      },
+      "severity_thresholds": {
+        "critical_low": 20,
+        "severe_low": 50,
+        "thrombocytopenia": 150,
+        "thrombocytosis": 400
+      },
+      "clinical_meaning_ar": "خلايا صغيرة تسبق تكوين جلطة الجرح وتوقف النزيف",
+      "high_causes_ar": ["ردّ فعل لالتهاب أو عدوى", "نقص الحديد", "استئصال الطحال", "نقاوي أولي (نادر)"],
+      "low_causes_ar": ["فشل نخاع العظم", "أمراض الكبد", "الأدوية (الهيبارين، بعض المضادات الحيوية)", "أمراض المناعة الذاتية (ITP)", "نقص B12"],
+      "danger_signs_ar": "< 50: خطر نزيف تلقائي — < 20: خطر نزيف داخلي طارئ",
+      "patient_explanation_ar": "الصفائح خلايا صغيرة جداً تجتمع عند الجرح لتشكّل سدادة طبيعية توقف النزيف"
+    },
+    "Hematocrit": {
+      "name_ar": "الهيماتوكريت",
+      "abbreviations": ["HCT", "PCV", "Hct"],
+      "unit": "%",
+      "ranges": {
+        "adult_male":   {"low": 41, "high": 53},
+        "adult_female": {"low": 36, "high": 48}
+      },
+      "clinical_meaning_ar": "نسبة حجم خلايا الدم الحمراء من الحجم الكلي للدم — يتحرك دائماً مع الهيموجلوبين",
+      "patient_explanation_ar": "لو فصلنا دمك في أنبوب — الهيماتوكريت هو نسبة الجزء الأحمر (الخلايا) من إجمالي الدم"
+    },
+    "MCV": {
+      "name_ar": "متوسط حجم الكريات الحمراء",
+      "abbreviations": ["MCV", "Mean Corpuscular Volume"],
+      "unit": "fL",
+      "ranges": {
+        "adult": {"low": 80, "high": 100}
+      },
+      "interpretation_guide": {
+        "microcytic_low": "< 80 fL: كريات صغيرة → نقص الحديد أو الثلاسيميا",
+        "normocytic": "80-100 fL: كريات طبيعية الحجم",
+        "macrocytic_high": "> 100 fL: كريات كبيرة → نقص B12 أو الفوليك"
+      },
+      "clinical_meaning_ar": "يُحدد نوع فقر الدم: صغير الحجم (حديدي) أو كبير الحجم (B12)",
+      "patient_explanation_ar": "يقيس حجم كل كرية دم حمراء — مفيد جداً لمعرفة سبب فقر الدم إذا وُجد"
+    },
+    "MCH": {
+      "name_ar": "متوسط كمية هيموجلوبين الكرية",
+      "abbreviations": ["MCH"],
+      "unit": "pg",
+      "ranges": {
+        "adult": {"low": 27, "high": 33}
+      },
+      "clinical_meaning_ar": "كمية الهيموجلوبين في كل خلية حمراء — يُكمل تفسير MCV"
+    },
+    "Neutrophils": {
+      "name_ar": "العدلات",
+      "abbreviations": ["NEU", "NEUT", "Neutrophils", "PMN", "نيتروفيل"],
+      "unit": "%",
+      "ranges": {
+        "adult": {"low": 50, "high": 70}
+      },
+      "clinical_meaning_ar": "أكثر خلايا الدم البيضاء شيوعاً — الخط الأول ضد العدوى البكتيرية",
+      "high_interpretation": "Neutrophilia (>70%) → bacterial infection / inflammation / steroid use",
+      "low_interpretation": "Neutropenia (<50%) → viral infection / bone marrow suppression"
+    },
+    "Lymphocytes": {
+      "name_ar": "الخلايا الليمفاوية",
+      "abbreviations": ["LYM", "LYMPH", "لمفاوية"],
+      "unit": "%",
+      "ranges": {
+        "adult": {"low": 20, "high": 40}
+      },
+      "clinical_meaning_ar": "تنتج الأجسام المضادة وتحفظ الذاكرة المناعية — ترتفع في العدوى الفيروسية"
+    },
+    "Eosinophils": {
+      "name_ar": "الحمضات",
+      "abbreviations": ["EOS", "Eosinophils", "حمضات"],
+      "unit": "%",
+      "ranges": {
+        "adult": {"low": 1, "high": 4}
+      },
+      "clinical_meaning_ar": "ترتفع في الحساسية والديدان الطفيلية",
+      "high_causes_ar": ["أمراض الحساسية (الربو، أكزيما)", "الديدان الطفيلية", "بعض الأدوية"]
+    }
+  }
+}

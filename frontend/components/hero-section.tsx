@@ -7,7 +7,7 @@ export function HeroSection() {
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-16">
       {/* Animated Background */}
       <div className="absolute inset-0 gradient-mesh" />
-      
+
       {/* Floating Gradient Orbs */}
       <motion.div
         animate={{

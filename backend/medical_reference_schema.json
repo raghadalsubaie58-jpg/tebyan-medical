@@ -1,0 +1,418 @@
+{
+  "_description": "Medical reference ranges for lab panels. Used to inject structured context into analysis prompts.",
+  "_version": "1.0",
+  "_last_updated": "2026-05-24",
+  "_sources": ["WHO", "LabCorp", "Mayo Clinic", "Harrison's Principles of Internal Medicine 21e"],
+
+  "panels": {
+    "CBC": {
+      "name_ar": "صورة الدم الكاملة",
+      "name_en": "Complete Blood Count",
+      "code": "CBC",
+      "specialty": "hematology",
+      "tests": {
+        "Hemoglobin": {
+          "name_ar": "هيموجلوبين",
+          "abbreviations": ["HGB", "Hgb", "هيموجلوبين"],
+          "unit": "g/dL",
+          "ranges": {
+            "adult_male":   {"low": 13.5, "high": 17.5},
+            "adult_female": {"low": 12.0, "high": 15.5},
+            "children_6_12":{"low": 11.5, "high": 15.5},
+            "pregnant":     {"low": 11.0, "high": 14.0}
+          },
+          "clinical_meaning_ar": "البروتين الذي يحمل الأكسجين في خلايا الدم الحمراء",
+          "high_causes_ar": ["الجفاف (hemoconcentration)", "داء الكثرة الحمراء الحقيقية", "مرض رئوي مزمن (التعويض)"],
+          "low_causes_ar": ["نقص الحديد (السبب الأكثر شيوعاً)", "نقص فيتامين B12 أو حمض الفوليك", "نزيف مزمن", "أمراض مزمنة", "فقر الدم الانحلالي"],
+          "low_symptoms_ar": ["تعب وإرهاق", "شحوب الجلد والملتحمة", "ضيق تنفس عند المجهود", "خفقان", "دوخة"],
+          "when_to_worry": "< 8 g/dL يستدعي تقييماً طبياً عاجلاً",
+          "followup_tests": ["Ferritin", "Iron", "TIBC", "Vitamin B12", "Folate", "Reticulocyte count"]
+        },
+
+        "WBC": {
+          "name_ar": "خلايا الدم البيضاء",
+          "abbreviations": ["WBC", "Leukocytes", "كريات الدم البيضاء"],
+          "unit": "10³/μL",
+          "ranges": {
+            "adult":      {"low": 4.0, "high": 11.0},
+            "children":   {"low": 5.0, "high": 15.0}
+          },
+          "clinical_meaning_ar": "خلايا المناعة التي تقاوم العدوى والمرض",
+          "high_causes_ar": ["عدوى بكتيرية", "التهاب", "إجهاد جسدي شديد", "أمراض الدم (نادراً: سرطان الدم)"],
+          "low_causes_ar": ["عدوى فيروسية حادة", "أدوية (كيموثيرابي، إلخ)", "أمراض المناعة الذاتية", "نقص فيتامين B12"],
+          "when_to_worry": "> 30 أو < 2 يستدعي تقييماً طارئاً",
+          "critical_values": {"critical_high": 30.0, "critical_low": 2.0}
+        },
+
+        "Platelets": {
+          "name_ar": "الصفائح الدموية",
+          "abbreviations": ["PLT", "Thrombocytes", "صفائح"],
+          "unit": "10³/μL",
+          "ranges": {
+            "adult": {"low": 150, "high": 400}
+          },
+          "clinical_meaning_ar": "خلايا صغيرة تساعد على تجلط الدم ووقف النزيف",
+          "high_causes_ar": ["التهابات", "نقص الحديد", "إزالة الطحال"],
+          "low_causes_ar": ["أمراض الكبد", "نقص فيتامين B12", "أدوية معينة", "أمراض المناعة الذاتية (ITP)"],
+          "when_to_worry": "< 50 خطر نزيف تلقائي; < 20 طوارئ",
+          "critical_values": {"critical_low": 20}
+        },
+
+        "RBC": {
+          "name_ar": "خلايا الدم الحمراء",
+          "abbreviations": ["RBC", "Erythrocytes"],
+          "unit": "10⁶/μL",
+          "ranges": {
+            "adult_male":   {"low": 4.5, "high": 5.9},
+            "adult_female": {"low": 4.0, "high": 5.2}
+          },
+          "clinical_meaning_ar": "الخلايا التي تحمل الهيموجلوبين والأكسجين لأنسجة الجسم"
+        },
+
+        "Hematocrit": {
+          "name_ar": "الهيماتوكريت",
+          "abbreviations": ["HCT", "PCV"],
+          "unit": "%",
+          "ranges": {
+            "adult_male":   {"low": 41, "high": 53},
+            "adult_female": {"low": 36, "high": 48}
+          },
+          "clinical_meaning_ar": "نسبة خلايا الدم الحمراء من حجم الدم الكلي"
+        },
+
+        "MCV": {
+          "name_ar": "متوسط حجم الكريات الحمراء",
+          "abbreviations": ["MCV"],
+          "unit": "fL",
+          "ranges": {
+            "adult": {"low": 80, "high": 100}
+          },
+          "clinical_meaning_ar": "يساعد في تحديد نوع فقر الدم: صغير الحجم (نقص حديد) أو كبير الحجم (نقص B12)",
+          "interpretation": {
+            "microcytic_low_MCV": "< 80: يشير إلى نقص الحديد أو الثلاسيميا",
+            "normocytic": "80-100: فقر دم بسبب مرض مزمن أو فقدان دم حاد",
+            "macrocytic_high_MCV": "> 100: يشير إلى نقص B12 أو حمض الفوليك"
+          }
+        },
+
+        "MCH": {
+          "name_ar": "متوسط كمية هيموجلوبين الكرية",
+          "abbreviations": ["MCH"],
+          "unit": "pg",
+          "ranges": {
+            "adult": {"low": 27, "high": 33}
+          },
+          "clinical_meaning_ar": "كمية الهيموجلوبين في كل خلية دم حمراء"
+        }
+      }
+    },
+
+    "Thyroid": {
+      "name_ar": "وظائف الغدة الدرقية",
+      "name_en": "Thyroid Function Tests",
+      "code": "TFT",
+      "specialty": "endocrinology",
+      "tests": {
+        "TSH": {
+          "name_ar": "الهرمون المحفز للدرقية",
+          "abbreviations": ["TSH", "Thyroid Stimulating Hormone"],
+          "unit": "mIU/L",
+          "ranges": {
+            "adult":     {"low": 0.4, "high": 4.0},
+            "pregnant_T1": {"low": 0.1, "high": 2.5},
+            "pregnant_T2": {"low": 0.2, "high": 3.0},
+            "pregnant_T3": {"low": 0.3, "high": 3.0},
+            "elderly":   {"low": 0.4, "high": 5.0}
+          },
+          "clinical_meaning_ar": "هرمون من الغدة النخامية يتحكم في نشاط الغدة الدرقية",
+          "high_causes_ar": ["قصور الغدة الدرقية (hypothyroidism)", "التهاب الغدة الدرقية هاشيموتو"],
+          "low_causes_ar": ["فرط نشاط الغدة الدرقية (hyperthyroidism)", "مرض جريفز (Graves)"],
+          "interpretation": {
+            "TSH_high_FT4_low": "قصور الغدة الدرقية الأولي — تحتاج ليفوثيروكسين",
+            "TSH_low_FT4_high": "فرط نشاط الغدة الدرقية — يحتاج تقييماً متخصصاً",
+            "TSH_high_FT4_normal": "قصور درقي تحت السريري — متابعة كل 6 أشهر"
+          },
+          "followup_tests": ["Free T4", "Free T3", "Anti-TPO", "Anti-Thyroglobulin"]
+        },
+
+        "Free_T4": {
+          "name_ar": "الثيروكسين الحر",
+          "abbreviations": ["FT4", "Free T4", "Thyroxine"],
+          "unit": "ng/dL",
+          "ranges": {
+            "adult": {"low": 0.8, "high": 1.8}
+          },
+          "clinical_meaning_ar": "الهرمون الدرقي الرئيسي — ينظم الأيض والطاقة والحرارة"
+        },
+
+        "Free_T3": {
+          "name_ar": "ثلاثي يودوثيرونين الحر",
+          "abbreviations": ["FT3", "Free T3", "Triiodothyronine"],
+          "unit": "pg/mL",
+          "ranges": {
+            "adult": {"low": 2.3, "high": 4.2}
+          },
+          "clinical_meaning_ar": "الشكل النشط للهرمون الدرقي — أقوى تأثيراً من T4"
+        },
+
+        "Anti_TPO": {
+          "name_ar": "أجسام مضادة للبيروكسيداز الدرقي",
+          "abbreviations": ["Anti-TPO", "TPO antibodies"],
+          "unit": "IU/mL",
+          "ranges": {
+            "adult": {"low": 0, "high": 34}
+          },
+          "clinical_meaning_ar": "ارتفاعه يشير إلى التهاب مناعي ذاتي للغدة الدرقية (هاشيموتو)",
+          "high_causes_ar": ["هاشيموتو", "مرض جريفز", "التهاب الغدة الدرقية"]
+        }
+      }
+    },
+
+    "Liver": {
+      "name_ar": "وظائف الكبد",
+      "name_en": "Liver Function Tests",
+      "code": "LFT",
+      "specialty": "hepatology",
+      "tests": {
+        "ALT": {
+          "name_ar": "ناقلة أمين الألانين",
+          "abbreviations": ["ALT", "SGPT", "ALT/SGPT"],
+          "unit": "U/L",
+          "ranges": {
+            "adult_male":   {"low": 7, "high": 40},
+            "adult_female": {"low": 7, "high": 35}
+          },
+          "clinical_meaning_ar": "إنزيم يُفرز عند تلف خلايا الكبد — الأكثر تخصصاً للكبد",
+          "high_causes_ar": [
+            "التهاب الكبد الفيروسي (A, B, C)",
+            "الكبد الدهني",
+            "أمراض الكبد الكحولية",
+            "أدوية (باراسيتامول، الستاتينات بجرعات عالية)",
+            "انسداد القنوات الصفراوية"
+          ],
+          "severity": {
+            "mild_elevation": "< 3x upper limit: يستدعي المتابعة",
+            "moderate": "3-10x: يحتاج تقييماً طبياً",
+            "severe": "> 10x: تلف كبدي حاد — طوارئ"
+          },
+          "followup_tests": ["AST", "GGT", "Bilirubin", "Albumin", "PT/INR", "Viral hepatitis panel"]
+        },
+
+        "AST": {
+          "name_ar": "ناقلة أمين الأسبارتات",
+          "abbreviations": ["AST", "SGOT"],
+          "unit": "U/L",
+          "ranges": {
+            "adult_male":   {"low": 10, "high": 40},
+            "adult_female": {"low": 10, "high": 35}
+          },
+          "clinical_meaning_ar": "إنزيم أقل تخصصاً للكبد — يرتفع أيضاً مع أمراض القلب والعضلات",
+          "ast_alt_ratio": {
+            "ratio_2_1": "AST:ALT > 2:1 يشير إلى سبب كحولي",
+            "alt_higher": "ALT أعلى من AST يشير إلى التهاب كبدي فيروسي أو دهني"
+          }
+        },
+
+        "ALP": {
+          "name_ar": "الفوسفاتاز القلوية",
+          "abbreviations": ["ALP", "Alkaline Phosphatase"],
+          "unit": "U/L",
+          "ranges": {
+            "adult":    {"low": 44, "high": 147},
+            "children": {"low": 50, "high": 350}
+          },
+          "clinical_meaning_ar": "يرتفع مع انسداد القنوات الصفراوية وأمراض العظام",
+          "high_causes_ar": ["انسداد القنوات الصفراوية", "حصى المرارة", "أمراض العظام (Paget's)", "نمو العظام الطبيعي عند الأطفال"]
+        },
+
+        "Bilirubin_Total": {
+          "name_ar": "البيليروبين الكلي",
+          "abbreviations": ["T.Bili", "Total Bilirubin", "بيليروبين كلي"],
+          "unit": "mg/dL",
+          "ranges": {
+            "adult": {"low": 0.2, "high": 1.2}
+          },
+          "clinical_meaning_ar": "صبغة ناتجة عن تكسّر خلايا الدم الحمراء. يسبب اليرقان عند الارتفاع.",
+          "high_causes_ar": ["التهاب كبد", "انسداد صفراوي", "فقر الدم الانحلالي", "متلازمة جيلبرت (حميدة)"],
+          "jaundice_threshold": "> 2.5 mg/dL: يظهر اليرقان (اصفرار الجلد والعيون)"
+        },
+
+        "Bilirubin_Direct": {
+          "name_ar": "البيليروبين المباشر",
+          "abbreviations": ["D.Bili", "Direct Bilirubin", "Conjugated Bilirubin"],
+          "unit": "mg/dL",
+          "ranges": {
+            "adult": {"low": 0, "high": 0.3}
+          },
+          "clinical_meaning_ar": "يرتفع مع أمراض الكبد والانسداد الصفراوي تحديداً"
+        },
+
+        "Albumin": {
+          "name_ar": "الألبومين",
+          "abbreviations": ["ALB", "Albumin"],
+          "unit": "g/dL",
+          "ranges": {
+            "adult": {"low": 3.5, "high": 5.0}
+          },
+          "clinical_meaning_ar": "بروتين ينتجه الكبد — مؤشر لوظيفة الكبد التركيبية وسوء التغذية",
+          "low_causes_ar": ["قصور الكبد المزمن", "سوء التغذية", "متلازمة الكلاء", "التهاب حاد"],
+          "importance": "انخفاضه يدل على ضعف قدرة الكبد التركيبية — مهم جداً في تقييم الكبد"
+        },
+
+        "GGT": {
+          "name_ar": "غاما غلوتاميل ترانسفيراز",
+          "abbreviations": ["GGT", "Gamma-GT"],
+          "unit": "U/L",
+          "ranges": {
+            "adult_male":   {"low": 8, "high": 61},
+            "adult_female": {"low": 5, "high": 36}
+          },
+          "clinical_meaning_ar": "حساس جداً لأمراض الكبد وخاصة الكحولية. يساعد في تفسير ارتفاع ALP.",
+          "high_causes_ar": ["الكحول", "أمراض الكبد الدهني", "أدوية معينة", "انسداد صفراوي"]
+        }
+      }
+    },
+
+    "Kidney": {
+      "name_ar": "وظائف الكلى",
+      "name_en": "Kidney Function Tests",
+      "code": "KFT",
+      "specialty": "nephrology",
+      "tests": {
+        "Creatinine": {
+          "name_ar": "كرياتينين",
+          "abbreviations": ["Creat", "Creatinine", "كرياتينين"],
+          "unit": "mg/dL",
+          "ranges": {
+            "adult_male":   {"low": 0.7, "high": 1.3},
+            "adult_female": {"low": 0.5, "high": 1.1}
+          },
+          "clinical_meaning_ar": "مادة نفايات من العضلات تُصفيها الكلى — ارتفاعه يدل على ضعف وظيفة الكلى",
+          "high_causes_ar": ["الفشل الكلوي", "الجفاف", "كتلة عضلية كبيرة", "بعض الأدوية"],
+          "followup_tests": ["BUN", "GFR", "Urine albumin", "Electrolytes"]
+        },
+
+        "BUN": {
+          "name_ar": "نيتروجين يوريا الدم",
+          "abbreviations": ["BUN", "Blood Urea Nitrogen", "يوريا"],
+          "unit": "mg/dL",
+          "ranges": {
+            "adult": {"low": 8, "high": 25}
+          },
+          "clinical_meaning_ar": "مادة نفايات من البروتينات — يرتفع مع ضعف الكلى أو نزيف الجهاز الهضمي",
+          "bun_creatinine_ratio": {
+            "normal": "10:1 إلى 20:1",
+            "high_ratio_pre_renal": "> 20:1: يشير إلى الجفاف أو نزيف هضمي",
+            "low_ratio": "< 10:1: يشير إلى نقص البروتين أو أمراض الكبد"
+          }
+        }
+      }
+    },
+
+    "Lipid": {
+      "name_ar": "الدهنيات",
+      "name_en": "Lipid Panel",
+      "code": "LIPID",
+      "specialty": "cardiology",
+      "tests": {
+        "Cholesterol_Total": {
+          "name_ar": "الكوليسترول الكلي",
+          "abbreviations": ["Total Cholesterol", "Chol", "كوليسترول"],
+          "unit": "mg/dL",
+          "ranges": {
+            "desirable":    {"high": 200},
+            "borderline":   {"low": 200, "high": 239},
+            "high_risk":    {"low": 240}
+          },
+          "clinical_meaning_ar": "دهون ضرورية للجسم — ارتفاعها يزيد خطر أمراض القلب والأوعية"
+        },
+
+        "LDL": {
+          "name_ar": "الكوليسترول الضار",
+          "abbreviations": ["LDL", "LDL-C", "LDL Cholesterol"],
+          "unit": "mg/dL",
+          "ranges": {
+            "optimal":         {"high": 100},
+            "near_optimal":    {"low": 100, "high": 129},
+            "borderline_high": {"low": 130, "high": 159},
+            "high":            {"low": 160, "high": 189},
+            "very_high":       {"low": 190}
+          },
+          "targets_by_risk": {
+            "high_cv_risk":   "< 70 mg/dL",
+            "moderate_risk":  "< 100 mg/dL",
+            "low_risk":       "< 130 mg/dL"
+          },
+          "clinical_meaning_ar": "الكوليسترول الضار — يتراكم في جدران الأوعية ويزيد خطر النوبات القلبية"
+        },
+
+        "HDL": {
+          "name_ar": "الكوليسترول الجيد",
+          "abbreviations": ["HDL", "HDL-C", "HDL Cholesterol"],
+          "unit": "mg/dL",
+          "ranges": {
+            "low_risk_male":   {"low": 40},
+            "low_risk_female": {"low": 50},
+            "protective":      {"low": 60}
+          },
+          "clinical_meaning_ar": "الكوليسترول الجيد — ينقل الدهون من الأوعية للكبد ويحمي القلب",
+          "note": "الأعلى أفضل — < 40 للرجال و< 50 للنساء عامل خطر قلبي"
+        },
+
+        "Triglycerides": {
+          "name_ar": "الدهون الثلاثية",
+          "abbreviations": ["TG", "TRIG", "Triglycerides"],
+          "unit": "mg/dL",
+          "ranges": {
+            "normal":          {"high": 150},
+            "borderline_high": {"low": 150, "high": 199},
+            "high":            {"low": 200, "high": 499},
+            "very_high":       {"low": 500}
+          },
+          "high_causes_ar": ["السمنة", "السكري غير المنضبط", "قلة النشاط", "النظام الغذائي الغني بالسكر والكربوهيدرات", "قصور الغدة الدرقية"]
+        }
+      }
+    },
+
+    "Diabetes": {
+      "name_ar": "مؤشرات السكري",
+      "name_en": "Diabetes Markers",
+      "code": "DM",
+      "specialty": "endocrinology",
+      "tests": {
+        "Fasting_Glucose": {
+          "name_ar": "سكر الصيام",
+          "abbreviations": ["FBG", "FPG", "Fasting Glucose", "سكر صيام"],
+          "unit": "mg/dL",
+          "ranges": {
+            "normal":     {"high": 99},
+            "prediabetes":{"low": 100, "high": 125},
+            "diabetes":   {"low": 126}
+          },
+          "note": "يجب الصيام 8-12 ساعة قبل الفحص للحصول على نتيجة دقيقة"
+        },
+
+        "HbA1c": {
+          "name_ar": "السكر التراكمي",
+          "abbreviations": ["HbA1c", "A1C", "Glycated Hemoglobin", "سكر تراكمي"],
+          "unit": "%",
+          "ranges": {
+            "normal":     {"high": 5.6},
+            "prediabetes":{"low": 5.7, "high": 6.4},
+            "diabetes":   {"low": 6.5}
+          },
+          "targets_for_diabetics": {
+            "general":       "< 7%",
+            "elderly":       "< 8%",
+            "pregnant":      "< 6%",
+            "cardiovascular":"< 7% or individualized"
+          },
+          "clinical_meaning_ar": "يعكس متوسط مستوى السكر في الدم خلال الأشهر الثلاثة الماضية",
+          "avg_glucose_conversion": {
+            "5": 97, "6": 126, "7": 154, "8": 183, "9": 212, "10": 240, "11": 269, "12": 298
+          }
+        }
+      }
+    }
+  }
+}
