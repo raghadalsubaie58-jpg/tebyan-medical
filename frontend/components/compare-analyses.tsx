@@ -101,7 +101,7 @@ function CompareSkeleton() {
         </div>
 
         {/* Column headers */}
-        <div className="grid grid-cols-[1fr_160px_160px] gap-3">
+        <div className="grid grid-cols-[1fr_100px_100px] sm:grid-cols-[1fr_160px_160px] gap-3">
           <div />
           {[0, 1].map(i => (
             <div key={i} className="rounded-2xl px-4 py-3 border border-border space-y-1.5">
@@ -115,7 +115,7 @@ function CompareSkeleton() {
         {/* Table rows */}
         <div className="space-y-1.5">
           {[100, 85, 90, 75, 95, 80].map((w, i) => (
-            <div key={i} className="grid grid-cols-[1fr_160px_160px] gap-3 items-center px-4 py-4 rounded-2xl bg-muted/20">
+            <div key={i} className="grid grid-cols-[1fr_100px_100px] sm:grid-cols-[1fr_160px_160px] gap-3 items-center px-4 py-4 rounded-2xl bg-muted/20">
               <div className="space-y-1.5 text-right">
                 <Sk w={`${w * 0.55}%`} h={14} rounded="rounded-lg" />
                 <Sk w={`${w * 0.38}%`} h={10} rounded="rounded-lg" />
@@ -262,7 +262,7 @@ function CompareContent({
         </div>
 
         {/* ── Analysis Column Labels ── */}
-        <div className="px-6 pb-4 grid grid-cols-[1fr_160px_160px] gap-3 items-end">
+        <div className="px-6 pb-4 grid grid-cols-[1fr_100px_100px] sm:grid-cols-[1fr_160px_160px] gap-3 items-end">
           <div />
           {[
             { label: "التحليل الأول",  date: dateA, summary: a.summary, accent: "border-primary/30 bg-primary/5" },
@@ -292,7 +292,7 @@ function CompareContent({
                 initial={{ opacity: 0, x: 6 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.15 + i * 0.04 }}
-                className={`grid grid-cols-[1fr_160px_160px] gap-3 items-center px-4 py-4 rounded-2xl transition-colors duration-150 hover:bg-muted/40 ${
+                className={`grid grid-cols-[1fr_100px_100px] sm:grid-cols-[1fr_160px_160px] gap-3 items-center px-4 py-4 rounded-2xl transition-colors duration-150 hover:bg-muted/40 ${
                   isWorsened ? "bg-destructive/5 border border-destructive/12" : ""
                 }`}
               >

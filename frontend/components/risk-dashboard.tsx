@@ -240,9 +240,27 @@ export function RiskDashboard({ analysis }: RiskDashboardProps) {
               )}
 
               {error && (
-                <p className="rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">
-                  {error}
-                </p>
+                <div className="flex flex-col items-center gap-3 rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-3">
+                  <p className="text-sm text-destructive">{error}</p>
+                  <button
+                    onClick={() => {
+                      setError(null)
+                      setLoading(true)
+                      fetch(`${BACKEND}/api/risk`, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ findings: analysis.findings }),
+                      })
+                        .then((r) => { if (!r.ok) throw new Error(); return r.json() })
+                        .then((data: RiskReport) => setReport(data))
+                        .catch(() => setError("تعذّر تحميل تقرير المخاطر"))
+                        .finally(() => setLoading(false))
+                    }}
+                    className="text-xs px-3 py-1.5 rounded-lg bg-destructive/15 text-destructive hover:bg-destructive/25 transition-colors font-medium"
+                  >
+                    إعادة المحاولة
+                  </button>
+                </div>
               )}
 
               {/* Risk cards (sorted by score desc) */}

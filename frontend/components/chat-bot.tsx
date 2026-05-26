@@ -143,9 +143,9 @@ export function ChatBot({ analysisResult, sessionId = "anonymous" }: ChatBotProp
         </AnimatePresence>
         {!isOpen && (
           <motion.div
-            animate={{ scale: [1, 1.4, 1], opacity: [0.4, 0, 0.4] }}
-            transition={{ duration: 3, repeat: Infinity }}
-            className="absolute inset-0 rounded-full gradient-primary"
+            animate={{ scale: [1, 1.35, 1], opacity: [0.35, 0, 0.35] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute inset-0 rounded-full gradient-primary pointer-events-none"
           />
         )}
       </motion.button>
@@ -158,7 +158,7 @@ export function ChatBot({ analysisResult, sessionId = "anonymous" }: ChatBotProp
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.96 }}
             transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
-            className="fixed bottom-24 right-6 z-50 w-[320px] max-w-[calc(100vw-3rem)] rounded-[28px] overflow-hidden glass-strong shadow-soft"
+            className="fixed bottom-24 right-6 z-50 w-[340px] max-w-[calc(100vw-2rem)] rounded-[28px] overflow-hidden glass-strong shadow-soft"
             style={{ border: "1px solid var(--border)" }}
           >
             {/* Header */}
@@ -175,7 +175,8 @@ export function ChatBot({ analysisResult, sessionId = "anonymous" }: ChatBotProp
             </div>
 
             {/* Messages */}
-            <div className="h-56 overflow-y-auto px-4 py-3 space-y-3">
+            <div className="h-72 overflow-y-auto px-4 py-3 space-y-3 scroll-smooth overscroll-contain"
+              style={{ scrollbarWidth: "thin", scrollbarColor: "var(--border) transparent" }}>
               <AnimatePresence mode="popLayout">
                 {messages.map((msg, i) => (
                   <motion.div
@@ -255,7 +256,7 @@ export function ChatBot({ analysisResult, sessionId = "anonymous" }: ChatBotProp
                   onKeyDown={(e) => e.key === "Enter" && sendMessage(inputValue)}
                   placeholder="اكتب أو انقر الميكروفون..."
                   disabled={isTyping}
-                  className="flex-1 px-3 py-2 bg-transparent text-[13px] text-foreground placeholder:text-muted-foreground focus:outline-none disabled:opacity-50"
+                  className="flex-1 px-3 py-2 bg-transparent text-[13px] text-foreground placeholder:text-muted-foreground focus:outline-none focus-visible:ring-1 focus-visible:ring-primary/40 rounded-full disabled:opacity-50 transition-shadow"
                 />
                 <motion.button
                   whileHover={{ scale: 1.05 }}

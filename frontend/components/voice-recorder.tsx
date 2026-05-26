@@ -140,7 +140,7 @@ export function VoiceRecorder({ onTranscription, ttsText, disabled = false }: Vo
           "relative flex h-9 w-9 items-center justify-center rounded-full transition-colors",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
           isRecording
-            ? "bg-red-500 text-white hover:bg-red-600"
+            ? "bg-destructive text-destructive-foreground hover:bg-destructive/90"
             : "bg-muted text-muted-foreground hover:bg-muted/80",
           (disabled || isProcessing) ? "opacity-50 cursor-not-allowed" : "cursor-pointer",
         ].join(" ")}
@@ -164,7 +164,7 @@ export function VoiceRecorder({ onTranscription, ttsText, disabled = false }: Vo
         {/* Recording pulse ring */}
         {isRecording && (
           <motion.span
-            className="absolute inset-0 rounded-full border-2 border-red-400"
+            className="absolute inset-0 rounded-full border-2 border-destructive/60"
             animate={{ scale: [1, 1.4, 1], opacity: [0.8, 0, 0.8] }}
             transition={{ duration: 1.5, repeat: Infinity }}
           />
@@ -186,7 +186,7 @@ export function VoiceRecorder({ onTranscription, ttsText, disabled = false }: Vo
             playing ? "opacity-50 cursor-not-allowed" : "cursor-pointer",
           ].join(" ")}
         >
-          <Volume2 className={`h-4 w-4 ${playing ? "animate-pulse text-blue-500" : ""}`} />
+          <Volume2 className={`h-4 w-4 ${playing ? "animate-pulse text-primary" : ""}`} />
         </motion.button>
       )}
 
