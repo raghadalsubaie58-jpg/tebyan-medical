@@ -47,7 +47,7 @@ export function Header({ darkMode, toggleDark }: HeaderProps) {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Image src="/logo.svg" alt="تبيان" width={52} height={52} className="object-contain drop-shadow-md" />
+              <Image src="/logo.png" alt="تبيان" width={52} height={52} className="object-contain drop-shadow-md" />
             </motion.div>
             <span className="text-2xl font-bold text-foreground">تبيان</span>
           </Link>
