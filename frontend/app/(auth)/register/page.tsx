@@ -105,7 +105,7 @@ export default function RegisterPage() {
           </p>
           <Link
             href="/login"
-            className="inline-flex items-center gap-2 text-sm text-emerald-600 dark:text-emerald-400 font-medium hover:underline underline-offset-2"
+            className="inline-flex items-center gap-2 text-sm text-teal-700 dark:text-teal-300 font-medium hover:underline underline-offset-2"
           >
             <ChevronLeft className="w-4 h-4" />
             العودة لتسجيل الدخول
@@ -300,7 +300,7 @@ export default function RegisterPage() {
 
             <p className="text-center text-sm text-muted-foreground">
               لديك حساب بالفعل؟{" "}
-              <Link href="/login" className="text-emerald-600 dark:text-emerald-400 font-medium hover:underline underline-offset-2">تسجيل الدخول</Link>
+              <Link href="/login" className="text-teal-700 dark:text-teal-300 font-medium hover:underline underline-offset-2">تسجيل الدخول</Link>
             </p>
           </div>
 
