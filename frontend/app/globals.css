@@ -175,10 +175,10 @@
   border: 1px solid var(--glass-border);
 }
 .glass-strong {
-  background: oklch(1 0 0 / 0.80);
+  background: oklch(1 0 0 / 0.96);
   backdrop-filter: blur(22px) saturate(1.6);
   -webkit-backdrop-filter: blur(22px) saturate(1.6);
-  border: 1px solid oklch(1 0 0 / 0.34);
+  border: 1px solid oklch(0 0 0 / 0.08);
 }
 
 /* ══════════════════════════════════════════════════
