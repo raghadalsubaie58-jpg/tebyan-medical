@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Cairo, IBM_Plex_Sans_Arabic, Amiri } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { Providers } from '@/components/providers'
+import { ReviewModeProvider } from '@/components/review-mode'
 import './globals.css'
 
 const cairo = Cairo({ 
@@ -45,7 +46,9 @@ export default function RootLayout({
     <html lang="ar" dir="rtl" className="bg-background">
       <body className={`${cairo.variable} ${ibmPlexArabic.variable} ${amiri.variable} font-sans antialiased`}>
         <Providers>
-          {children}
+          <ReviewModeProvider>
+            {children}
+          </ReviewModeProvider>
         </Providers>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

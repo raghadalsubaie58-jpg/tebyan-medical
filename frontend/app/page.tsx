@@ -14,6 +14,7 @@ import { AboutSection }           from "@/components/about-section"
 import { Footer }                 from "@/components/footer"
 import { ChatBot }                from "@/components/chat-bot"
 import { AnalysisHistory }        from "@/components/analysis-history"
+import { ReviewHighlight }        from "@/components/review-mode"
 
 const CompareAnalyses = dynamic(() =>
   import("@/components/compare-analyses").then((m) => m.CompareAnalyses), { ssr: false }
@@ -179,7 +180,7 @@ function ImprovedResults({ result }: { result: AnalysisResult | null }) {
               <h3 className="text-xl font-bold text-foreground mb-2">ملخص الحالة الصحية</h3>
               <p className="text-muted-foreground leading-relaxed mb-4">{result.summary}</p>
               {result.report?.general && <p className="text-foreground/80 leading-relaxed text-sm mb-5">{result.report.general}</p>}
-              <div className="flex flex-wrap gap-3">
+              <ReviewHighlight changeId={8} className="flex flex-wrap gap-3">
                 <motion.button whileTap={{ scale: 0.97 }} onClick={handleExport}
                   className="flex items-center gap-2 px-5 py-2.5 rounded-2xl gradient-primary text-primary-foreground text-sm font-medium shadow-glow-primary hover:opacity-90 transition-opacity">
                   {exporting
@@ -192,7 +193,7 @@ function ImprovedResults({ result }: { result: AnalysisResult | null }) {
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0110.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0l.229 2.523a1.125 1.125 0 01-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0021 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 00-1.913-.247M6.34 18H5.25A2.25 2.25 0 013 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 011.913-.247m10.5 0a48.536 48.536 0 00-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5zm-3 0h.008v.008H15V10.5z" /></svg>
                   طباعة
                 </motion.button>
-              </div>
+              </ReviewHighlight>
             </div>
           </div>
         </motion.div>

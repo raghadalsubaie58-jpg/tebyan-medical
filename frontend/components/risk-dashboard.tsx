@@ -7,6 +7,7 @@ import {
   ResponsiveContainer, Tooltip,
 } from "recharts"
 import type { AnalysisResult } from "@/app/page"
+import { ReviewHighlight } from "./review-mode"
 
 const BACKEND = process.env.NEXT_PUBLIC_BACKEND_URL ?? "http://localhost:8000"
 
@@ -240,7 +241,7 @@ export function RiskDashboard({ analysis }: RiskDashboardProps) {
               )}
 
               {error && (
-                <div className="flex flex-col items-center gap-3 rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-3">
+                <ReviewHighlight changeId={5} className="flex flex-col items-center gap-3 rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-3">
                   <p className="text-sm text-destructive">{error}</p>
                   <button
                     onClick={() => {
@@ -260,7 +261,7 @@ export function RiskDashboard({ analysis }: RiskDashboardProps) {
                   >
                     إعادة المحاولة
                   </button>
-                </div>
+                </ReviewHighlight>
               )}
 
               {/* Risk cards (sorted by score desc) */}

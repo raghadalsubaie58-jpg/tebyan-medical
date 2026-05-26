@@ -3,6 +3,7 @@
 import { useState, useRef, useCallback, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Mic, MicOff, Loader2, Volume2 } from "lucide-react"
+import { ReviewHighlight } from "./review-mode"
 
 const BACKEND = process.env.NEXT_PUBLIC_BACKEND_URL ?? "http://localhost:8000"
 
@@ -128,7 +129,7 @@ export function VoiceRecorder({ onTranscription, ttsText, disabled = false }: Vo
   const isProcessing  = state === "processing"
 
   return (
-    <div className="flex items-center gap-2">
+    <ReviewHighlight changeId={6} className="flex items-center gap-2">
       {/* Mic button */}
       <motion.button
         type="button"
@@ -204,6 +205,6 @@ export function VoiceRecorder({ onTranscription, ttsText, disabled = false }: Vo
           </motion.span>
         )}
       </AnimatePresence>
-    </div>
+    </ReviewHighlight>
   )
 }
