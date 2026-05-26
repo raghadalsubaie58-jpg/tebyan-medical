@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion"
 import type { AnalysisResult } from "@/app/page"
 import { VoiceRecorder } from "./voice-recorder"
 import { apiGet, apiPost } from "@/lib/api"
-import { ReviewHighlight } from "./review-mode"
 
 const WELCOME  = "مرحباً! أنا مساعدك الطبي. كيف يمكنني مساعدتك اليوم؟"
 
@@ -163,7 +162,7 @@ export function ChatBot({ analysisResult, sessionId = "anonymous" }: ChatBotProp
             style={{ border: "1px solid var(--border)" }}
           >
             {/* Header */}
-            <ReviewHighlight changeId={2} className="px-5 py-4 flex items-center gap-3 border-b border-border/50">
+            <div className="px-5 py-4 flex items-center gap-3 border-b border-border/50">
               <div className="w-9 h-9 rounded-full flex items-center justify-center bg-primary/15">
                 <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z" />
@@ -173,10 +172,11 @@ export function ChatBot({ analysisResult, sessionId = "anonymous" }: ChatBotProp
                 <span className="text-sm font-semibold text-foreground">المساعد الذكي</span>
                 <p className="text-[10px] text-muted-foreground">مساعد طبي ذكي</p>
               </div>
-            </ReviewHighlight>
+            </div>
 
             {/* Messages */}
-            <ReviewHighlight changeId={1} className="h-72 overflow-y-auto px-4 py-3 space-y-3 scroll-smooth overscroll-contain">
+            <div className="h-72 overflow-y-auto px-4 py-3 space-y-3 scroll-smooth overscroll-contain"
+              style={{ scrollbarWidth: "thin", scrollbarColor: "var(--border) transparent" }}>
               <AnimatePresence mode="popLayout">
                 {messages.map((msg, i) => (
                   <motion.div
@@ -212,7 +212,7 @@ export function ChatBot({ analysisResult, sessionId = "anonymous" }: ChatBotProp
                 )}
               </AnimatePresence>
               <div ref={messagesEndRef} />
-            </ReviewHighlight>
+            </div>
 
             {/* FAQ quick questions */}
             <div className="px-4 pb-2">
@@ -242,7 +242,7 @@ export function ChatBot({ analysisResult, sessionId = "anonymous" }: ChatBotProp
             </div>
 
             {/* Input */}
-            <ReviewHighlight changeId={3} className="px-4 pb-4 pt-2">
+            <div className="px-4 pb-4 pt-2">
               <div className="flex items-center gap-2 rounded-full px-1 py-1 bg-input border border-border/60">
                 <VoiceRecorder
                   onTranscription={(text) => sendMessage(text)}
@@ -271,7 +271,7 @@ export function ChatBot({ analysisResult, sessionId = "anonymous" }: ChatBotProp
                   </svg>
                 </motion.button>
               </div>
-            </ReviewHighlight>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

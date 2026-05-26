@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import type { AnalysisResult } from "@/app/page"
-import { ReviewHighlight } from "./review-mode"
 
 interface SavedAnalysis {
   id:         string
@@ -278,7 +277,7 @@ function CompareContent({
         </div>
 
         {/* ── Comparison Rows ── */}
-        <ReviewHighlight changeId={7} className="px-6 pb-5 space-y-1.5">
+        <div className="px-6 pb-5 space-y-1.5">
           {rows.map((row, i) => {
             const cfgA  = row.a ? getStatusCfg(row.a.status) : null
             const cfgB  = row.b ? getStatusCfg(row.b.status) : null
@@ -366,7 +365,7 @@ function CompareContent({
               </motion.div>
             )
           })}
-        </ReviewHighlight>
+        </div>
 
         {/* ── Groq AI Summary ── */}
         <div className="px-6 pb-2">
