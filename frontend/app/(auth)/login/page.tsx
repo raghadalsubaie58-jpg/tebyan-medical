@@ -195,7 +195,7 @@ export default function LoginPage() {
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between">
                   <label htmlFor="password" className="text-sm font-medium text-foreground">كلمة المرور</label>
-                  <Link href="/forgot-password" className="text-xs text-teal-700 dark:text-teal-300 hover:underline underline-offset-2 transition-colors">
+                  <Link href="/forgot-password" className="text-xs text-teal-800 dark:text-teal-300 hover:underline underline-offset-2 transition-colors">
                     نسيتِ كلمة المرور؟
                   </Link>
                 </div>
@@ -266,7 +266,7 @@ export default function LoginPage() {
             {/* Register link */}
             <p className="text-center text-sm text-muted-foreground">
               ليس لديك حساب؟{" "}
-              <Link href="/register" className="text-teal-700 dark:text-teal-300 font-medium hover:underline underline-offset-2">
+              <Link href="/register" className="text-teal-800 dark:text-teal-300 font-medium hover:underline underline-offset-2">
                 إنشاء حساب مجاني
               </Link>
             </p>
