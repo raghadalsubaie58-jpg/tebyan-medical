@@ -1,8 +1,8 @@
 "use client"
 
 import { motion } from "framer-motion"
-import Image from "next/image"
 import Link from "next/link"
+import { LOGO_SRC } from "@/lib/logo"
 
 export function Footer() {
   return (
@@ -22,7 +22,7 @@ export function Footer() {
             className="md:col-span-2"
           >
             <Link href="/" className="flex items-center gap-3 mb-4">
-              <Image src="/logo.png" alt="تبيان" width={52} height={52} className="object-contain drop-shadow-md" />
+              <img src={LOGO_SRC} alt="تبيان" width={52} height={52} className="object-contain drop-shadow-md" />
               <span className="text-2xl font-bold text-foreground">تبيان</span>
             </Link>
             <p className="text-muted-foreground leading-relaxed max-w-sm mb-6">

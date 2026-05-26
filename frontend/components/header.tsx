@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
-import Image from "next/image"
 import { useAuth } from "@/lib/auth-context"
+import { LOGO_SRC } from "@/lib/logo"
 import { UserMenu, MobileSignOut } from "@/components/auth/user-menu"
 import { AuthModal } from "@/components/auth/auth-modal"
 
@@ -47,7 +47,7 @@ export function Header({ darkMode, toggleDark }: HeaderProps) {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Image src="/logo.png" alt="تبيان" width={52} height={52} className="object-contain drop-shadow-md" />
+              <img src={LOGO_SRC} alt="تبيان" width={52} height={52} className="object-contain drop-shadow-md" />
             </motion.div>
             <span className="text-2xl font-bold text-foreground">تبيان</span>
           </Link>
