@@ -68,7 +68,6 @@ export default function LoginPage() {
 
     const next = new URLSearchParams(window.location.search).get("next") || "/"
     router.push(next)
-    router.refresh()
   }
 
   return (
