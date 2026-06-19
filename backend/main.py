@@ -36,7 +36,6 @@ logging.basicConfig(
 )
 
 import requests as http_requests
-import easyocr
 import cohere
 from groq import Groq   # used only by load_tools() to build raw client for agents
 
@@ -187,7 +186,7 @@ async def health():
     uptime_s = int(time.time() - _START_TIME)
     db_ok, chunk_count = False, 0
     try:
-        _, _, _, search_svc, _ = load_tools()
+        _, _, search_svc, _ = load_tools()
         chunk_count = search_svc.count()
         db_ok = chunk_count > 0
     except Exception:
@@ -267,7 +266,7 @@ async def startup():
     ensure_analyses_table()
     ensure_chat_table()
     load_router()
-    load_tools()   # pre-load e5-large + EasyOCR to avoid cold-start on first request
+    load_tools()   # pre-load Groq client + embedding model + Supabase (NOT EasyOCR — loaded lazily)
     _load_lora_adapter()
     log.info("startup complete — all services warm")
 
@@ -282,8 +281,7 @@ def load_router() -> LLMRouter:
 
 @lru_cache(maxsize=1)
 def load_tools():
-    reader        = easyocr.Reader(['ar', 'en'], gpu=False)
-    get_embeddings()   # warm up the singleton (also used by SemanticSearchService)
+    get_embeddings()   # warm up the embedding singleton
     groq_client   = Groq(api_key=GROQ_API_KEY)   # raw client for agents
     cohere_client = cohere.ClientV2(api_key=COHERE_API_KEY) if COHERE_API_KEY else None
     search_svc    = SemanticSearchService(SUPABASE_URL, SUPABASE_KEY)
@@ -293,14 +291,13 @@ def load_tools():
         query_expander=lambda q: generate_search_queries(groq_client, q),
     )
     log.info("tools loaded | db=%d chunks", search_svc.count())
-    return reader, groq_client, cohere_client, search_svc, retriever
+    return groq_client, cohere_client, search_svc, retriever
 
 
 @lru_cache(maxsize=1)
 def load_coordinator() -> AgentCoordinator:
-    reader, groq_client, _, _, retriever = load_tools()
+    groq_client, _, _, retriever = load_tools()
     return AgentCoordinator(
-        reader=reader,
         groq_client=groq_client,
         retriever=retriever,
         kb=medical_kb,
@@ -377,7 +374,7 @@ def get_rag_context(
 ) -> tuple[str, str]:
     """Thin wrapper over Retriever — kept for backward compatibility."""
     try:
-        _, _, _, _, retriever = load_tools()
+        _, _, _, retriever = load_tools()
         use_mq = multi_query_client is not None
         results, conf = retriever.retrieve(
             query,
@@ -592,7 +589,7 @@ async def chat_stream(request: Request, req: ChatRequest, _rl: None = Depends(li
     rag_ctx = rag_cache.get(_rag_key) or ""
     if not rag_ctx:
         try:
-            _, _, _, _, retriever = load_tools()
+            _, _, _, retriever = load_tools()
             fast_results = retriever.retrieve_fast(req.query, k=5, top_n=3)
             rag_ctx = build_context(fast_results, max_tokens=500)
             if rag_ctx:
@@ -741,7 +738,7 @@ class EvalRequest(BaseModel):
 async def evaluate_rag(req: EvalRequest):
     """M7 — RAGAS-light: تقييم جودة الـ RAG بـ Groq"""
     client = load_groq()
-    _, _, _, co_client, db = load_tools()
+    _, co_client, db, _ = load_tools()
 
     context, confidence = get_rag_context(db, req.question, co_client, multi_query_client=client)
 
@@ -824,7 +821,7 @@ async def semantic_search(request: Request, req: SemanticSearchRequest, _rl: Non
         if cached:
             return cached
         try:
-            _, _, _, _, retriever = load_tools()
+            _, _, _, retriever = load_tools()
             kb_results, confidence = retriever.retrieve(
                 clean_query,
                 RetrievalConfig(k=req.top_k * 2, top_n=req.top_k, use_multi_query=False),
@@ -1022,7 +1019,7 @@ async def voice_chat(req: VoiceChatRequest):
         rag_ctx  = rag_cache.get(_rag_key) or ""
         if not rag_ctx:
             try:
-                _, _, _, _, retriever = load_tools()
+                _, _, _, retriever = load_tools()
                 fast_results = retriever.retrieve_fast(query, k=5, top_n=3)
                 rag_ctx = build_context(fast_results, max_tokens=400)
                 if rag_ctx:

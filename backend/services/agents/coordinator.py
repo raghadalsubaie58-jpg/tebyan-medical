@@ -44,10 +44,10 @@ class AgentCoordinator:
     Agents are constructed once and reused across requests.
     """
 
-    def __init__(self, reader, groq_client, retriever, kb, render_prompt_fn,
+    def __init__(self, groq_client, retriever, kb, render_prompt_fn,
                  retrieval_config_cls, vision_key: str = ""):
         self._agents = [
-            OCRAgent(reader, vision_key),
+            OCRAgent(vision_key),
             ExtractionAgent(groq_client, render_prompt_fn),
             ClassificationAgent(),
             MedicalReasoningAgent(groq_client, retriever, kb, render_prompt_fn, retrieval_config_cls),

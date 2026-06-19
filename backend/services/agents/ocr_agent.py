@@ -3,13 +3,25 @@ from __future__ import annotations
 import fitz
 from .base import AgentBase, AgentContext, _SoftDegradation
 
+_easyocr_reader = None  # loaded lazily only when a scanned file is detected
+
+
+def _get_reader():
+    """Load EasyOCR once, only when actually needed (saves ~1.5GB RAM on startup)."""
+    global _easyocr_reader
+    if _easyocr_reader is None:
+        import easyocr
+        import logging
+        logging.getLogger("tebyan.agents").info("[ocr] loading EasyOCR (first scanned file)...")
+        _easyocr_reader = easyocr.Reader(['ar', 'en'], gpu=False)
+    return _easyocr_reader
+
 
 class OCRAgent(AgentBase):
     name = "ocr_agent"
     max_retries = 2
 
-    def __init__(self, reader, vision_key: str = ""):
-        self._reader     = reader
+    def __init__(self, vision_key: str = ""):
         self._vision_key = vision_key
 
     def _execute(self, ctx: AgentContext) -> None:
@@ -24,15 +36,16 @@ class OCRAgent(AgentBase):
         ctx.memory.remember("text_length", len(ctx.raw_text))
 
     def _ocr_pdf(self, data: bytes) -> str:
-        from services.agent._ocr_helpers import preprocess_image
         doc      = fitz.open(stream=data, filetype="pdf")
         raw_text = "\n".join(p.get_text() for p in doc)
         if len(raw_text.strip()) >= 200:
-            return raw_text
+            return raw_text          # digital PDF — no EasyOCR needed
+        from services.agent._ocr_helpers import preprocess_image
+        reader = _get_reader()
         parts = []
         for page in doc:
             pix  = page.get_pixmap(dpi=220)
-            text = "\n".join(self._reader.readtext(preprocess_image(pix.tobytes("png")), detail=0))
+            text = "\n".join(reader.readtext(preprocess_image(pix.tobytes("png")), detail=0))
             parts.append(text)
         return "\n".join(parts)
 
@@ -44,7 +57,7 @@ class OCRAgent(AgentBase):
             except Exception as e:
                 import logging
                 logging.getLogger("tebyan.agents").warning("[ocr] Vision fallback: %s", e)
-        return "\n".join(self._reader.readtext(preprocess_image(data), detail=0))
+        return "\n".join(_get_reader().readtext(preprocess_image(data), detail=0))
 
     def _on_failure(self, ctx: AgentContext, exc: Exception) -> None:
         ctx.raw_text = ""

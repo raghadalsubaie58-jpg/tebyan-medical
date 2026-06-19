@@ -86,7 +86,7 @@ class MedicalReasoningAgent(AgentBase):
         )
 
         resp = self._groq.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model="llama-3.3-70b-specdec",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.3, max_tokens=1200,
         )
