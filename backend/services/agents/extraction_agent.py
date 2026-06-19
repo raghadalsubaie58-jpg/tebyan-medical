@@ -19,9 +19,9 @@ def _normalize_text(text: str) -> str:
     # Strip SNOMED/LOINC/ICD codes embedded in test names: [SNOMED:12345-6]
     text = re.sub(r"\[\w+:[^\]]{1,30}\]", "", text)
 
-    # Remove repeated hyphens used as column separators: "12.2 - 12-16" → "12.2 12-16"
-    # Only strip the isolated " - " when it appears between a value and a range
-    text = re.sub(r"(\d)\s+-\s+(\d)", r"\1 \2", text)
+    # Remove column-separator " - " before a reference range.
+    # Handles: "12.2 g/dl - 12-16" and "5.0 - 5-8" (letter OR digit before the separator)
+    text = re.sub(r"\s+-\s+([\d\.]+\s*-\s*[\d\.]+)", r" \1", text)
 
     # Remove sample-type column prefixes (URINE, BLOOD, SERUM) at line start
     text = _SAMPLE_TYPE_RE.sub("", text)
