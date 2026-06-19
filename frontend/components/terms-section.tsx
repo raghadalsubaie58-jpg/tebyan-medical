@@ -33,16 +33,18 @@ export function TermsSection({ result }: TermsSectionProps) {
       id="help"
       className="py-24 relative"
     >
-      {/* Background */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* Background — hidden on mobile for performance */}
+      <div className="absolute inset-0 overflow-hidden hidden md:block">
         <motion.div
           animate={{ x: [0, 40, 0], y: [0, -30, 0] }}
           transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+          style={{ willChange: "transform" }}
           className="absolute top-20 left-1/4 w-72 h-72 rounded-full bg-secondary/15 blur-3xl"
         />
         <motion.div
           animate={{ x: [0, -30, 0], y: [0, 40, 0] }}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+          style={{ willChange: "transform" }}
           className="absolute bottom-20 right-1/4 w-80 h-80 rounded-full bg-primary/10 blur-3xl"
         />
       </div>

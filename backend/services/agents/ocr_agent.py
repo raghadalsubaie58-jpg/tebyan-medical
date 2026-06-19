@@ -18,7 +18,7 @@ class OCRAgent(AgentBase):
         else:
             ctx.raw_text = self._ocr_image(ctx.file_bytes)
 
-        if len(ctx.raw_text.strip()) < 50:
+        if len(ctx.raw_text.strip()) < 30:
             raise _SoftDegradation(f"Very short OCR output: {len(ctx.raw_text)} chars")
 
         ctx.memory.remember("text_length", len(ctx.raw_text))
@@ -31,7 +31,7 @@ class OCRAgent(AgentBase):
             return raw_text
         parts = []
         for page in doc:
-            pix  = page.get_pixmap(dpi=200)
+            pix  = page.get_pixmap(dpi=220)
             text = "\n".join(self._reader.readtext(preprocess_image(pix.tobytes("png")), detail=0))
             parts.append(text)
         return "\n".join(parts)

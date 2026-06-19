@@ -1,26 +1,20 @@
 import type { Metadata, Viewport } from 'next'
-import { Cairo, IBM_Plex_Sans_Arabic, Amiri } from 'next/font/google'
+import { Cairo, IBM_Plex_Sans_Arabic } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { Providers } from '@/components/providers'
 import './globals.css'
 
-const cairo = Cairo({ 
+const cairo = Cairo({
   subsets: ['arabic', 'latin'],
+  weight: ['400', '600', '700'],
   variable: '--font-cairo',
   display: 'swap',
 })
 
-const ibmPlexArabic = IBM_Plex_Sans_Arabic({ 
+const ibmPlexArabic = IBM_Plex_Sans_Arabic({
   subsets: ['arabic', 'latin'],
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['400', '600'],
   variable: '--font-ibm-plex-arabic',
-  display: 'swap',
-})
-
-const amiri = Amiri({ 
-  subsets: ['arabic', 'latin'],
-  weight: ['400', '700'],
-  variable: '--font-amiri',
   display: 'swap',
 })
 
@@ -42,11 +36,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="ar" dir="rtl" className="bg-background">
-      <body className={`${cairo.variable} ${ibmPlexArabic.variable} ${amiri.variable} font-sans antialiased`}>
-        <Providers>
-          {children}
-        </Providers>
+    <html lang="ar" dir="rtl" className="bg-background" suppressHydrationWarning>
+      <body className={`${cairo.variable} ${ibmPlexArabic.variable} font-sans antialiased`}>
+        {/* Anti-flash: apply saved theme before React hydration */}
+        <script dangerouslySetInnerHTML={{__html: `(function(){try{var p=new URLSearchParams(window.location.search);if(p.get('theme')==='dark'||localStorage.getItem('tabyan-theme')==='dark')document.documentElement.classList.add('dark');}catch(e){}})();`}} />
+        <Providers>{children}</Providers>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

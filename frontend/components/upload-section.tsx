@@ -5,16 +5,21 @@ import { motion, AnimatePresence } from "framer-motion"
 import type { AnalysisResult } from "@/app/page"
 
 interface UploadSectionProps {
-  onResult:    (result: AnalysisResult) => void
+  onResult:     (result: AnalysisResult) => void
   profileName?: string
+  previewState?: 'file-ready' | 'analyzing' | 'done' | 'error'
 }
 
-export function UploadSection({ onResult }: UploadSectionProps) {
+export function UploadSection({ onResult, previewState }: UploadSectionProps) {
   const [isDragging, setIsDragging]     = useState(false)
-  const [uploadedFile, setUploadedFile] = useState<File | null>(null)
-  const [isAnalyzing, setIsAnalyzing]   = useState(false)
-  const [isDone, setIsDone]             = useState(false)
-  const [error, setError]               = useState<string | null>(null)
+  const [uploadedFile, setUploadedFile] = useState<File | null>(
+    previewState ? new File([''], 'CBC_Report_May2026.pdf', { type: 'application/pdf' }) : null
+  )
+  const [isAnalyzing, setIsAnalyzing]   = useState(previewState === 'analyzing')
+  const [isDone, setIsDone]             = useState(previewState === 'done')
+  const [error, setError]               = useState<string | null>(
+    previewState === 'error' ? 'تعذّر الاتصال بالخادم. تأكد من تشغيل الباكند.' : null
+  )
 
   const handleDragOver = useCallback((e: React.DragEvent) => {
     e.preventDefault(); setIsDragging(true)
@@ -72,15 +77,17 @@ export function UploadSection({ onResult }: UploadSectionProps) {
 
   return (
     <section id="analysis" className="py-24 relative">
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden hidden md:block">
         <motion.div
           animate={{ x: [0, 20, 0], y: [0, -20, 0] }}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+          style={{ willChange: "transform" }}
           className="absolute top-20 right-1/4 w-64 h-64 rounded-full bg-primary/10 blur-3xl"
         />
         <motion.div
           animate={{ x: [0, -30, 0], y: [0, 30, 0] }}
           transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+          style={{ willChange: "transform" }}
           className="absolute bottom-20 left-1/4 w-80 h-80 rounded-full bg-secondary/10 blur-3xl"
         />
       </div>
@@ -212,11 +219,12 @@ export function UploadSection({ onResult }: UploadSectionProps) {
                         <div className="h-2 rounded-full bg-muted overflow-hidden">
                           <motion.div
                             initial={{ width: "0%" }}
-                            animate={{ width: "90%" }}
-                            transition={{ duration: 8, ease: "easeInOut" }}
+                            animate={{ width: ["0%", "60%", "80%", "88%", "93%"] }}
+                            transition={{ duration: 30, times: [0, 0.2, 0.5, 0.75, 1], ease: "easeOut" }}
                             className="h-full rounded-full gradient-primary"
                           />
                         </div>
+                        <p className="text-xs text-muted-foreground text-center">يستغرق التحليل 10–30 ثانية</p>
                       </div>
                     )}
 

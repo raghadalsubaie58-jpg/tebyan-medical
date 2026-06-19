@@ -39,11 +39,12 @@ export function RecommendationsSection({ result }: RecommendationsSectionProps) 
       transition={{ duration: 0.7, delay: 0.1 }}
       className="py-24 relative bg-muted/30"
     >
-      {/* Background */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* Background — hidden on mobile for performance */}
+      <div className="absolute inset-0 overflow-hidden hidden md:block">
         <motion.div
           animate={{ scale: [1, 1.1, 1], rotate: [0, 5, 0] }}
           transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
+          style={{ willChange: "transform" }}
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] rounded-full bg-gradient-to-br from-primary/5 to-secondary/5 blur-3xl"
         />
       </div>

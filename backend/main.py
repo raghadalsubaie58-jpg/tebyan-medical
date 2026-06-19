@@ -527,8 +527,14 @@ async def analyze(request: Request, file: UploadFile = File(...), analysis_type:
     log.info("analyze: type=%s file=%s size=%d", analysis_type, file.filename, len(content))
 
     coordinator = load_coordinator()
-    file_type   = "pdf" if file.content_type == "application/pdf" else "image"
-    result      = coordinator.run(content, file_type, analysis_type)
+    is_pdf = (
+        file.content_type == "application/pdf"
+        or (file.filename or "").lower().endswith(".pdf")
+        or content[:4] == b"%PDF"
+    )
+    file_type = "pdf" if is_pdf else "image"
+    import asyncio
+    result = await asyncio.to_thread(coordinator.run, content, file_type, analysis_type)
 
     if not result.ok:
         raise HTTPException(status_code=422, detail=result.error)

@@ -17,12 +17,13 @@ const faqQuestions = [
 interface ChatBotProps {
   analysisResult?: AnalysisResult | null
   sessionId?: string
+  defaultOpen?: boolean
 }
 
 type Message = { role: "assistant" | "user"; content: string }
 
-export function ChatBot({ analysisResult, sessionId = "anonymous" }: ChatBotProps) {
-  const [isOpen, setIsOpen]         = useState(false)
+export function ChatBot({ analysisResult, sessionId = "anonymous", defaultOpen = false }: ChatBotProps) {
+  const [isOpen, setIsOpen]         = useState(defaultOpen)
   const [messages, setMessages]     = useState<Message[]>([{ role: "assistant", content: WELCOME }])
   const [inputValue, setInputValue] = useState("")
   const [isTyping, setIsTyping]     = useState(false)
@@ -145,7 +146,7 @@ export function ChatBot({ analysisResult, sessionId = "anonymous" }: ChatBotProp
           <motion.div
             animate={{ scale: [1, 1.35, 1], opacity: [0.35, 0, 0.35] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute inset-0 rounded-full gradient-primary pointer-events-none"
+            className="absolute inset-0 rounded-full gradient-primary pointer-events-none hidden md:block"
           />
         )}
       </motion.button>

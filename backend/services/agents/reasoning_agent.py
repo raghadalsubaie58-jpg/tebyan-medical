@@ -61,7 +61,7 @@ class MedicalReasoningAgent(AgentBase):
 
         rag_results, conf = self._retriever.retrieve(
             q,
-            self._cfg_cls(k=10, use_multi_query=True,
+            self._cfg_cls(k=8, use_multi_query=False,
                           topic_type="lab_test" if ctx.panel_code else None),
         )
         panel_ctx = self._kb.build_panel_context(ctx.panel_code) if ctx.panel_code else ""
@@ -88,7 +88,7 @@ class MedicalReasoningAgent(AgentBase):
         resp = self._groq.chat.completions.create(
             model="llama-3.3-70b-versatile",
             messages=[{"role": "user", "content": prompt}],
-            temperature=0.3, max_tokens=2048,
+            temperature=0.3, max_tokens=1200,
         )
         raw = resp.choices[0].message.content.strip().replace("```json", "").replace("```", "").strip()
         if "{" in raw:
