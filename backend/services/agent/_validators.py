@@ -72,7 +72,7 @@ def is_valid_test(name: str) -> bool:
 def get_status(value: str, range_str: str, name: str = "") -> str:
     try:
         val = float(value)
-        nums = re.findall(r"[-+]?\d*\.?\d+", str(range_str))
+        nums = re.findall(r"\d+\.?\d*", str(range_str))
         if len(nums) >= 2:
             lo, hi = float(nums[0]), float(nums[1])
             if val < lo:
