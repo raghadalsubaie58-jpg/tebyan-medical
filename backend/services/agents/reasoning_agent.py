@@ -61,7 +61,7 @@ class MedicalReasoningAgent(AgentBase):
 
         rag_results, conf = self._retriever.retrieve(
             q,
-            self._cfg_cls(k=8, use_multi_query=False,
+            self._cfg_cls(k=5, use_multi_query=False,
                           topic_type="lab_test" if ctx.panel_code else None),
         )
         panel_ctx = self._kb.build_panel_context(ctx.panel_code) if ctx.panel_code else ""
