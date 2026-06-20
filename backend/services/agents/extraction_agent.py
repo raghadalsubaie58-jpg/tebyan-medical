@@ -16,6 +16,10 @@ def _normalize_text(text: str) -> str:
     text = text.translate(_ARABIC_DIGITS)
     text = re.sub(r"(\d),(\d)", r"\1.\2", text)
 
+    # Normalize special dash/bullet chars to regular hyphen (used as range separators in some PDFs)
+    text = text.replace("•", "-").replace("·", "-")  # • and ·
+    text = text.replace("–", "-").replace("—", "-")  # – and —
+
     # Strip SNOMED/LOINC/ICD codes embedded in test names: [SNOMED:12345-6]
     text = re.sub(r"\[\w+:[^\]]{1,30}\]", "", text)
 
@@ -43,10 +47,12 @@ class ExtractionAgent(AgentBase):
         normalized_text = _normalize_text(ctx.raw_text)
 
         # Step 1: regex — two patterns to cover different report formats
+        # Name group allows letters, spaces, #, %, (, ) to capture "SODIUM ( Na )", "SGPT ( ALT )" etc.
+        _name = r"([a-zA-Z][a-zA-Z\s#%()/]{2,})"
         # Pattern A: name  value  range  [unit]     e.g. "Hemoglobin  12.2  12-16  g/dL"
-        pat_a = r"([a-zA-Z][a-zA-Z\s#%]{2,})\s+(\d+\.?\d*)\s+([\d\.]+\s*-\s*[\d\.]+)\s*([a-zA-Z0-9^³/μ%]+)?"
+        pat_a = _name + r"\s+(\d+\.?\d*)\s+([\d\.]+\s*-\s*[\d\.]+)\s*([a-zA-Z0-9^³/μ%]+)?"
         # Pattern B: name  value  unit  range       e.g. "Hemoglobin  12.2  g/dl  12-16"
-        pat_b = r"([a-zA-Z][a-zA-Z\s#%]{2,})\s+(\d+\.?\d*)\s+([a-zA-Z0-9^³/μ%/]+)\s+([\d\.]+\s*-\s*[\d\.]+)"
+        pat_b = _name + r"\s+(\d+\.?\d*)\s+([a-zA-Z0-9^³/μ%/]+)\s+([\d\.]+\s*-\s*[\d\.]+)"
 
         matches_a = [f for f in re.findall(pat_a, normalized_text) if is_valid_test(f[0])]
         # For pat_b, reorder to (name, value, range, unit)

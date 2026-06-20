@@ -515,16 +515,6 @@ ANALYSIS_TYPE_HINTS = {
 }
 
 
-@app.post("/api/debug-pdf")
-async def debug_pdf(file: UploadFile = File(...)):
-    """Temporary: returns raw fitz text to debug extraction issues."""
-    import fitz, repr as _repr
-    content = await file.read()
-    doc = fitz.open(stream=content, filetype="pdf")
-    raw = "\n".join(p.get_text() for p in doc)
-    chars = {hex(ord(c)) for c in raw if ord(c) > 127}
-    return {"length": len(raw), "special_chars": sorted(chars)[:30], "text": raw[:4000]}
-
 
 @app.post("/api/analyze")
 async def analyze(request: Request, file: UploadFile = File(...), analysis_type: str = Form("شامل"),
