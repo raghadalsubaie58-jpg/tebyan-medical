@@ -82,22 +82,6 @@ log = logging.getLogger("tebyan.main")
 app = FastAPI(title="تبيان الطبي API")
 
 
-# ── Keep-alive: ping self every 4 min to prevent HuggingFace free-tier sleep ──
-import threading, urllib.request as _urllib
-
-def _keepalive():
-    import time
-    # wait 60s after startup before first ping
-    time.sleep(60)
-    while True:
-        try:
-            _urllib.urlopen("http://localhost:8000/health", timeout=5)
-        except Exception:
-            pass
-        time.sleep(240)  # 4 minutes
-
-threading.Thread(target=_keepalive, daemon=True, name="keepalive").start()
-
 _is_production = os.getenv("ENVIRONMENT", "development") == "production"
 _allowed_origins: list[str] = list(filter(None, [
     "http://localhost:3000",
